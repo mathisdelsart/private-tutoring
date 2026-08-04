@@ -70,7 +70,7 @@ export default function Home() {
 
         <Temoignage />
 
-        <About />
+        <About diplomeFichier={prof.diplomeFichier} />
 
         <Faq />
 

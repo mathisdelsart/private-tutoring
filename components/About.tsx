@@ -2,6 +2,7 @@
 
 import { useEffect, useLayoutEffect, useState } from 'react'
 import { ChevronDown, GraduationCap, Award, Brain, ExternalLink } from 'lucide-react'
+import { assetPath } from '@/lib/assetPath'
 import { useLanguage } from '@/lib/i18n'
 import { withHighlights } from '@/lib/highlight'
 
@@ -9,7 +10,11 @@ const useIsomorphicLayoutEffect = typeof window !== 'undefined' ? useLayoutEffec
 
 const credentialIcons = [GraduationCap, Award, Brain]
 
-export default function About() {
+interface AboutProps {
+  diplomeFichier: string
+}
+
+export default function About({ diplomeFichier }: AboutProps) {
   const { t } = useLanguage()
   const [activeIndex, setActiveIndex] = useState(0)
   // The accordion is the server-rendered layout: it works at any width and
@@ -45,6 +50,11 @@ export default function About() {
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4 max-w-5xl mx-auto mb-10 sm:mb-14">
           {t.about.credentials.map((credential, index) => {
             const Icon = credentialIcons[index % credentialIcons.length]
+            // 'file' points at the local certificate, whose name lives in prof.json
+            const linkHref =
+              credential.linkKind === 'file'
+                ? diplomeFichier && assetPath(diplomeFichier)
+                : credential.linkUrl
             return (
               <div
                 key={credential.label}
@@ -60,9 +70,9 @@ export default function About() {
                   <div className="text-sm sm:text-base font-semibold text-slate-900 leading-snug">
                     {credential.value}
                   </div>
-                  {credential.linkUrl && (
+                  {linkHref && (
                     <a
-                      href={credential.linkUrl}
+                      href={linkHref}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="group/link inline-flex items-center gap-1 mt-1.5 text-[11px] sm:text-xs font-semibold text-primary hover:text-secondary transition-colors"

@@ -278,13 +278,15 @@ const fr = {
         detail: 'École Polytechnique de Louvain — UCLouvain',
         linkLabel: '',
         linkUrl: '',
+        linkKind: '',
       },
       {
         label: 'Diplôme',
         value: 'Diplômé avec la plus grande distinction',
         detail: 'Moyenne de 17,95/20 sur le master',
-        linkLabel: '',
+        linkLabel: 'Attestation de diplôme',
         linkUrl: '',
+        linkKind: 'file',
       },
       {
         label: 'Spécialisation',
@@ -292,6 +294,7 @@ const fr = {
         detail: 'Article à l’IEEE Conference on Games 2026',
         linkLabel: 'Consulter le mémoire',
         linkUrl: 'https://hdl.handle.net/2078.2/49506',
+        linkKind: 'external',
       },
     ],
     items: [
@@ -770,13 +773,15 @@ const en: typeof fr = {
         detail: 'École Polytechnique de Louvain — UCLouvain',
         linkLabel: '',
         linkUrl: '',
+        linkKind: '',
       },
       {
         label: 'Degree',
         value: 'Graduated with the highest distinction',
         detail: "A 17.95/20 average for the master's",
-        linkLabel: '',
+        linkLabel: 'Degree certificate',
         linkUrl: '',
+        linkKind: 'file',
       },
       {
         label: 'Specialization',
@@ -784,6 +789,7 @@ const en: typeof fr = {
         detail: 'Paper at the IEEE Conference on Games 2026',
         linkLabel: 'Read the thesis',
         linkUrl: 'https://hdl.handle.net/2078.2/49506',
+        linkKind: 'external',
       },
     ],
     items: [
@@ -1265,13 +1271,15 @@ const nl: typeof fr = {
         detail: 'École Polytechnique de Louvain — UCLouvain',
         linkLabel: '',
         linkUrl: '',
+        linkKind: '',
       },
       {
         label: 'Diploma',
         value: 'Afgestudeerd met de grootste onderscheiding',
         detail: 'Gemiddelde van 17,95/20 voor de master',
-        linkLabel: '',
+        linkLabel: 'Diplomabewijs',
         linkUrl: '',
+        linkKind: 'file',
       },
       {
         label: 'Specialisatie',
@@ -1279,6 +1287,7 @@ const nl: typeof fr = {
         detail: 'Artikel op de IEEE Conference on Games 2026',
         linkLabel: 'Masterproef bekijken',
         linkUrl: 'https://hdl.handle.net/2078.2/49506',
+        linkKind: 'external',
       },
     ],
     items: [
