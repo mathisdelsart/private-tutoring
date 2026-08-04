@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react'
 import Image from 'next/image'
 import { assetPath } from '@/lib/assetPath'
 import { useLanguage } from '@/lib/i18n'
+import Counter from './Counter'
 
 interface HeroProps {
   nom: string
@@ -39,16 +40,39 @@ export default function Hero({ nom }: HeroProps) {
                   {t.hero.subtitle2}
                 </p>
               </div>
+
+              <div className="flex flex-wrap gap-2 mb-6 sm:mb-8">
+                {t.hero.audienceChips.map((chip, i) => (
+                  <span
+                    key={chip}
+                    className={`px-3 py-1.5 rounded-full bg-emerald-50 border border-emerald-200 text-xs sm:text-sm font-semibold text-emerald-800 ${
+                      mounted ? 'animate-[fadeInUp_0.6s_ease-out_backwards]' : 'opacity-0'
+                    }`}
+                    style={{ animationDelay: `${0.35 + i * 0.12}s` }}
+                  >
+                    {chip}
+                  </span>
+                ))}
+              </div>
             </div>
 
             <div className="space-y-4 sm:space-y-6 lg:pr-4">
               <div className="grid grid-cols-2 gap-3 sm:gap-4">
                 <div className="card p-3 sm:p-5 text-center hover:scale-105 transition-transform duration-300">
-                  <div className="text-3xl sm:text-4xl lg:text-5xl font-extrabold gradient-text mb-1 sm:mb-2">100+</div>
+                  <Counter
+                    value={100}
+                    suffix="+"
+                    className="block text-3xl sm:text-4xl lg:text-5xl font-extrabold gradient-text mb-1 sm:mb-2 tabular-nums"
+                  />
                   <div className="text-[10px] sm:text-xs text-slate-500 uppercase tracking-wide font-semibold">{t.hero.statStudents}</div>
                 </div>
                 <div className="card p-3 sm:p-5 text-center hover:scale-105 transition-transform duration-300">
-                  <div className="text-3xl sm:text-4xl lg:text-5xl font-extrabold gradient-text mb-1 sm:mb-2">+3</div>
+                  <Counter
+                    value={3}
+                    prefix="+"
+                    duration={1000}
+                    className="block text-3xl sm:text-4xl lg:text-5xl font-extrabold gradient-text mb-1 sm:mb-2 tabular-nums"
+                  />
                   <div className="text-[10px] sm:text-xs text-slate-500 uppercase tracking-wide font-semibold">{t.hero.statExperience}</div>
                 </div>
               </div>

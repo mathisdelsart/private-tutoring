@@ -4,72 +4,56 @@ import { useEffect } from 'react'
 
 export default function SmoothScroll() {
   useEffect(() => {
+    // The navbar is fixed, so anchors have to land just below it.
+    const getNavOffset = () => {
+      const nav = document.querySelector('nav')
+      return (nav?.getBoundingClientRect().height ?? 80) + 16
+    }
+
     const handleClick = (e: MouseEvent) => {
       const target = e.target as HTMLElement
       const anchor = target.closest('a[href^="#"]')
+      if (!anchor) return
 
-      if (anchor) {
-        e.preventDefault()
-        const href = anchor.getAttribute('href')
-        if (href && href !== '#') {
-          const element = document.querySelector(href) as HTMLElement
-          if (element) {
-            // Hauteur de la navigation
-            const navHeight = 96
-            
-            // Calculer la hauteur de la viewport
-            const viewportHeight = window.innerHeight
-            
-            // Hauteur de la section
-            const sectionHeight = element.offsetHeight
-            
-            // Position de l'élément par rapport au haut de la page
-            const elementPosition = element.getBoundingClientRect().top + window.scrollY
-            
-            // Pour la section accueil, on la positionne juste sous la nav
-            if (href === '#accueil') {
-              const offsetPosition = elementPosition - navHeight - 20
-              window.scrollTo({
-                top: offsetPosition,
-                behavior: 'smooth'
-              })
-            } else {
-              // Pour les autres sections, on centre le contenu dans la viewport
-              // en tenant compte de la navigation
-              const availableHeight = viewportHeight - navHeight
-              const offsetPosition = elementPosition - navHeight - (availableHeight - sectionHeight) / 2
-              
-              window.scrollTo({
-                top: offsetPosition,
-                behavior: 'smooth'
-              })
-            }
-          }
-        }
-      }
-    }
+      const href = anchor.getAttribute('href')
+      if (!href || href === '#') return
 
-    const reveals = document.querySelectorAll('.reveal')
+      const element = document.querySelector(href) as HTMLElement | null
+      if (!element) return
 
-    const revealOnScroll = () => {
-      const windowHeight = window.innerHeight
-      reveals.forEach(element => {
-        const elementTop = element.getBoundingClientRect().top
-        const revealPoint = 100
-
-        if (elementTop < windowHeight - revealPoint) {
-          element.classList.add('active')
-        }
-      })
+      e.preventDefault()
+      const top = element.getBoundingClientRect().top + window.scrollY - getNavOffset()
+      window.scrollTo({ top: Math.max(0, top), behavior: 'smooth' })
     }
 
     document.addEventListener('click', handleClick)
-    window.addEventListener('scroll', revealOnScroll)
-    revealOnScroll()
+
+    // Scroll reveal: an observer only fires for sections that actually come into
+    // view, instead of recomputing every element on every scroll event.
+    const revealElements = Array.from(document.querySelectorAll('.reveal'))
+
+    if (typeof IntersectionObserver === 'undefined') {
+      revealElements.forEach((element) => element.classList.add('active'))
+      return () => document.removeEventListener('click', handleClick)
+    }
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('active')
+            observer.unobserve(entry.target)
+          }
+        })
+      },
+      { threshold: 0.08, rootMargin: '0px 0px -60px 0px' }
+    )
+
+    revealElements.forEach((element) => observer.observe(element))
 
     return () => {
       document.removeEventListener('click', handleClick)
-      window.removeEventListener('scroll', revealOnScroll)
+      observer.disconnect()
     }
   }, [])
 

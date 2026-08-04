@@ -1,7 +1,18 @@
 'use client'
 
 import { useState } from 'react'
-import { Mail, MessageCircle, Home, Video, Calculator, Lightbulb, Code } from 'lucide-react'
+import {
+  Mail,
+  MessageCircle,
+  Home,
+  Video,
+  Calculator,
+  Atom,
+  Code,
+  Brain,
+  Compass,
+  Stethoscope,
+} from 'lucide-react'
 import { useLanguage } from '@/lib/i18n'
 
 interface ContactFormProps {
@@ -10,10 +21,18 @@ interface ContactFormProps {
   nom: string
 }
 
+// One icon set per level, so the subject buttons stay meaningful whatever the level.
+const subjectIcons: Record<string, typeof Calculator[]> = {
+  secondaire: [Calculator, Atom, Code],
+  superieur: [Calculator, Atom, Code, Brain],
+  examens: [Compass, Stethoscope],
+}
+
 export default function ContactForm({ email, whatsapp, nom }: ContactFormProps) {
   const { t } = useLanguage()
   const [formData, setFormData] = useState({
     name: '',
+    level: 'secondaire',
     subjects: [] as string[],
     location: 'domicile',
     courseType: 'suivi',
@@ -36,6 +55,7 @@ export default function ContactForm({ email, whatsapp, nom }: ContactFormProps) 
 
     const modalityText = formData.location === 'domicile' ? m.modalityHome : m.modalityOnline
     const courseTypeText = formData.courseType === 'suivi' ? m.courseTypeRegular : m.courseTypeOneoff
+    const levelText = t.form.levels.find((l) => l.id === formData.level)?.label ?? ''
 
     let message = `${m.greeting.replace('{nom}', nom)}
 
@@ -45,6 +65,9 @@ ${m.intro}
 
 ${m.student}
 ${formData.name}
+
+${m.level}
+${levelText}
 
 ${m.subjects}
 ${subjectsText}
@@ -133,12 +156,25 @@ ${m.closing}`
     })
   }
 
-  const subjectVisuals = [
-    { icon: Calculator, color: 'from-emerald-500 to-teal-600' },
-    { icon: Lightbulb, color: 'from-teal-500 to-emerald-600' },
-    { icon: Code, color: 'from-green-500 to-emerald-600' }
+  // Subject names differ from one level to the next, so the selection is reset with the level.
+  const selectLevel = (levelId: string) => {
+    setFormData(prev => (prev.level === levelId ? prev : { ...prev, level: levelId, subjects: [] }))
+  }
+
+  const subjectColors = [
+    'from-emerald-500 to-teal-600',
+    'from-teal-500 to-emerald-600',
+    'from-green-500 to-emerald-600',
+    'from-emerald-600 to-teal-700',
   ]
-  const subjects = t.form.subjects.map((name, i) => ({ name, ...subjectVisuals[i] }))
+  const activeLevel = t.form.levels.find((l) => l.id === formData.level) ?? t.form.levels[0]
+  const icons = subjectIcons[activeLevel.id] ?? subjectIcons.secondaire
+  const subjects = activeLevel.subjects.map((name, i) => ({
+    name,
+    icon: icons[i % icons.length],
+    color: subjectColors[i % subjectColors.length],
+  }))
+  const subjectGridClass = subjects.length === 3 ? 'grid-cols-3' : 'grid-cols-2'
 
   return (
     <div className="card p-8 max-w-2xl mx-auto relative">
@@ -172,9 +208,31 @@ ${m.closing}`
 
             <div>
               <label className="block text-sm font-medium text-slate-700 mb-3">
+                {t.form.labelLevel} <span className="text-accent">*</span>
+              </label>
+              <div className="grid grid-cols-3 gap-2 sm:gap-3">
+                {t.form.levels.map((level) => (
+                  <button
+                    key={level.id}
+                    type="button"
+                    onClick={() => selectLevel(level.id)}
+                    className={`px-2 py-3 rounded-xl border-2 text-xs sm:text-sm font-medium transition-all duration-300 ${
+                      formData.level === level.id
+                        ? 'border-primary bg-emerald-50 text-slate-900'
+                        : 'border-slate-200 bg-white text-slate-600 hover:border-primary/50'
+                    }`}
+                  >
+                    {level.label}
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            <div>
+              <label className="block text-sm font-medium text-slate-700 mb-3">
                 {t.form.labelSubjects} <span className="text-accent">*</span>
               </label>
-              <div className="grid grid-cols-3 gap-3">
+              <div className={`grid ${subjectGridClass} gap-3`}>
                 {subjects.map((subject) => {
                   const Icon = subject.icon
                   const isSelected = formData.subjects.includes(subject.name)

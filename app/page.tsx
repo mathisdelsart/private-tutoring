@@ -1,54 +1,54 @@
-import { readFileSync } from 'fs'
-import { join } from 'path'
 import Hero from '@/components/Hero'
 import Services from '@/components/Services'
 import Method from '@/components/Method'
+import Faq from '@/components/Faq'
 import Contact from '@/components/Contact'
 import Temoignage from '@/components/Temoignage'
 import AnimatedBackground from '@/components/AnimatedBackground'
 import Navigation from '@/components/Navigation'
 import SmoothScroll from '@/components/SmoothScroll'
 import Footer from '@/components/Footer'
-
-interface ProfData {
-  nom: string
-  matieres: string[]
-  ville: string
-  accroche: string
-  email: string
-  whatsapp: string
-}
-
-function getProfData(): ProfData {
-  const filePath = join(process.cwd(), 'data', 'prof.json')
-  const fileContents = readFileSync(filePath, 'utf8')
-  return JSON.parse(fileContents)
-}
+import prof from '@/data/prof.json'
+import { translations } from '@/locales/translations'
 
 export default function Home() {
-  const prof = getProfData()
-
-  // Données structurées Schema.org
-  const schemaData = {
+  // Données structurées Schema.org — la langue par défaut du site est le français
+  const personSchema = {
     '@context': 'https://schema.org',
     '@type': 'Person',
     name: prof.nom,
-    jobTitle: `Professeur particulier de ${prof.matieres.join(' et ')}`,
+    jobTitle: `Professeur particulier de ${prof.matieres.join(', ')}`,
+    url: prof.siteUrl,
     address: {
       '@type': 'PostalAddress',
       addressLocality: prof.ville,
+      addressCountry: 'BE',
     },
     email: prof.email,
     telephone: `+${prof.whatsapp}`,
     description: prof.accroche,
-    knowsAbout: prof.matieres,
+    knowsAbout: [...prof.matieres, ...prof.publics],
+  }
+
+  const faqSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: translations.fr.faq.items.map((item) => ({
+      '@type': 'Question',
+      name: item.q,
+      acceptedAnswer: { '@type': 'Answer', text: item.a },
+    })),
   }
 
   return (
     <>
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaData) }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(personSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
       />
 
       <AnimatedBackground />
@@ -63,6 +63,8 @@ export default function Home() {
         <Services />
 
         <Temoignage />
+
+        <Faq />
 
         <Contact email={prof.email} whatsapp={prof.whatsapp} nom={prof.nom} />
 

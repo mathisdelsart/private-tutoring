@@ -1,12 +1,38 @@
 {
   "nom": "Mathis Delsart",
-  "matieres": ["Mathématiques", "Physique", "Python"],
+  "matieres": [
+    "Mathématiques",
+    "Physique",
+    "Python",
+    "Programmation",
+    "Intelligence artificielle"
+  ],
+  "publics": [
+    "Secondaire",
+    "Enseignement supérieur",
+    "Préparation à l'examen d'entrée ingénieur civil",
+    "Préparation à l'examen d'entrée en médecine"
+  ],
   "ville": "Gouy-Lez-Piéton",
-  "accroche": "Ingénieur civil en Informatique & IA spécialisé dans l'enseignement personnalisé",
+  "accroche": "Ingénieur civil en Informatique & IA spécialisé dans l'enseignement personnalisé, du secondaire au supérieur et en préparation aux examens d'entrée",
   "email": "mathis.delsart@gmail.com",
   "whatsapp": "32468386354",
-  "siteTitle": "Mathis Delsart | Professeur particulier en maths, physique & Python",
-  "description": "Secondaire • Chez le professeur ou en ligne • Belgique (Courcelles, Gouy-Lez-Piéton).",
+  "siteUrl": "https://mathisdelsart.github.io/private-tutoring/",
+  "siteTitle": "Mathis Delsart | Cours particuliers maths & physique — secondaire, supérieur, prépa examens d'entrée",
+  "description": "Cours particuliers en maths, physique et programmation. Secondaire, enseignement supérieur, et préparation à l'examen d'entrée ingénieur civil et à l'examen d'entrée médecine. Chez le professeur ou en ligne — Belgique (Courcelles, Gouy-Lez-Piéton).",
+  "keywords": [
+    "cours particuliers maths",
+    "cours particuliers physique",
+    "professeur particulier Belgique",
+    "préparation examen d'entrée ingénieur civil",
+    "préparation examen d'entrée médecine",
+    "concours médecine",
+    "cours particuliers supérieur",
+    "cours Python",
+    "cours intelligence artificielle",
+    "Courcelles",
+    "Gouy-Lez-Piéton"
+  ],
   "ogImage": "https://mathisdelsart.github.io/private-tutoring/app-image.png?v=5",
   "ogImageAlt": "Mathis Delsart – Professeur particulier"
 }

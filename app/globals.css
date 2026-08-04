@@ -193,14 +193,10 @@ html {
   scroll-behavior: smooth;
 }
 
-/* Section scroll offset for sticky navbar */
+/* Section scroll offset for the fixed navbar. Anchor clicks are handled by
+   SmoothScroll; this covers direct hash URLs and keyboard navigation. */
 section[id] {
-  scroll-margin-top: 6rem;
-}
-
-section#matieres,
-section#temoignages {
-  scroll-margin-top: -8rem;
+  scroll-margin-top: 7rem;
 }
 
 /* Selection styling */
@@ -245,5 +241,15 @@ img {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
+  }
+
+  html {
+    scroll-behavior: auto;
+  }
+
+  /* Reveal is driven by an observer; without motion it must not hide content */
+  .reveal {
+    opacity: 1;
+    transform: none;
   }
 }

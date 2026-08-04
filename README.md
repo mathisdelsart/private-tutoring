@@ -2,7 +2,7 @@
 
 # Cours Particuliers — Private Tutoring Website
 
-**A bilingual (FR / EN), responsive single-page website for a private tutor — built with Next.js and statically deployed to GitHub Pages.**
+**A bilingual (FR / EN), responsive single-page website for a private tutor — secondary school, higher education and entrance-exam preparation — built with Next.js and statically deployed to GitHub Pages.**
 
 Website: **[mathisdelsart.github.io/private-tutoring](https://mathisdelsart.github.io/private-tutoring)**
 
@@ -23,10 +23,15 @@ Website: **[mathisdelsart.github.io/private-tutoring](https://mathisdelsart.gith
 
 - **Bilingual (FR / EN)** — instant client-side language switch, French by default, preference saved in the browser.
 - **Sober, responsive design** — clean white / slate / emerald theme, mobile-first, accessible.
-- **Smart contact form** — multi-step form that pre-fills a ready-to-send WhatsApp or email message.
-- **Testimonials carousel** — responsive, touch-friendly.
+- **Subjects by audience** — an animated segmented control switches between secondary school, higher education and entrance-exam preparation.
+- **Smart contact form** — multi-step form, level-aware subject picker, pre-fills a ready-to-send WhatsApp or email message.
+- **Testimonials carousel** — autoplaying, pauses on hover, swipeable on touch screens.
+- **FAQ accordion** — smooth open/close, also exposed to search engines as `FAQPage` structured data.
+- **Motion that stays sober** — scroll reveal, reading-progress bar, active nav link and animated hero counters, all in plain CSS + `IntersectionObserver` (no animation library).
 - **SEO-ready** — metadata, Open Graph tags and JSON-LD structured data.
 - **Static export** — fast, secure and free to host on GitHub Pages.
+
+Every animation honours `prefers-reduced-motion`, and the scroll reveal falls back to fully visible content when JavaScript is unavailable.
 
 ## Tech Stack
 
@@ -66,7 +71,9 @@ app/
   page.tsx            Home page (assembles all sections)
   globals.css         Global styles, theme tokens and animations
   icon.svg            Favicon
-components/            UI sections (Hero, Method, Services, Testimonials, Contact, ...)
+components/            UI sections (Hero, Method, Services, Testimonials, Faq, Contact, ...)
+  Counter.tsx         Number that counts up when it scrolls into view
+  SmoothScroll.tsx    Anchor scrolling and scroll-reveal observer
 lib/
   i18n.tsx            Language context (FR / EN, persisted)
   assetPath.ts        GitHub Pages basePath helper
