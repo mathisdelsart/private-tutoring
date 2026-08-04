@@ -3,7 +3,6 @@
 import { useState } from 'react'
 import {
   Mail,
-  MessageCircle,
   Home,
   Video,
   Calculator,
@@ -14,6 +13,7 @@ import {
   Stethoscope,
 } from 'lucide-react'
 import { useLanguage } from '@/lib/i18n'
+import WhatsAppIcon from './WhatsAppIcon'
 
 interface ContactFormProps {
   email: string
@@ -463,7 +463,7 @@ ${m.closing}`
                   disabled={!formData.availability}
                   className="p-4 sm:p-5 rounded-xl bg-gradient-to-br from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 text-white transition-all duration-300 hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 flex flex-col items-center gap-2"
                 >
-                  <MessageCircle className="w-6 h-6 sm:w-7 sm:h-7" />
+                  <WhatsAppIcon className="w-6 h-6 sm:w-7 sm:h-7" />
                   <span className="text-xs sm:text-sm font-medium">WhatsApp</span>
                   <span className="text-[10px] sm:text-xs text-white/70 mt-1">{t.contact.whatsappDesc}</span>
                 </button>

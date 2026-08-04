@@ -3,6 +3,7 @@
 import { useState } from 'react'
 import { Mail, MessageCircle, MessageSquare } from 'lucide-react'
 import ContactForm from './ContactForm'
+import WhatsAppIcon from './WhatsAppIcon'
 import { useLanguage } from '@/lib/i18n'
 
 interface ContactProps {
@@ -26,7 +27,7 @@ export default function Contact({ email, whatsapp, nom }: ContactProps) {
 
   const contactMethods = [
     {
-      icon: <MessageSquare />,
+      icon: <MessageSquare className="w-7 h-7 sm:w-8 sm:h-8" />,
       title: 'SMS',
       value: phoneDisplay,
       link: smsLink,
@@ -37,7 +38,7 @@ export default function Contact({ email, whatsapp, nom }: ContactProps) {
       description: t.contact.smsDesc
     },
     {
-      icon: <MessageCircle />,
+      icon: <WhatsAppIcon className="w-7 h-7 sm:w-8 sm:h-8" />,
       title: 'WhatsApp',
       value: phoneDisplay,
       link: whatsappLink,
@@ -48,7 +49,7 @@ export default function Contact({ email, whatsapp, nom }: ContactProps) {
       description: t.contact.whatsappDesc
     },
     {
-      icon: <Mail />,
+      icon: <Mail className="w-7 h-7 sm:w-8 sm:h-8" />,
       title: 'Email',
       value: email,
       link: emailLink,
@@ -117,7 +118,7 @@ export default function Contact({ email, whatsapp, nom }: ContactProps) {
                 {/* Effet de brillance au hover - Désactivé sur mobile */}
                 <div className="hidden sm:block absolute inset-0 bg-gradient-to-r from-transparent via-white/40 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
 
-                <div className={`w-16 h-16 sm:w-20 sm:h-20 rounded-xl sm:rounded-2xl bg-gradient-to-br ${method.color} flex items-center justify-center text-3xl sm:text-4xl mb-4 sm:mb-6 shadow-lg transform group-hover:scale-110 group-hover:rotate-6 transition-all duration-300`}>
+                <div className={`w-16 h-16 sm:w-20 sm:h-20 rounded-xl sm:rounded-2xl bg-gradient-to-br ${method.color} flex items-center justify-center text-white mb-4 sm:mb-6 shadow-lg transform group-hover:scale-110 group-hover:rotate-6 transition-all duration-300`}>
                   {method.icon}
                 </div>
                 <div className="relative z-10">
