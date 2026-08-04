@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import { Mail, MessageCircle } from 'lucide-react'
+import { Mail, MessageCircle, MessageSquare } from 'lucide-react'
 import ContactForm from './ContactForm'
 import { useLanguage } from '@/lib/i18n'
 
@@ -14,16 +14,34 @@ interface ContactProps {
 export default function Contact({ email, whatsapp, nom }: ContactProps) {
   const { t } = useLanguage()
   const [showForm, setShowForm] = useState(false)
+  const phoneDisplay = '+32 468.38.63.54'
   const whatsappText = t.contact.directWhatsappText.replace('{nom}', nom)
   const whatsappLink = `https://wa.me/${whatsapp}?text=${encodeURIComponent(whatsappText)}`
   const emailLink = `mailto:${email}?subject=${encodeURIComponent(t.contact.directEmailSubject)}`
+  // "?&body=" is the form both iOS and Android accept: iOS expects the body after
+  // "&", Android after "?", and this satisfies each of them.
+  const smsLink = `sms:+${whatsapp}?&body=${encodeURIComponent(
+    t.contact.directSmsText.replace('{nom}', nom)
+  )}`
 
   const contactMethods = [
     {
+      icon: <MessageSquare />,
+      title: 'SMS',
+      value: phoneDisplay,
+      link: smsLink,
+      newTab: false,
+      color: 'from-emerald-500 to-green-600',
+      bgColor: 'bg-emerald-50',
+      borderColor: 'border-emerald-200',
+      description: t.contact.smsDesc
+    },
+    {
       icon: <MessageCircle />,
       title: 'WhatsApp',
-      value: `+32 468.38.63.54`,
+      value: phoneDisplay,
       link: whatsappLink,
+      newTab: true,
       color: 'from-green-500 to-emerald-600',
       bgColor: 'bg-emerald-50',
       borderColor: 'border-emerald-200',
@@ -34,6 +52,7 @@ export default function Contact({ email, whatsapp, nom }: ContactProps) {
       title: 'Email',
       value: email,
       link: emailLink,
+      newTab: false,
       color: 'from-teal-500 to-emerald-600',
       bgColor: 'bg-emerald-50',
       borderColor: 'border-emerald-200',
@@ -86,12 +105,12 @@ export default function Contact({ email, whatsapp, nom }: ContactProps) {
           <ContactForm email={email} whatsapp={whatsapp} nom={nom} />
         ) : (
           <div className="max-w-7xl mx-auto">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 lg:gap-8 max-w-4xl mx-auto">
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-5 lg:gap-6 max-w-5xl mx-auto">
             {contactMethods.map((method, index) => (
               <a
                 key={index}
                 href={method.link}
-                target={method.title === 'Email' ? '_self' : '_blank'}
+                target={method.newTab ? '_blank' : '_self'}
                 rel="noopener noreferrer"
                 className={`relative overflow-hidden rounded-2xl p-6 sm:p-8 group hover:scale-105 transition-all duration-400 ${method.bgColor} border-2 ${method.borderColor} hover:shadow-2xl flex flex-col items-center text-center`}
               >
