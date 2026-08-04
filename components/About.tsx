@@ -3,6 +3,7 @@
 import { useEffect, useLayoutEffect, useState } from 'react'
 import { ChevronDown, GraduationCap, Award, Brain } from 'lucide-react'
 import { useLanguage } from '@/lib/i18n'
+import { withHighlights } from '@/lib/highlight'
 
 const useIsomorphicLayoutEffect = typeof window !== 'undefined' ? useLayoutEffect : useEffect
 
@@ -31,6 +32,7 @@ export default function About() {
     <section id="apropos" className="py-12 sm:py-16 lg:py-20 relative reveal">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-8 sm:mb-10 lg:mb-12">
+          <span className="eyebrow mb-4">{t.about.eyebrow}</span>
           <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold mb-4 sm:mb-6 text-slate-900">
             {t.about.title}
           </h2>
@@ -46,7 +48,7 @@ export default function About() {
             return (
               <div
                 key={credential.label}
-                className="card p-4 sm:p-5 flex items-center gap-3 sm:gap-4 hover:border-emerald-200 transition-colors duration-300"
+                className="card p-4 sm:p-5 flex items-start gap-3 sm:gap-4 hover:border-emerald-200 hover:shadow-[0_12px_30px_rgba(5,150,105,0.09)] transition-all duration-300"
               >
                 <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-xl bg-gradient-to-br from-emerald-500 to-teal-600 flex items-center justify-center flex-shrink-0 shadow-sm shadow-emerald-600/20">
                   <Icon className="w-5 h-5 sm:w-6 sm:h-6 text-white" strokeWidth={2.2} />
@@ -57,6 +59,9 @@ export default function About() {
                   </div>
                   <div className="text-sm sm:text-base font-semibold text-slate-900 leading-snug">
                     {credential.value}
+                  </div>
+                  <div className="text-[11px] sm:text-xs text-slate-500 leading-snug mt-1">
+                    {credential.detail}
                   </div>
                 </div>
               </div>
@@ -101,7 +106,7 @@ export default function About() {
               <div className="space-y-4">
                 {active.a.map((paragraph, i) => (
                   <p key={i} className="text-sm xl:text-base text-slate-600 leading-relaxed">
-                    {paragraph}
+                    {withHighlights(paragraph)}
                   </p>
                 ))}
               </div>
@@ -144,7 +149,7 @@ export default function About() {
                       <div className="px-5 sm:px-6 pb-5 sm:pb-6 space-y-3">
                         {item.a.map((paragraph, i) => (
                           <p key={i} className="text-sm sm:text-base text-slate-600 leading-relaxed">
-                            {paragraph}
+                            {withHighlights(paragraph)}
                           </p>
                         ))}
                       </div>

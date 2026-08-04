@@ -57,7 +57,12 @@ export default function Home() {
       <SmoothScroll />
 
       <main className="min-h-screen relative">
-        <Hero nom={prof.nom} />
+        <Hero
+          nom={prof.nom}
+          moyenne={prof.diplomeMoyenne}
+          moyenneSur={prof.diplomeSur}
+          diplomeFichier={prof.diplomeFichier}
+        />
 
         <Method />
 
@@ -71,7 +76,12 @@ export default function Home() {
 
         <Contact email={prof.email} whatsapp={prof.whatsapp} nom={prof.nom} />
 
-        <Footer nom={prof.nom} ville={prof.ville} />
+        <Footer
+          nom={prof.nom}
+          ville={prof.ville}
+          email={prof.email}
+          whatsapp={prof.whatsapp}
+        />
       </main>
     </>
   )

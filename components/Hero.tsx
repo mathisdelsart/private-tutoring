@@ -2,15 +2,19 @@
 
 import { useEffect, useState } from 'react'
 import Image from 'next/image'
+import { Award, Download } from 'lucide-react'
 import { assetPath } from '@/lib/assetPath'
 import { useLanguage } from '@/lib/i18n'
 import Counter from './Counter'
 
 interface HeroProps {
   nom: string
+  moyenne: string
+  moyenneSur: string
+  diplomeFichier: string
 }
 
-export default function Hero({ nom }: HeroProps) {
+export default function Hero({ nom, moyenne, moyenneSur, diplomeFichier }: HeroProps) {
   const { t } = useLanguage()
   const [mounted, setMounted] = useState(false)
 
@@ -53,6 +57,56 @@ export default function Hero({ nom }: HeroProps) {
                     {chip}
                   </span>
                 ))}
+              </div>
+
+              {/* Diploma proof: the grade carries the message, the rest supports it */}
+              <div
+                className={`relative overflow-hidden rounded-2xl border border-emerald-200 bg-gradient-to-br from-emerald-50 via-white to-teal-50 p-4 sm:p-5 mb-6 sm:mb-8 ${
+                  mounted ? 'animate-[fadeInUp_0.8s_ease-out_0.5s_backwards]' : 'opacity-0'
+                }`}
+              >
+                <div className="absolute -right-8 -top-8 w-32 h-32 rounded-full bg-emerald-400/10 blur-2xl pointer-events-none" />
+
+                <div className="relative flex items-center gap-4 sm:gap-5">
+                  <div className="flex-shrink-0 text-center">
+                    <div className="text-4xl sm:text-5xl font-extrabold gradient-text leading-none tabular-nums">
+                      {moyenne}
+                    </div>
+                    <div className="text-[10px] sm:text-xs text-slate-500 font-semibold mt-1">
+                      / {moyenneSur}
+                    </div>
+                  </div>
+
+                  <div className="w-px self-stretch bg-emerald-200" />
+
+                  <div className="min-w-0 flex-1">
+                    <div className="flex items-center gap-1.5 mb-1">
+                      <Award className="w-4 h-4 text-primary flex-shrink-0" />
+                      <span className="text-sm sm:text-base font-bold text-slate-900 leading-tight">
+                        {t.hero.diploma.distinction}
+                      </span>
+                    </div>
+                    <div className="text-[11px] sm:text-xs text-slate-600 leading-snug">
+                      {t.hero.diploma.badge} · {t.hero.diploma.school}
+                    </div>
+
+                    {diplomeFichier && (
+                      <a
+                        href={assetPath(diplomeFichier)}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="group/dl inline-flex items-center gap-1.5 mt-2 text-[11px] sm:text-xs font-semibold text-primary hover:text-secondary transition-colors"
+                      >
+                        <Download className="w-3.5 h-3.5 group-hover/dl:translate-y-0.5 transition-transform" />
+                        {t.hero.diploma.download}
+                      </a>
+                    )}
+                  </div>
+                </div>
+
+                <p className="relative mt-3 pt-3 border-t border-emerald-200/70 text-xs sm:text-sm italic text-slate-600">
+                  {t.hero.diploma.note}
+                </p>
               </div>
             </div>
 
@@ -107,21 +161,35 @@ export default function Hero({ nom }: HeroProps) {
           </div>
 
           <div className={`${mounted ? 'animate-[fadeInUp_1s_ease-out_0.2s_backwards]' : 'opacity-0'}`}>
-            <div className="card p-0 overflow-hidden">
+            <div className="card p-0 overflow-hidden group/card hover:shadow-[0_20px_50px_rgba(5,150,105,0.14)] hover:border-emerald-200 transition-all duration-500 motion-safe:animate-[floatCard_7s_ease-in-out_infinite]">
               <div className="relative w-full aspect-[4/3.8] overflow-hidden bg-gradient-to-b from-gray-900 to-gray-800">
                 <Image
                   src={assetPath('/face_image.jpg')}
                   alt={nom}
                   width={400}
                   height={380}
-                  className="object-cover w-full h-full"
+                  className="object-cover w-full h-full transition-transform duration-700 group-hover/card:scale-[1.04]"
                   priority
                   sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 400px"
                 />
+                {/* Gradient veil so the badge stays readable over any photo */}
+                <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-slate-900/70 to-transparent pointer-events-none" />
+                <div className="absolute bottom-3 left-3 right-3 flex items-center gap-2">
+                  <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-white/95 backdrop-blur-sm shadow-sm text-[10px] sm:text-xs font-bold text-emerald-800">
+                    <span className="relative flex w-1.5 h-1.5">
+                      <span className="motion-safe:animate-ping absolute inline-flex w-full h-full rounded-full bg-emerald-500 opacity-75" />
+                      <span className="relative inline-flex w-1.5 h-1.5 rounded-full bg-emerald-600" />
+                    </span>
+                    {t.hero.diploma.badge}
+                  </span>
+                </div>
               </div>
 
               <div className="p-4 sm:p-6 space-y-3 sm:space-y-4">
-                <h3 className="text-xl sm:text-2xl font-bold text-slate-900">{nom}</h3>
+                <div>
+                  <h3 className="text-xl sm:text-2xl font-extrabold text-slate-900 tracking-tight">{nom}</h3>
+                  <div className="mt-1.5 h-0.5 w-10 rounded-full bg-gradient-to-r from-primary to-accent transition-all duration-500 group-hover/card:w-20" />
+                </div>
 
                 <div className="flex items-start gap-2 sm:gap-3">
                   <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-lg bg-emerald-100 flex items-center justify-center flex-shrink-0">

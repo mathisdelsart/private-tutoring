@@ -1,23 +1,26 @@
 'use client'
 
-import { UserCog, ClipboardCheck, MessageCircle } from 'lucide-react'
+import { UserCog, ClipboardCheck, MessageCircle, FileText } from 'lucide-react'
 import { useLanguage } from '@/lib/i18n'
 
 export default function Method() {
   const { t } = useLanguage()
 
-  const visuals = [
-    { gradient: 'from-emerald-500 to-teal-600', icon: <UserCog className="w-8 h-8 text-white" /> },
-    { gradient: 'from-emerald-500 to-teal-600', icon: <ClipboardCheck className="w-8 h-8 text-white" /> },
-    { gradient: 'from-emerald-500 to-teal-600', icon: <MessageCircle className="w-8 h-8 text-white" /> },
+  // One brand gradient everywhere: colour variation here carried no meaning.
+  const icons = [
+    <UserCog key="a" className="w-8 h-8 text-white" />,
+    <ClipboardCheck key="b" className="w-8 h-8 text-white" />,
+    <MessageCircle key="c" className="w-8 h-8 text-white" />,
+    <FileText key="d" className="w-8 h-8 text-white" />,
   ]
 
-  const whyChoose = t.method.items.map((item, i) => ({ ...item, ...visuals[i] }))
+  const whyChoose = t.method.items.map((item, i) => ({ ...item, icon: icons[i % icons.length] }))
 
   return (
     <section id="methode" className="py-12 sm:py-16 lg:py-20 relative reveal">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12 sm:mb-16 lg:mb-20">
+          <span className="eyebrow mb-4">{t.method.eyebrow}</span>
           <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold mb-4 sm:mb-6 text-slate-900">
             {t.method.title}
           </h2>
@@ -26,7 +29,7 @@ export default function Method() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4 sm:gap-6 lg:gap-7 xl:gap-8 max-w-7xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 lg:gap-7 xl:gap-8 max-w-6xl mx-auto">
           {whyChoose.map((item, index) => {
             const color = { bg: 'bg-white', border: 'border-slate-200' }
 
@@ -36,7 +39,7 @@ export default function Method() {
                 className={`relative overflow-hidden rounded-2xl p-5 sm:p-6 md:p-7 xl:p-8 ${color.bg} border-2 ${color.border} hover:shadow-2xl transition-all duration-400 sm:hover:scale-105 group`}
               >
                 <div className="hidden sm:block absolute inset-0 bg-gradient-to-br from-slate-50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-400"></div>
-                <div className={`relative z-10 w-14 h-14 sm:w-16 sm:h-16 rounded-xl sm:rounded-2xl bg-gradient-to-br ${item.gradient} flex items-center justify-center mb-4 sm:mb-6 shadow-lg transform group-hover:rotate-6 transition-all duration-300`}>
+                <div className="relative z-10 w-14 h-14 sm:w-16 sm:h-16 rounded-xl sm:rounded-2xl bg-gradient-to-br from-emerald-500 to-teal-600 flex items-center justify-center mb-4 sm:mb-6 shadow-lg transform group-hover:rotate-6 transition-all duration-300">
                   {item.icon}
                 </div>
                 <h4 className="relative z-10 text-xl sm:text-2xl font-bold mb-3 sm:mb-4 text-slate-900">{item.title}</h4>

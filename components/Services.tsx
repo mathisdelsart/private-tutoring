@@ -3,14 +3,9 @@
 import { useState } from 'react'
 import { useLanguage } from '@/lib/i18n'
 
-// Visuals are keyed by position and reused cyclically, so an audience can hold any
-// number of subjects without the palette running out.
-const cardVisuals = [
-  { gradient: 'from-emerald-400 via-emerald-500 to-teal-500' },
-  { gradient: 'from-teal-400 via-teal-500 to-emerald-500' },
-  { gradient: 'from-green-400 via-emerald-500 to-teal-500' },
-  { gradient: 'from-emerald-500 via-teal-500 to-teal-600' },
-]
+// A single brand gradient across the site: per-card colour shifts carried no
+// meaning and read as inconsistency.
+const BRAND_GRADIENT = 'from-emerald-500 to-teal-600'
 
 // Two subjects breathe on one row, four read best as a 2×2 block, three keep the
 // original three-up layout.
@@ -35,6 +30,7 @@ export default function Services() {
     <section id="matieres" className="py-12 sm:py-16 lg:py-20 relative reveal">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-8 sm:mb-10 lg:mb-12">
+          <span className="eyebrow mb-4">{t.services.eyebrow}</span>
           <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold mb-4 sm:mb-6 text-slate-900">
             {t.services.title}
           </h2>
@@ -87,10 +83,7 @@ export default function Services() {
           </p>
 
           <div className={`grid grid-cols-1 gap-6 sm:gap-8 lg:gap-10 ${gridClassFor(active.subjects.length)}`}>
-            {active.subjects.map((subject, index) => {
-              const visual = cardVisuals[index % cardVisuals.length]
-
-              return (
+            {active.subjects.map((subject, index) => (
                 <div
                   key={subject.title}
                   className="group relative overflow-hidden rounded-2xl sm:rounded-3xl transform transition-all duration-500 hover:scale-[1.03] hover:-translate-y-2 flex animate-[fadeInUp_0.5s_ease-out_backwards]"
@@ -104,7 +97,7 @@ export default function Services() {
                   <div className="relative bg-white rounded-2xl sm:rounded-3xl p-5 sm:p-6 md:p-7 xl:p-8 border border-slate-200 group-hover:border-emerald-200 transition-all duration-500 flex-1 flex flex-col">
                     {/* Accent line revealed on hover */}
                     <div
-                      className={`absolute top-0 left-0 right-0 h-1 bg-gradient-to-r ${visual.gradient} origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-500 rounded-t-2xl sm:rounded-t-3xl`}
+                      className={`absolute top-0 left-0 right-0 h-1 bg-gradient-to-r ${BRAND_GRADIENT} origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-500 rounded-t-2xl sm:rounded-t-3xl`}
                       aria-hidden="true"
                     />
 
@@ -114,7 +107,7 @@ export default function Services() {
                           {subject.title}
                         </h3>
                         <div
-                          className={`flex items-center justify-center min-w-[2.25rem] h-9 sm:min-w-[2.5rem] sm:h-10 px-2 rounded-lg bg-gradient-to-br ${visual.gradient} shadow-sm shadow-emerald-600/20 transform group-hover:scale-105 transition-all duration-300 flex-shrink-0`}
+                          className={`flex items-center justify-center min-w-[2.25rem] h-9 sm:min-w-[2.5rem] sm:h-10 px-2 rounded-lg bg-gradient-to-br ${BRAND_GRADIENT} shadow-sm shadow-emerald-600/20 transform group-hover:scale-105 transition-all duration-300 flex-shrink-0`}
                         >
                           <span className="text-xs sm:text-sm font-bold text-white">{subject.badge}</span>
                         </div>
@@ -160,8 +153,7 @@ export default function Services() {
                     </div>
                   </div>
                 </div>
-              )
-            })}
+              ))}
           </div>
 
           {active.note && (

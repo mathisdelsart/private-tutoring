@@ -32,7 +32,7 @@ export default function Contact({ email, whatsapp, nom }: ContactProps) {
       value: phoneDisplay,
       link: smsLink,
       newTab: false,
-      color: 'from-emerald-500 to-green-600',
+      color: 'from-emerald-500 to-teal-600',
       bgColor: 'bg-emerald-50',
       borderColor: 'border-emerald-200',
       description: t.contact.smsDesc
@@ -43,7 +43,7 @@ export default function Contact({ email, whatsapp, nom }: ContactProps) {
       value: phoneDisplay,
       link: whatsappLink,
       newTab: true,
-      color: 'from-green-500 to-emerald-600',
+      color: 'from-emerald-500 to-teal-600',
       bgColor: 'bg-emerald-50',
       borderColor: 'border-emerald-200',
       description: t.contact.whatsappDesc
@@ -54,7 +54,7 @@ export default function Contact({ email, whatsapp, nom }: ContactProps) {
       value: email,
       link: emailLink,
       newTab: false,
-      color: 'from-teal-500 to-emerald-600',
+      color: 'from-emerald-500 to-teal-600',
       bgColor: 'bg-emerald-50',
       borderColor: 'border-emerald-200',
       description: t.contact.emailDesc
@@ -65,6 +65,7 @@ export default function Contact({ email, whatsapp, nom }: ContactProps) {
     <section id="contact" className="py-12 sm:py-16 lg:py-20 relative reveal">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12 sm:mb-16">
+          <span className="eyebrow mb-4">{t.contact.eyebrow}</span>
           <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold mb-4 sm:mb-6 text-slate-900">
             {t.contact.title}
           </h2>

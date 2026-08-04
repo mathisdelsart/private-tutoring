@@ -161,18 +161,13 @@ ${m.closing}`
     setFormData(prev => (prev.level === levelId ? prev : { ...prev, level: levelId, subjects: [] }))
   }
 
-  const subjectColors = [
-    'from-emerald-500 to-teal-600',
-    'from-teal-500 to-emerald-600',
-    'from-green-500 to-emerald-600',
-    'from-emerald-600 to-teal-700',
-  ]
+  const subjectGradient = 'from-emerald-500 to-teal-600'
   const activeLevel = t.form.levels.find((l) => l.id === formData.level) ?? t.form.levels[0]
   const icons = subjectIcons[activeLevel.id] ?? subjectIcons.secondaire
   const subjects = activeLevel.subjects.map((name, i) => ({
     name,
     icon: icons[i % icons.length],
-    color: subjectColors[i % subjectColors.length],
+    color: subjectGradient,
   }))
   const subjectGridClass = subjects.length === 3 ? 'grid-cols-3' : 'grid-cols-2'
 
@@ -461,7 +456,7 @@ ${m.closing}`
                   type="button"
                   onClick={() => handleSubmit('whatsapp')}
                   disabled={!formData.availability}
-                  className="p-4 sm:p-5 rounded-xl bg-gradient-to-br from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 text-white transition-all duration-300 hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 flex flex-col items-center gap-2"
+                  className="p-4 sm:p-5 rounded-xl bg-gradient-to-br from-emerald-500 to-teal-600 hover:from-emerald-600 hover:to-teal-700 text-white transition-all duration-300 hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 flex flex-col items-center gap-2"
                 >
                   <WhatsAppIcon className="w-6 h-6 sm:w-7 sm:h-7" />
                   <span className="text-xs sm:text-sm font-medium">WhatsApp</span>
@@ -472,7 +467,7 @@ ${m.closing}`
                   type="button"
                   onClick={() => handleSubmit('email')}
                   disabled={!formData.availability}
-                  className="p-4 sm:p-5 rounded-xl bg-gradient-to-br from-teal-500 to-emerald-600 hover:from-teal-600 hover:to-emerald-700 text-white transition-all duration-300 hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 flex flex-col items-center gap-2"
+                  className="p-4 sm:p-5 rounded-xl bg-gradient-to-br from-emerald-500 to-teal-600 hover:from-emerald-600 hover:to-teal-700 text-white transition-all duration-300 hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 flex flex-col items-center gap-2"
                 >
                   <Mail className="w-6 h-6 sm:w-7 sm:h-7" />
                   <span className="text-xs sm:text-sm font-medium">Email</span>
