@@ -24,7 +24,7 @@ export default function Hero({ nom, moyenne, moyenneSur, diplomeFichier }: HeroP
   }, [])
 
   return (
-    <section id="accueil" className="relative lg:min-h-[42rem] flex items-center pt-24 sm:pt-28 pb-10 sm:pb-11 overflow-hidden">
+    <section id="accueil" className="relative lg:min-h-screen flex items-center pt-24 sm:pt-28 pb-10 sm:pb-12 overflow-hidden">
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-[1.6fr_340px] xl:grid-cols-[1.7fr_380px] gap-6 sm:gap-8 lg:gap-10 xl:gap-12 items-start">
@@ -145,7 +145,7 @@ export default function Hero({ nom, moyenne, moyenneSur, diplomeFichier }: HeroP
           </div>
 
           <div className={`${mounted ? 'animate-[fadeInUp_1s_ease-out_0.2s_backwards]' : 'opacity-0'}`}>
-            <div className="card p-0 overflow-hidden group/card hover:shadow-[0_20px_50px_rgba(5,150,105,0.14)] hover:border-emerald-200 transition-all duration-500 motion-safe:animate-[floatCard_7s_ease-in-out_infinite]">
+            <div className="card p-0 overflow-hidden group/card hover:shadow-[0_20px_50px_rgba(5,150,105,0.14)] hover:border-emerald-200 transition-all duration-500">
               <div className="relative w-full aspect-[4/3.8] overflow-hidden bg-gradient-to-b from-gray-900 to-gray-800">
                 <Image
                   src={assetPath('/face_image.jpg')}
@@ -170,9 +170,10 @@ export default function Hero({ nom, moyenne, moyenneSur, diplomeFichier }: HeroP
               </div>
 
               <div className="p-4 sm:p-6 space-y-3 sm:space-y-4">
-                <div>
+                {/* inline-block so the rule can grow to exactly the name's width */}
+                <div className="inline-block max-w-full">
                   <h3 className="text-xl sm:text-2xl font-extrabold text-slate-900 tracking-tight">{nom}</h3>
-                  <div className="mt-1.5 h-0.5 w-10 rounded-full bg-gradient-to-r from-primary to-accent transition-all duration-500 group-hover/card:w-20" />
+                  <div className="mt-1.5 h-0.5 w-10 rounded-full bg-gradient-to-r from-primary to-accent transition-all duration-500 group-hover/card:w-full" />
                 </div>
 
                 <div className="flex items-start gap-2 sm:gap-3">

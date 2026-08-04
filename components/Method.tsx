@@ -35,17 +35,16 @@ export default function Method() {
                 <Icon
                   aria-hidden="true"
                   strokeWidth={1.25}
-                  className="pointer-events-none absolute top-3.5 right-3.5 sm:top-4 sm:right-4 w-11 h-11 sm:w-14 sm:h-14 text-emerald-600 opacity-[0.10] group-hover:opacity-[0.18] group-hover:-rotate-6 group-hover:scale-105 transition-all duration-500"
+                  className="pointer-events-none absolute top-3.5 right-3.5 sm:top-4 sm:right-4 w-11 h-11 sm:w-14 sm:h-14 text-emerald-600 opacity-[0.10] group-hover:opacity-[0.18] transition-opacity duration-500"
                 />
 
                 <div className="hidden sm:block absolute inset-0 bg-gradient-to-br from-emerald-50/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
-                {/* Accent bar keeps a small anchor of colour on each card */}
-                <div className="relative z-10 h-1 w-9 rounded-full bg-gradient-to-r from-primary to-accent mb-4 sm:mb-5 group-hover:w-16 transition-all duration-500" />
-
-                <h4 className="relative z-10 text-xl sm:text-2xl font-bold mb-2.5 sm:mb-3 text-slate-900 pr-10">
-                  {item.title}
-                </h4>
+                {/* inline-block so the accent bar can grow to exactly the title's width */}
+                <div className="relative z-10 inline-block max-w-full pr-10 mb-2.5 sm:mb-3">
+                  <div className="h-1 w-9 rounded-full bg-gradient-to-r from-primary to-accent mb-4 sm:mb-5 group-hover:w-full transition-all duration-500" />
+                  <h4 className="text-xl sm:text-2xl font-bold text-slate-900">{item.title}</h4>
+                </div>
                 <p className="relative z-10 text-sm sm:text-base text-slate-600 leading-relaxed">
                   {item.description}
                 </p>

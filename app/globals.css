@@ -73,11 +73,6 @@ body {
   50% { transform: translate3d(-3rem, 2.5rem, 0) scale(1.08); }
 }
 
-@keyframes floatCard {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-8px); }
-}
-
 /* Continuous testimonial marquee. The track holds the list twice, so shifting
    by exactly half its width loops seamlessly. */
 @keyframes marquee {
