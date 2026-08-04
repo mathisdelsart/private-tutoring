@@ -17,7 +17,7 @@ const fr = {
   },
 
   hero: {
-    title: { p1: 'Transforme tes ', w1: 'difficultés', p2: ' en ', w2: 'réussites' },
+    title: { p1: 'Transformer les ', w1: 'difficultés', p2: ' en ', w2: 'réussites' },
     subtitle1: 'Ingénieur civil en Informatique & IA, passionné par l’enseignement.',
     subtitle2:
       'Du secondaire au supérieur, et préparation aux examens d’entrée ingénieur civil et médecine.',
@@ -26,7 +26,7 @@ const fr = {
     statExperience: 'Années d’expérience',
     quote: { part1: 'L’excellence n’est pas une destination, c’est un ', highlight: 'voyage continu' },
     ctaTitle: 'Réserver un cours',
-    ctaSubtitle: 'Commence ta transformation',
+    ctaSubtitle: 'Premier contact sans engagement',
     labelModalites: 'Modalités',
     labelDisponibilite: 'Disponibilité',
     labelLocalisation: 'Localisation',
@@ -37,17 +37,17 @@ const fr = {
 
   method: {
     title: 'Pourquoi me choisir ?',
-    subtitle: 'Une approche personnalisée pour ta réussite',
+    subtitle: 'Une approche personnalisée pour chaque élève',
     items: [
       {
         title: 'Pédagogie personnalisée',
         description:
-          'Chaque élève est unique. J’adapte mes séances et ma méthodologie à ton profil, tes objectifs et ton rythme d’apprentissage.',
+          'Chaque élève est unique. J’adapte mes séances et ma méthodologie à son profil, à ses objectifs et à son rythme d’apprentissage.',
       },
       {
         title: 'Exercices & corrections',
         description:
-          'Je te propose des exercices adaptés à ton niveau selon tes besoins. Je prends le temps de corriger et d’expliquer chaque point pour t’aider à mieux comprendre et progresser.',
+          'Je propose des exercices adaptés au niveau et aux besoins de chacun. Je prends le temps de corriger et d’expliquer chaque point, pour aider l’élève à mieux comprendre et à progresser.',
       },
       {
         title: 'Disponible en dehors des cours',
@@ -145,7 +145,7 @@ const fr = {
             topics: ['Python', 'C / C++', 'Structures de données', 'Complexité', 'Orienté objet'],
             benefits: [
               'Lecture et débogage de code en direct',
-              'Projets de cours accompagnés, jamais faits à ta place',
+              'Projets de cours accompagnés, jamais faits à la place de l’étudiant',
               'Bonnes pratiques et code lisible',
               'Complexité et choix des structures de données',
             ],
@@ -192,7 +192,7 @@ const fr = {
               'Les volets maths et physique des connaissances scientifiques',
               'Entraînement au format QCM chronométré',
               'Rappels ciblés sur les lacunes détectées en séance',
-              'Un planning de révision construit avec toi',
+              'Un planning de révision construit ensemble',
             ],
           },
         ],
@@ -256,7 +256,7 @@ const fr = {
     subtitle: 'Tout ce qu’il faut savoir avant de se lancer',
     items: [
       {
-        q: 'À partir de quel niveau interviens-tu ?',
+        q: 'Quels niveaux sont couverts ?',
         a: 'De la 1re secondaire au master. Je donne cours au secondaire (maths, physique, Python), dans l’enseignement supérieur (maths, physique générale, programmation et intelligence artificielle) et je prépare aux examens d’entrée en école d’ingénieur civil et en médecine.',
       },
       {
@@ -264,27 +264,27 @@ const fr = {
         a: 'On couvre l’ensemble du programme officiel de l’examen, chapitre par chapitre, puis on bascule sur un entraînement intensif à partir des questions des années précédentes. On travaille aussi la gestion du temps et la stratégie de réponse, qui font souvent la différence le jour J. Étant moi-même ingénieur civil, je suis passé par cet examen.',
       },
       {
-        q: 'Quelles matières couvres-tu pour l’examen d’entrée en médecine ?',
-        a: 'J’interviens sur les volets mathématiques et physique de la partie « connaissances scientifiques ». Je ne donne pas cours de biologie ni de chimie : pour ces deux matières, il te faudra un autre enseignant.',
+        q: 'Quelles matières sont couvertes pour l’examen d’entrée en médecine ?',
+        a: 'J’interviens sur les volets mathématiques et physique de la partie « connaissances scientifiques ». Je ne donne pas cours de biologie ni de chimie : pour ces deux matières, il vous faudra un autre enseignant.',
       },
       {
         q: 'Où les cours se donnent-ils ?',
-        a: 'Chez moi, à Gouy-Lez-Piéton (Courcelles), ou en ligne. Le format en ligne fonctionne très bien pour le supérieur et la préparation aux examens, et permet de travailler où que tu sois.',
+        a: 'Chez moi, à Gouy-Lez-Piéton (Courcelles), ou en ligne. Le format en ligne fonctionne très bien pour le supérieur et la préparation aux examens, et permet de travailler depuis n’importe où.',
       },
       {
         q: 'Peut-on organiser un stage intensif avant un examen ?',
-        a: 'Oui, et c’est souvent le format le plus efficace avant une seconde session ou un examen d’entrée. Plusieurs élèves ont revu une année complète en deux semaines à raison de deux heures par jour. On construit le planning ensemble en fonction de la date de ton examen.',
+        a: 'Oui, et c’est souvent le format le plus efficace avant une seconde session ou un examen d’entrée. Plusieurs élèves ont revu une année complète en deux semaines à raison de deux heures par jour. On construit le planning ensemble en fonction de la date de votre examen.',
       },
       {
         q: 'Comment réserver un premier cours ?',
-        a: 'Passe par le formulaire de demande en bas de page : il me transmet directement ton niveau, tes matières et tes disponibilités. Tu peux aussi m’écrire sur WhatsApp ou par email. Je réponds sous 24 heures.',
+        a: 'Passez par le formulaire de demande en bas de page : il me transmet directement le niveau, les matières et les disponibilités. Vous pouvez aussi m’écrire sur WhatsApp ou par email. Je réponds sous 24 heures.',
       },
     ],
   },
 
   contact: {
     title: 'Contacte-moi',
-    subtitle: 'Prêt à transformer tes résultats ? Parlons-en !',
+    subtitle: 'Prêt à transformer vos résultats ? Parlons-en !',
     tabForm: 'Formulaire de demande',
     tabDirect: 'Contact direct',
     tabHint: 'Le formulaire de demande est à privilégier pour un premier contact',
@@ -298,7 +298,7 @@ const fr = {
     title: 'Demande de cours',
     subtitle: 'Remplis ce formulaire pour me contacter directement',
     labelName: 'Prénom de l’élève',
-    placeholderName: 'Ton prénom',
+    placeholderName: 'Ex. : Camille',
     labelLevel: 'Niveau',
     levels: [
       { id: 'secondaire', label: 'Secondaire', subjects: ['Maths', 'Physique', 'Python'] },
@@ -314,7 +314,7 @@ const fr = {
       },
     ],
     labelSubjects: 'Matière(s) souhaitée(s)',
-    subjectsHint: 'Tu peux sélectionner plusieurs matières',
+    subjectsHint: 'Plusieurs matières possibles',
     labelModalite: 'Modalité',
     optHome: 'À mon domicile',
     optOnline: 'En visio',
@@ -332,11 +332,11 @@ const fr = {
     freqMonth: 'Mois',
     freqPer: 'par',
     freqHint: 'Laissez vide pour discuter ensemble de la fréquence',
-    labelAvailability: 'Tes disponibilités',
+    labelAvailability: 'Vos disponibilités',
     placeholderAvailability: 'Ex: Lundi et mercredi soir, week-end',
     labelMessage: 'Message complémentaire (optionnel)',
     placeholderMessage: 'Des précisions supplémentaires...',
-    chooseContact: 'Choisis ton moyen de contact :',
+    chooseContact: 'Choisissez votre moyen de contact :',
     msg: {
       greeting: 'Bonjour {nom},',
       intro: 'Je souhaiterais prendre des cours avec vous.',
@@ -364,7 +364,7 @@ const fr = {
   footer: {
     title: 'Le succès commence par une décision',
     line1: 'Chaque grand parcours commence par un premier pas.',
-    line2: 'Ta réussite t’attend.',
+    line2: 'Votre réussite vous attend.',
     role: 'Professeur particulier à {ville}',
   },
 }
@@ -667,7 +667,7 @@ const en: typeof fr = {
     title: 'Lesson request',
     subtitle: 'Fill out this form to contact me directly',
     labelName: 'Student’s first name',
-    placeholderName: 'Your first name',
+    placeholderName: 'e.g. Camille',
     labelLevel: 'Level',
     levels: [
       { id: 'secondaire', label: 'Secondary', subjects: ['Maths', 'Physics', 'Python'] },
@@ -755,7 +755,7 @@ const nl: typeof fr = {
   },
 
   hero: {
-    title: { p1: 'Verander je ', w1: 'moeilijkheden', p2: ' in ', w2: 'successen' },
+    title: { p1: '', w1: 'Moeilijkheden', p2: ' omzetten in ', w2: 'successen' },
     subtitle1: 'Burgerlijk ingenieur in Computerwetenschappen & AI, met een passie voor lesgeven.',
     subtitle2:
       'Van het middelbaar tot het hoger onderwijs, en voorbereiding op de toelatingsexamens burgerlijk ingenieur en arts.',
@@ -764,7 +764,7 @@ const nl: typeof fr = {
     statExperience: 'Jaar ervaring',
     quote: { part1: 'Uitmuntendheid is geen bestemming, het is een ', highlight: 'voortdurende reis' },
     ctaTitle: 'Een les boeken',
-    ctaSubtitle: 'Begin je transformatie',
+    ctaSubtitle: 'Vrijblijvend eerste contact',
     labelModalites: 'Lesvormen',
     labelDisponibilite: 'Beschikbaarheid',
     labelLocalisation: 'Locatie',
@@ -775,17 +775,17 @@ const nl: typeof fr = {
 
   method: {
     title: 'Waarom voor mij kiezen?',
-    subtitle: 'Een persoonlijke aanpak voor jouw succes',
+    subtitle: 'Een persoonlijke aanpak voor elke leerling',
     items: [
       {
         title: 'Persoonlijke aanpak',
         description:
-          'Elke leerling is uniek. Ik pas mijn lessen en mijn methode aan jouw profiel, jouw doelen en jouw leertempo aan.',
+          'Elke leerling is uniek. Ik pas mijn lessen en mijn methode aan het profiel, de doelen en het leertempo van elke leerling aan.',
       },
       {
         title: 'Oefeningen & verbeteringen',
         description:
-          'Ik geef je oefeningen op maat van je niveau en je noden. Ik neem de tijd om alles na te kijken en elk punt uit te leggen, zodat je beter begrijpt en vooruitgaat.',
+          'Ik geef oefeningen op maat van het niveau en de noden van elke leerling. Ik neem de tijd om alles na te kijken en elk punt uit te leggen, zodat de leerling beter begrijpt en vooruitgaat.',
       },
       {
         title: 'Ook bereikbaar buiten de lessen',
@@ -814,7 +814,7 @@ const nl: typeof fr = {
             topics: ['Analyse', 'Algebra', 'Goniometrie', 'Meetkunde', 'Statistiek'],
             benefits: [
               'Grondige beheersing van het officiële leerplan',
-              'Methodologie op maat van je niveau',
+              'Methodologie op maat van het niveau',
               'Doeltreffende voorbereiding op toetsen en examens',
               'Heldere, gestructureerde en visuele uitleg',
             ],
@@ -860,7 +860,7 @@ const nl: typeof fr = {
             topics: ['Analyse', 'Lineaire algebra', 'Kansrekening', 'Statistiek', 'Differentiaalrekening'],
             benefits: [
               'De basis heropbouwen waar het middelbaar stopt',
-              'Begeleide oplossing van je oefenreeksen',
+              'Begeleide oplossing van de oefenreeksen',
               'Voorbereiding op de examenperiodes van januari en juni',
               'De nauwkeurigheid van uitwerking die de universiteit verwacht',
             ],
@@ -884,7 +884,7 @@ const nl: typeof fr = {
             topics: ['Python', 'C / C++', 'Datastructuren', 'Complexiteit', 'Objectgericht'],
             benefits: [
               'Code live lezen en debuggen',
-              'Begeleiding bij projecten, nooit in jouw plaats gemaakt',
+              'Begeleiding bij projecten, nooit in de plaats van de student gemaakt',
               'Goede praktijken en leesbare code',
               'Complexiteit en de juiste datastructuur kiezen',
             ],
@@ -908,7 +908,7 @@ const nl: typeof fr = {
         label: 'Voorbereiding toelatingsexamen',
         labelShort: 'Toelating',
         tagline:
-          'Een intensieve en gestructureerde voorbereiding zodat je de examendag met vertrouwen aanvat.',
+          'Een intensieve en gestructureerde voorbereiding zodat de examendag met vertrouwen wordt aangevat.',
         note: 'Voor het toelatingsexamen arts en tandarts behandel ik de onderdelen wiskunde en fysica.',
         subjects: [
           {
@@ -993,10 +993,10 @@ const nl: typeof fr = {
 
   faq: {
     title: 'Veelgestelde vragen',
-    subtitle: 'Alles wat je wil weten voor we starten',
+    subtitle: 'Alles wat u wil weten voor we starten',
     items: [
       {
-        q: 'Vanaf welk niveau geef je les?',
+        q: 'Welke niveaus worden gedekt?',
         a: 'Van het eerste jaar middelbaar tot en met de master. Ik geef les in het middelbaar (wiskunde, fysica, Python), in het hoger onderwijs (wiskunde, algemene fysica, programmeren en artificiële intelligentie), en ik bereid voor op de toelatingsexamens burgerlijk ingenieur en arts en tandarts.',
       },
       {
@@ -1004,27 +1004,27 @@ const nl: typeof fr = {
         a: 'We nemen het volledige officiële examenprogramma hoofdstuk per hoofdstuk door en schakelen daarna over op intensief oefenen met vragen van vorige jaren. We werken ook aan timing en antwoordstrategie, wat op de examendag vaak het verschil maakt. Als burgerlijk ingenieur heb ik dit examen zelf afgelegd.',
       },
       {
-        q: 'Welke vakken behandel je voor het toelatingsexamen arts en tandarts?',
-        a: 'Ik behandel de onderdelen wiskunde en fysica van het wetenschappelijke gedeelte. Ik geef geen biologie of chemie: voor die twee vakken heb je een andere lesgever nodig.',
+        q: 'Welke vakken worden behandeld voor het toelatingsexamen arts en tandarts?',
+        a: 'Ik behandel de onderdelen wiskunde en fysica van het wetenschappelijke gedeelte. Ik geef geen biologie of chemie: voor die twee vakken heeft u een andere lesgever nodig.',
       },
       {
         q: 'Waar gaan de lessen door?',
-        a: 'Bij mij thuis in Gouy-Lez-Piéton (Courcelles), of online. Het online formaat werkt heel goed voor het hoger onderwijs en voor examenvoorbereiding, en laat je toe te werken waar je ook bent.',
+        a: 'Bij mij thuis in Gouy-Lez-Piéton (Courcelles), of online. Het online formaat werkt heel goed voor het hoger onderwijs en voor examenvoorbereiding, en laat u toe te werken waar u ook bent.',
       },
       {
         q: 'Kunnen we een intensieve cursus organiseren vóór een examen?',
-        a: 'Ja, en dat is vaak het meest doeltreffende formaat vóór een herexamen of een toelatingsexamen. Verschillende leerlingen hebben een volledig jaar herhaald in twee weken, aan twee uur per dag. We stellen de planning samen op in functie van jouw examendatum.',
+        a: 'Ja, en dat is vaak het meest doeltreffende formaat vóór een herexamen of een toelatingsexamen. Verschillende leerlingen hebben een volledig jaar herhaald in twee weken, aan twee uur per dag. We stellen de planning samen op in functie van uw examendatum.',
       },
       {
         q: 'Hoe boek ik een eerste les?',
-        a: 'Gebruik het aanvraagformulier onderaan de pagina: het bezorgt me meteen je niveau, je vakken en je beschikbaarheden. Je kan me ook een bericht sturen via WhatsApp of e-mail. Ik antwoord binnen de 24 uur.',
+        a: 'Gebruik het aanvraagformulier onderaan de pagina: het bezorgt me meteen het niveau, de vakken en de beschikbaarheden. U kan me ook een bericht sturen via WhatsApp of e-mail. Ik antwoord binnen de 24 uur.',
       },
     ],
   },
 
   contact: {
     title: 'Contacteer me',
-    subtitle: 'Klaar om je resultaten om te gooien? Laten we praten!',
+    subtitle: 'Klaar om uw resultaten om te gooien? Laten we praten!',
     tabForm: 'Aanvraagformulier',
     tabDirect: 'Rechtstreeks contact',
     tabHint: 'Het aanvraagformulier is het handigst voor een eerste contact',
@@ -1038,7 +1038,7 @@ const nl: typeof fr = {
     title: 'Lesaanvraag',
     subtitle: 'Vul dit formulier in om me rechtstreeks te contacteren',
     labelName: 'Voornaam van de leerling',
-    placeholderName: 'Je voornaam',
+    placeholderName: 'Bv. Camille',
     labelLevel: 'Niveau',
     levels: [
       { id: 'secondaire', label: 'Middelbaar', subjects: ['Wiskunde', 'Fysica', 'Python'] },
@@ -1054,7 +1054,7 @@ const nl: typeof fr = {
       },
     ],
     labelSubjects: 'Gewenste vak(ken)',
-    subjectsHint: 'Je kan meerdere vakken selecteren',
+    subjectsHint: 'Meerdere vakken mogelijk',
     labelModalite: 'Lesvorm',
     optHome: 'Bij mij thuis',
     optOnline: 'Online',
@@ -1072,11 +1072,11 @@ const nl: typeof fr = {
     freqMonth: 'Maand',
     freqPer: 'per',
     freqHint: 'Laat leeg om de frequentie samen te bespreken',
-    labelAvailability: 'Je beschikbaarheden',
+    labelAvailability: 'Uw beschikbaarheden',
     placeholderAvailability: 'Bv. maandag- en woensdagavond, weekend',
     labelMessage: 'Extra bericht (optioneel)',
     placeholderMessage: 'Bijkomende details...',
-    chooseContact: 'Kies je contactmiddel:',
+    chooseContact: 'Kies uw contactmiddel:',
     msg: {
       greeting: 'Hallo {nom},',
       intro: 'Ik zou graag bijles bij u volgen.',
@@ -1104,7 +1104,7 @@ const nl: typeof fr = {
   footer: {
     title: 'Succes begint met een beslissing',
     line1: 'Elke grote reis begint met een eerste stap.',
-    line2: 'Jouw succes wacht op je.',
+    line2: 'Uw succes wacht op u.',
     role: 'Privéleraar in {ville}',
   },
 }
