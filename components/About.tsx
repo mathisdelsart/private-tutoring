@@ -1,7 +1,7 @@
 'use client'
 
 import { useEffect, useLayoutEffect, useState } from 'react'
-import { ChevronDown, GraduationCap, Award, Brain } from 'lucide-react'
+import { ChevronDown, GraduationCap, Award, Brain, ExternalLink } from 'lucide-react'
 import { useLanguage } from '@/lib/i18n'
 import { withHighlights } from '@/lib/highlight'
 
@@ -63,6 +63,17 @@ export default function About() {
                   <div className="text-[11px] sm:text-xs text-slate-500 leading-snug mt-1">
                     {credential.detail}
                   </div>
+                  {credential.linkUrl && (
+                    <a
+                      href={credential.linkUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="group/link inline-flex items-center gap-1 mt-1.5 text-[11px] sm:text-xs font-semibold text-primary hover:text-secondary transition-colors"
+                    >
+                      {credential.linkLabel}
+                      <ExternalLink className="w-3 h-3 group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5 transition-transform" />
+                    </a>
+                  )}
                 </div>
               </div>
             )

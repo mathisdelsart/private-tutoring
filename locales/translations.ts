@@ -276,16 +276,22 @@ const fr = {
         label: 'Formation',
         value: 'Master ingénieur civil',
         detail: 'École Polytechnique de Louvain — UCLouvain',
+        linkLabel: '',
+        linkUrl: '',
       },
       {
         label: 'Diplôme',
         value: 'Diplômé avec la plus grande distinction',
-        detail: 'Moyenne de 17,95/20 sur l’ensemble du cursus',
+        detail: 'Moyenne de 17,95/20 sur le master',
+        linkLabel: '',
+        linkUrl: '',
       },
       {
         label: 'Spécialisation',
         value: 'Intelligence artificielle & science des données',
-        detail: 'Mémoire publié à l’IEEE Conference on Games 2026',
+        detail: 'Article sorti à l’IEEE Conference on Games 2026',
+        linkLabel: 'Consulter le mémoire',
+        linkUrl: 'https://hdl.handle.net/2078.2/49506',
       },
     ],
     items: [
@@ -349,7 +355,7 @@ const fr = {
       {
         q: 'Qu’est-ce qui vous distingue d’un autre professeur ?',
         a: [
-          'Je connais le parcours de l’intérieur. Secondaire en maths-sciences fortes à Nivelles, examen d’admission d’ingénieur passé moi-même, puis cinq années d’ingénieur civil à l’EPL terminées avec **la plus grande distinction (17,95/20)**. Et surtout, j’ai connu la sensation d’être complètement à la ramasse dans un cours — pour moi c’était la biologie, où j’ai vraiment galéré. Quand un élève me dit qu’il est largué, je ne le prends jamais de haut : je sais exactement ce que ça fait.',
+          'Je connais le parcours de l’intérieur. Secondaire en maths-sciences fortes à Nivelles, examen d’admission d’ingénieur passé moi-même, puis cinq années d’ingénieur civil à l’EPL, master terminé avec **la plus grande distinction (17,95/20)**. Et surtout, j’ai connu la sensation d’être complètement à la ramasse dans un cours — pour moi c’était la biologie, où j’ai vraiment galéré. Quand un élève me dit qu’il est largué, je ne le prends jamais de haut : je sais exactement ce que ça fait.',
           'Je laisse quelque chose derrière moi. Je fournis **des dossiers de révision en PDF**, en deux versions séparées : d’abord les énoncés, puis les corrigés détaillés. L’élève peut donc s’entraîner seul entre deux séances et se corriger lui-même, sans attendre le cours suivant. L’objectif final étant, très honnêtement, **qu’il n’ait plus besoin de moi**.',
           'Et puis il n’y a pas de distance. J’ai 23 ans, je sors tout juste des études, et j’ai encore très bien en tête ce que c’est qu’un blocus, un cours mal expliqué ou un examen qu’on redoute. Ça change beaucoup de choses : mes élèves osent me dire « je n’ai rien compris » sans avoir peur du jugement — et c’est franchement la condition numéro un pour progresser.',
         ],
@@ -762,16 +768,22 @@ const en: typeof fr = {
         label: 'Education',
         value: "Master's in civil engineering",
         detail: 'École Polytechnique de Louvain — UCLouvain',
+        linkLabel: '',
+        linkUrl: '',
       },
       {
         label: 'Degree',
         value: 'Graduated with the highest distinction',
-        detail: 'A 17.95/20 average across the whole programme',
+        detail: "A 17.95/20 average for the master's",
+        linkLabel: '',
+        linkUrl: '',
       },
       {
         label: 'Specialization',
         value: 'Artificial intelligence & data science',
-        detail: 'Thesis published at the IEEE Conference on Games 2026',
+        detail: 'Paper presented at the IEEE Conference on Games 2026',
+        linkLabel: 'Read the thesis',
+        linkUrl: 'https://hdl.handle.net/2078.2/49506',
       },
     ],
     items: [
@@ -835,7 +847,7 @@ const en: typeof fr = {
       {
         q: 'What sets you apart from another tutor?',
         a: [
-          'I know the path from the inside. Secondary school in the advanced maths-science stream in Nivelles, the engineering entrance exam sat myself, then five years of civil engineering at EPL finished with **the highest distinction (17.95/20)**. And above all, I have known the feeling of being completely lost in a course — for me it was biology, where I really struggled. When a student tells me they are lost, I never look down on them: I know exactly what it feels like.',
+          'I know the path from the inside. Secondary school in the advanced maths-science stream in Nivelles, the engineering entrance exam sat myself, then five years of civil engineering at EPL, with the master’s finished at **the highest distinction (17.95/20)**. And above all, I have known the feeling of being completely lost in a course — for me it was biology, where I really struggled. When a student tells me they are lost, I never look down on them: I know exactly what it feels like.',
           'I leave something behind. I provide **revision packs as PDFs**, in two separate versions: the exercises first, then the detailed solutions. Students can therefore practise on their own between sessions and mark themselves, without waiting for the next lesson. The end goal being, quite honestly, **that they no longer need me**.',
           'And then there is no distance. I am 23, I have only just finished my studies, and I still remember very well what exam period, a badly explained course or a dreaded exam feel like. That changes a lot: my students dare to tell me "I did not understand a thing" without fear of being judged — and that is frankly the number one condition for making progress.',
         ],
@@ -1251,16 +1263,22 @@ const nl: typeof fr = {
         label: 'Opleiding',
         value: 'Master burgerlijk ingenieur',
         detail: 'École Polytechnique de Louvain — UCLouvain',
+        linkLabel: '',
+        linkUrl: '',
       },
       {
         label: 'Diploma',
         value: 'Afgestudeerd met de grootste onderscheiding',
-        detail: 'Gemiddelde van 17,95/20 over de hele opleiding',
+        detail: 'Gemiddelde van 17,95/20 voor de master',
+        linkLabel: '',
+        linkUrl: '',
       },
       {
         label: 'Specialisatie',
         value: 'Artificiële intelligentie & datawetenschappen',
-        detail: 'Masterproef gepubliceerd op de IEEE Conference on Games 2026',
+        detail: 'Artikel verschenen op de IEEE Conference on Games 2026',
+        linkLabel: 'Masterproef bekijken',
+        linkUrl: 'https://hdl.handle.net/2078.2/49506',
       },
     ],
     items: [
@@ -1324,7 +1342,7 @@ const nl: typeof fr = {
       {
         q: 'Wat onderscheidt u van een andere lesgever?',
         a: [
-          'Ik ken het traject van binnenuit. Middelbaar in de sterke richting wiskunde-wetenschappen in Nijvel, het toelatingsexamen ingenieur zelf afgelegd, daarna vijf jaar burgerlijk ingenieur aan de EPL, afgerond met **de grootste onderscheiding (17,95/20)**. En vooral: ik heb het gevoel gekend volledig de weg kwijt te zijn in een vak — bij mij was dat biologie, waar ik echt worstelde. Wanneer een leerling me zegt dat hij het niet meer volgt, kijk ik nooit op hem neer: ik weet precies hoe dat voelt.',
+          'Ik ken het traject van binnenuit. Middelbaar in de sterke richting wiskunde-wetenschappen in Nijvel, het toelatingsexamen ingenieur zelf afgelegd, daarna vijf jaar burgerlijk ingenieur aan de EPL, met de master afgerond op **de grootste onderscheiding (17,95/20)**. En vooral: ik heb het gevoel gekend volledig de weg kwijt te zijn in een vak — bij mij was dat biologie, waar ik echt worstelde. Wanneer een leerling me zegt dat hij het niet meer volgt, kijk ik nooit op hem neer: ik weet precies hoe dat voelt.',
           'Ik laat iets achter. Ik bezorg **herhalingsbundels in pdf**, in twee aparte versies: eerst de opgaven, daarna de uitgewerkte oplossingen. De leerling kan dus tussen twee sessies alleen oefenen en zichzelf verbeteren, zonder op de volgende les te wachten. Het einddoel is, heel eerlijk, **dat hij mij niet meer nodig heeft**.',
           'En dan is er geen afstand. Ik ben 23, ik kom net uit de studies, en ik weet nog heel goed wat een blok, een slecht uitgelegde cursus of een gevreesd examen betekent. Dat verandert veel: mijn leerlingen durven me te zeggen "ik heb er niets van begrepen" zonder schrik voor een oordeel — en dat is eerlijk gezegd de eerste voorwaarde om vooruit te gaan.',
         ],
