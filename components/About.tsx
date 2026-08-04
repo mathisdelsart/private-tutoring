@@ -109,10 +109,10 @@ export default function About({ diplomeFichier }: AboutProps) {
                       aria-selected={isActive}
                       aria-controls={`about-panel-${index}`}
                       onClick={() => setActiveIndex(index)}
-                      className={`w-full text-left px-4 py-3.5 rounded-xl border-l-2 text-sm xl:text-base transition-all duration-300 ${
+                      className={`w-full text-left pl-4 pr-2 py-3 border-l-2 text-sm xl:text-base transition-all duration-300 ${
                         isActive
-                          ? 'border-primary bg-emerald-50 text-slate-900 font-semibold'
-                          : 'border-slate-200 text-slate-600 hover:border-primary/50 hover:bg-slate-50'
+                          ? 'border-primary text-primary font-semibold'
+                          : 'border-slate-200 text-slate-600 hover:border-primary/40 hover:text-slate-900'
                       }`}
                     >
                       {item.q}
@@ -126,7 +126,7 @@ export default function About({ diplomeFichier }: AboutProps) {
               id={`about-panel-${activeIndex}`}
               role="tabpanel"
               key={activeIndex}
-              className="card p-6 xl:p-8 animate-[fadeInUp_0.4s_ease-out]"
+              className="border-l border-slate-200 pl-8 xl:pl-12 animate-[fadeInUp_0.4s_ease-out]"
             >
               <h3 className="text-xl xl:text-2xl font-bold text-slate-900 mb-5">{active.q}</h3>
               <div className="space-y-4">
@@ -140,24 +140,19 @@ export default function About({ diplomeFichier }: AboutProps) {
           </div>
         ) : (
           /* Narrow screens: accordion */
-          <div className="max-w-3xl mx-auto space-y-3">
+          <div className="max-w-3xl mx-auto border-t border-slate-200">
             {items.map((item, index) => {
               const isOpen = index === activeIndex
               return (
-                <div
-                  key={item.q}
-                  className={`card overflow-hidden transition-colors duration-300 ${
-                    isOpen ? 'border-emerald-200' : 'hover:border-slate-300'
-                  }`}
-                >
+                <div key={item.q} className="border-b border-slate-200">
                   <button
                     type="button"
                     onClick={() => setActiveIndex(isOpen ? -1 : index)}
                     aria-expanded={isOpen}
                     aria-controls={`about-answer-${index}`}
-                    className="w-full flex items-center justify-between gap-4 text-left px-5 sm:px-6 py-4 sm:py-5"
+                    className="w-full flex items-center justify-between gap-4 text-left py-4 sm:py-5"
                   >
-                    <span className="text-base sm:text-lg font-semibold text-slate-900">{item.q}</span>
+                    <span className={`text-base sm:text-lg font-semibold transition-colors duration-300 ${isOpen ? 'text-primary' : 'text-slate-900'}`}>{item.q}</span>
                     <ChevronDown
                       className={`w-5 h-5 flex-shrink-0 text-primary transition-transform duration-300 ${
                         isOpen ? 'rotate-180' : ''
@@ -172,7 +167,7 @@ export default function About({ diplomeFichier }: AboutProps) {
                     }`}
                   >
                     <div className="overflow-hidden">
-                      <div className="px-5 sm:px-6 pb-5 sm:pb-6 space-y-3">
+                      <div className="pb-5 sm:pb-6 pr-8 space-y-3">
                         {item.a.map((paragraph, i) => (
                           <p key={i} className="text-sm sm:text-base text-slate-600 leading-relaxed">
                             {withHighlights(paragraph)}
