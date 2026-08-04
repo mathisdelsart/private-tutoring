@@ -2,6 +2,7 @@
 
 import { GraduationCap, Mail, MessageSquare, MapPin, ArrowRight } from 'lucide-react'
 import { useLanguage } from '@/lib/i18n'
+import { MAPS_URL } from '@/lib/maps'
 import WhatsAppIcon from './WhatsAppIcon'
 
 interface FooterProps {
@@ -46,9 +47,9 @@ export default function Footer({ nom, ville, email, whatsapp }: FooterProps) {
       {/* Site map and contact details */}
       <div className="border-t border-slate-200 bg-white/50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-14">
-          <div className="grid grid-cols-1 md:grid-cols-[1.6fr_1fr_1.2fr] gap-10 md:gap-8 lg:gap-12">
+          <div className="grid grid-cols-1 md:grid-cols-[1.7fr_1fr] gap-10 md:gap-12 lg:gap-16">
             <div>
-              <a href="#accueil" className="inline-flex items-center gap-2.5 group mb-4">
+              <a href="#accueil" className="inline-flex items-center gap-2.5 group mb-3">
                 <div className="flex items-center justify-center w-9 h-9 rounded-lg bg-gradient-to-br from-emerald-500 to-teal-600 shadow-sm shadow-emerald-600/20 group-hover:scale-105 transition-transform duration-300">
                   <GraduationCap className="w-6 h-6 text-white" strokeWidth={2.2} />
                 </div>
@@ -56,26 +57,38 @@ export default function Footer({ nom, ville, email, whatsapp }: FooterProps) {
                   {t.nav.brand}
                 </span>
               </a>
-              <p className="text-sm text-slate-600 leading-relaxed max-w-sm">{t.footer.tagline}</p>
-            </div>
+              <p className="text-sm text-slate-600 leading-relaxed max-w-sm mb-7">{t.footer.tagline}</p>
 
-            <div>
-              <h4 className="text-xs font-bold uppercase tracking-wider text-slate-900 mb-4">
-                {t.footer.navTitle}
-              </h4>
-              <ul className="space-y-2.5 list-none">
-                {t.nav.items.map(([label, id]) => (
-                  <li key={id}>
-                    <a
-                      href={`#${id}`}
-                      className="group inline-flex items-center gap-1.5 text-sm text-slate-600 hover:text-primary transition-colors duration-300"
-                    >
-                      <span className="w-0 group-hover:w-3 h-px bg-primary transition-all duration-300" />
-                      {label}
-                    </a>
-                  </li>
-                ))}
-              </ul>
+              {/* What is on offer, laid out instead of restated as a paragraph */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 sm:gap-8">
+                <div>
+                  <h4 className="text-xs font-bold uppercase tracking-wider text-slate-900 mb-3">
+                    {t.footer.levelsTitle}
+                  </h4>
+                  <ul className="space-y-2 list-none">
+                    {t.hero.audienceChips.map((level) => (
+                      <li key={level} className="flex items-start gap-2 text-sm text-slate-600">
+                        <span className="mt-[0.4rem] w-1.5 h-1.5 rounded-full bg-primary flex-shrink-0" />
+                        {level}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+
+                <div>
+                  <h4 className="text-xs font-bold uppercase tracking-wider text-slate-900 mb-3">
+                    {t.footer.subjectsTitle}
+                  </h4>
+                  <ul className="space-y-2 list-none">
+                    {t.footer.subjects.map((subject) => (
+                      <li key={subject} className="flex items-start gap-2 text-sm text-slate-600">
+                        <span className="mt-[0.4rem] w-1.5 h-1.5 rounded-full bg-accent flex-shrink-0" />
+                        {subject}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
             </div>
 
             <div>
@@ -101,11 +114,18 @@ export default function Footer({ nom, ville, email, whatsapp }: FooterProps) {
                     </li>
                   )
                 })}
-                <li className="flex items-center gap-2.5 text-sm text-slate-600">
-                  <span className="flex items-center justify-center w-7 h-7 rounded-lg bg-emerald-50 border border-emerald-200 flex-shrink-0">
-                    <MapPin className="w-3.5 h-3.5 text-primary" />
-                  </span>
-                  {t.hero.zone}
+                <li>
+                  <a
+                    href={MAPS_URL}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group flex items-center gap-2.5 text-sm text-slate-600 hover:text-primary transition-colors duration-300"
+                  >
+                    <span className="flex items-center justify-center w-7 h-7 rounded-lg bg-emerald-50 border border-emerald-200 flex-shrink-0 group-hover:bg-emerald-100 transition-colors">
+                      <MapPin className="w-3.5 h-3.5 text-primary" />
+                    </span>
+                    {t.hero.zone}
+                  </a>
                 </li>
               </ul>
             </div>

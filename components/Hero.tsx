@@ -5,6 +5,7 @@ import Image from 'next/image'
 import { Award, Download } from 'lucide-react'
 import { assetPath } from '@/lib/assetPath'
 import { useLanguage } from '@/lib/i18n'
+import { MAPS_URL } from '@/lib/maps'
 import Counter from './Counter'
 
 interface HeroProps {
@@ -231,7 +232,7 @@ export default function Hero({ nom, moyenne, moyenneSur, diplomeFichier }: HeroP
                 </div>
 
                 <a
-                  href="https://www.google.com/maps/search/?api=1&query=Gouy-Lez-Piéton,+Belgique"
+                  href={MAPS_URL}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-start gap-2 sm:gap-3 group hover:bg-slate-50 -mx-2 px-2 py-2 rounded-lg transition-all duration-300"
