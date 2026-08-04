@@ -1,6 +1,6 @@
 'use client'
 
-import { GraduationCap, Mail, MessageSquare, ArrowRight } from 'lucide-react'
+import { GraduationCap, Mail, MessageSquare } from 'lucide-react'
 import { useLanguage } from '@/lib/i18n'
 import WhatsAppIcon from './WhatsAppIcon'
 
@@ -21,27 +21,8 @@ export default function Footer({ nom, ville, email, whatsapp }: FooterProps) {
   ]
 
   return (
-    <footer className="relative border-t border-slate-200 mt-8">
+    <footer className="relative border-t border-slate-200 mt-12 sm:mt-16">
       <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary to-transparent" />
-
-      {/* Closing call to action */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20 text-center">
-        <h3 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold mb-4 sm:mb-6 text-slate-900">
-          {t.footer.title}
-        </h3>
-        <p className="text-base sm:text-lg lg:text-xl text-slate-600 max-w-2xl mx-auto leading-relaxed">
-          {t.footer.line1} <br />
-          <span className="gradient-text font-semibold">{t.footer.line2}</span>
-        </p>
-
-        <a
-          href="#contact"
-          className="group inline-flex items-center gap-2.5 mt-8 px-6 sm:px-8 py-3.5 sm:py-4 rounded-xl bg-gradient-to-br from-emerald-500 to-teal-600 text-white font-semibold shadow-[0_6px_20px_rgba(5,150,105,0.25)] hover:shadow-[0_10px_28px_rgba(5,150,105,0.35)] hover:-translate-y-0.5 transition-all duration-300"
-        >
-          {t.footer.cta}
-          <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
-        </a>
-      </div>
 
       {/* Site map and contact details */}
       <div className="border-t border-slate-200 bg-white/50">

@@ -24,29 +24,29 @@ export default function Hero({ nom, moyenne, moyenneSur, diplomeFichier }: HeroP
   }, [])
 
   return (
-    <section id="accueil" className="relative min-h-[90vh] flex items-center pt-20 sm:pt-24 pb-12 sm:pb-16 overflow-hidden">
+    <section id="accueil" className="relative lg:min-h-[42rem] flex items-center pt-20 sm:pt-24 pb-8 sm:pb-10 overflow-hidden">
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-[1.2fr_380px] xl:grid-cols-[1fr_420px] gap-6 sm:gap-8 lg:gap-10 xl:gap-12 items-end">
+        <div className="grid grid-cols-1 lg:grid-cols-[1.2fr_380px] xl:grid-cols-[1fr_420px] gap-6 sm:gap-8 lg:gap-10 xl:gap-12 items-stretch">
           <div className={`flex flex-col justify-between ${mounted ? 'animate-[fadeInUp_1s_ease-out]' : 'opacity-0'}`}>
             <div>
-              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-extrabold leading-[1.1] tracking-tight text-slate-900 mb-4 sm:mb-6">
+              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-extrabold leading-[1.08] tracking-tight text-slate-900 mb-3 sm:mb-4">
                 {t.hero.title.p1}
                 <span className="gradient-text">{t.hero.title.w1}</span>
                 {t.hero.title.p2}
                 <span className="gradient-text">{t.hero.title.w2}</span>
               </h1>
 
-              <div className="space-y-2 sm:space-y-3 max-w-2xl mb-6 sm:mb-8">
+              <div className="space-y-1.5 sm:space-y-2 max-w-2xl mb-4 sm:mb-5">
                 <p className="text-base sm:text-lg lg:text-[17px] xl:text-lg text-slate-600 leading-relaxed">
                   {t.hero.subtitle1}
                 </p>
-                <p className="text-sm sm:text-base md:text-lg text-slate-500 leading-relaxed">
+                <p className="text-sm sm:text-base text-slate-500 leading-relaxed">
                   {t.hero.subtitle2}
                 </p>
               </div>
 
-              <div className="flex flex-wrap gap-2 mb-6 sm:mb-8">
+              <div className="flex flex-wrap gap-2 mb-4 sm:mb-5">
                 {t.hero.audienceChips.map((chip, i) => (
                   <span
                     key={chip}
@@ -62,29 +62,29 @@ export default function Hero({ nom, moyenne, moyenneSur, diplomeFichier }: HeroP
 
             </div>
 
-            <div className="space-y-4 sm:space-y-6 lg:pr-4">
+            <div className="space-y-2.5 sm:space-y-3 lg:pr-4">
               <div className="grid grid-cols-2 gap-3 sm:gap-4">
-                <div className="card p-3 sm:p-5 text-center hover:scale-105 transition-transform duration-300">
+                <div className="card p-3 text-center hover:scale-105 transition-transform duration-300">
                   <Counter
                     value={100}
                     suffix="+"
-                    className="block text-3xl sm:text-4xl lg:text-5xl font-extrabold gradient-text mb-1 sm:mb-2 tabular-nums"
+                    className="block text-2xl sm:text-3xl font-extrabold gradient-text mb-0.5 tabular-nums"
                   />
                   <div className="text-[10px] sm:text-xs text-slate-500 uppercase tracking-wide font-semibold">{t.hero.statStudents}</div>
                 </div>
-                <div className="card p-3 sm:p-5 text-center hover:scale-105 transition-transform duration-300">
+                <div className="card p-3 text-center hover:scale-105 transition-transform duration-300">
                   <Counter
                     value={3}
                     prefix="+"
                     duration={1000}
-                    className="block text-3xl sm:text-4xl lg:text-5xl font-extrabold gradient-text mb-1 sm:mb-2 tabular-nums"
+                    className="block text-2xl sm:text-3xl font-extrabold gradient-text mb-0.5 tabular-nums"
                   />
                   <div className="text-[10px] sm:text-xs text-slate-500 uppercase tracking-wide font-semibold">{t.hero.statExperience}</div>
                 </div>
               </div>
 
-              <blockquote className="hidden sm:block pl-4 sm:pl-5 border-l-2 border-primary/70">
-                <p className="text-sm sm:text-base italic text-slate-500 leading-relaxed">
+              <blockquote className="hidden sm:block pl-4 border-l-2 border-primary/70">
+                <p className="text-sm italic text-slate-500 leading-snug">
                   {t.hero.quote.part1}
                   <span className="text-primary font-semibold not-italic">{t.hero.quote.highlight}</span>
                 </p>
@@ -118,16 +118,13 @@ export default function Hero({ nom, moyenne, moyenneSur, diplomeFichier }: HeroP
                   )}
                 </div>
                 <p className="mt-1 text-[11px] text-slate-500 leading-snug">
-                  {t.hero.diploma.school}
-                </p>
-                <p className="mt-0.5 text-[11px] italic text-slate-500 leading-snug">
-                  {t.hero.diploma.note}
+                  {t.hero.diploma.school} · <span className="italic">{t.hero.diploma.note}</span>
                 </p>
               </div>
 
               <a
                 href="#contact"
-                className="group flex items-center justify-between gap-3 px-4 sm:px-5 py-3.5 sm:py-4 rounded-xl bg-gradient-to-br from-primary to-secondary text-white shadow-[0_6px_20px_rgba(5,150,105,0.25)] hover:shadow-[0_10px_28px_rgba(5,150,105,0.35)] hover:-translate-y-0.5 transition-all duration-300"
+                className="group flex items-center justify-between gap-3 px-4 sm:px-5 py-3 sm:py-3.5 rounded-xl bg-gradient-to-br from-primary to-secondary text-white shadow-[0_6px_20px_rgba(5,150,105,0.25)] hover:shadow-[0_10px_28px_rgba(5,150,105,0.35)] hover:-translate-y-0.5 transition-all duration-300"
               >
                 <div className="flex items-center gap-3 sm:gap-3.5">
                   <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-lg bg-white/15 flex items-center justify-center flex-shrink-0">
@@ -147,15 +144,15 @@ export default function Hero({ nom, moyenne, moyenneSur, diplomeFichier }: HeroP
             </div>
           </div>
 
-          <div className={`${mounted ? 'animate-[fadeInUp_1s_ease-out_0.2s_backwards]' : 'opacity-0'}`}>
-            <div className="card p-0 overflow-hidden group/card hover:shadow-[0_20px_50px_rgba(5,150,105,0.14)] hover:border-emerald-200 transition-all duration-500 motion-safe:animate-[floatCard_7s_ease-in-out_infinite]">
-              <div className="relative w-full aspect-[4/3.8] overflow-hidden bg-gradient-to-b from-gray-900 to-gray-800">
+          <div className={`flex ${mounted ? 'animate-[fadeInUp_1s_ease-out_0.2s_backwards]' : 'opacity-0'}`}>
+            <div className="card p-0 overflow-hidden w-full flex flex-col group/card hover:shadow-[0_20px_50px_rgba(5,150,105,0.14)] hover:border-emerald-200 transition-all duration-500 motion-safe:animate-[floatCard_7s_ease-in-out_infinite]">
+              <div className="relative w-full aspect-[4/3.8] lg:aspect-auto lg:flex-1 lg:min-h-[12rem] overflow-hidden bg-gradient-to-b from-gray-900 to-gray-800">
                 <Image
                   src={assetPath('/face_image.jpg')}
                   alt={nom}
                   width={400}
                   height={380}
-                  className="object-cover w-full h-full transition-transform duration-700 group-hover/card:scale-[1.04]"
+                  className="object-cover w-full h-full lg:absolute lg:inset-0 transition-transform duration-700 group-hover/card:scale-[1.04]"
                   priority
                   sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 400px"
                 />

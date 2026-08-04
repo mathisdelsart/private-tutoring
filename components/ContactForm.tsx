@@ -3,6 +3,7 @@
 import { useState } from 'react'
 import {
   Mail,
+  MessageSquare,
   Home,
   Video,
   Calculator,
@@ -37,15 +38,15 @@ export default function ContactForm({ email, whatsapp, nom }: ContactFormProps) 
     location: 'domicile',
     courseType: 'suivi',
     reason: '',
-    frequencyNumber: '2',
-    frequencyPeriod: 'semaine',
+    frequencyNumber: '',
+    frequencyPeriod: '',
     availability: '',
     message: ''
   })
 
   const [step, setStep] = useState(1)
 
-  const handleSubmit = async (platform: 'whatsapp' | 'email') => {
+  const handleSubmit = async (platform: 'whatsapp' | 'email' | 'sms') => {
     const m = t.form.msg
     const subjectsText = formData.subjects.join(' + ')
     const periodText = formData.frequencyPeriod === 'semaine' ? m.periodWeek : m.periodMonth
@@ -99,7 +100,11 @@ ${formData.message}`
 
 ${m.closing}`
 
-    if (platform === 'whatsapp') {
+    if (platform === 'sms') {
+      // Trim the decorative rules: an SMS is billed per 160 characters
+      const compact = message.replace(/\n?━+\n?/g, '\n').replace(/\n{3,}/g, '\n\n').trim()
+      window.location.href = `sms:+${whatsapp}?&body=${encodeURIComponent(compact)}`
+    } else if (platform === 'whatsapp') {
       const whatsappMessage = encodeURIComponent(message)
       window.open(`https://wa.me/${whatsapp}?text=${whatsappMessage}`, '_blank')
     } else if (platform === 'email') {
@@ -135,11 +140,18 @@ ${m.closing}`
 
       // Si on change la période, vérifier que la fréquence est toujours valide
       if (field === 'frequencyPeriod') {
-        const maxValue = value === 'semaine' ? 4 : 8
-        const currentNum = parseInt(prev.frequencyNumber, 10)
+        if (!value) {
+          // Désélection : on retombe sur "à discuter ensemble"
+          newData.frequencyNumber = ''
+        } else {
+          const maxValue = value === 'semaine' ? 4 : 8
+          const currentNum = parseInt(prev.frequencyNumber, 10)
 
-        if (!isNaN(currentNum) && currentNum > maxValue) {
-          newData.frequencyNumber = maxValue.toString()
+          if (!prev.frequencyNumber) {
+            newData.frequencyNumber = '2'
+          } else if (!isNaN(currentNum) && currentNum > maxValue) {
+            newData.frequencyNumber = maxValue.toString()
+          }
         }
       }
 
@@ -364,15 +376,21 @@ ${m.closing}`
                       max={formData.frequencyPeriod === 'semaine' ? 4 : 8}
                       value={formData.frequencyNumber}
                       onChange={(e) => updateFormData('frequencyNumber', e.target.value)}
-                      className="w-full sm:w-20 md:w-24 px-3 sm:px-4 py-2 sm:py-3 bg-white border border-slate-300 rounded-xl focus:ring-2 focus:ring-primary focus:border-primary text-slate-900 text-center font-semibold transition-all text-base sm:text-lg"
-                      placeholder="2"
+                      disabled={!formData.frequencyPeriod}
+                      className="w-full sm:w-20 md:w-24 px-3 sm:px-4 py-2 sm:py-3 bg-white border border-slate-300 rounded-xl focus:ring-2 focus:ring-primary focus:border-primary text-slate-900 text-center font-semibold transition-all text-base sm:text-lg disabled:bg-slate-100 disabled:text-slate-400"
+                      placeholder="—"
                     />
                     <span className="hidden sm:inline text-slate-500 font-medium">×</span>
                     <span className="hidden sm:inline text-slate-500 text-sm">{t.form.freqPer}</span>
                     <div className="flex-1 grid grid-cols-2 gap-2">
                       <button
                         type="button"
-                        onClick={() => updateFormData('frequencyPeriod', 'semaine')}
+                        onClick={() =>
+                          updateFormData(
+                            'frequencyPeriod',
+                            formData.frequencyPeriod === 'semaine' ? '' : 'semaine'
+                          )
+                        }
                         className={`px-2 sm:px-3 md:px-4 py-2 sm:py-3 rounded-xl border-2 transition-all duration-300 text-xs sm:text-sm font-medium whitespace-nowrap ${
                           formData.frequencyPeriod === 'semaine'
                             ? 'border-primary bg-emerald-50 text-slate-900'
@@ -383,7 +401,12 @@ ${m.closing}`
                       </button>
                       <button
                         type="button"
-                        onClick={() => updateFormData('frequencyPeriod', 'mois')}
+                        onClick={() =>
+                          updateFormData(
+                            'frequencyPeriod',
+                            formData.frequencyPeriod === 'mois' ? '' : 'mois'
+                          )
+                        }
                         className={`px-2 sm:px-3 md:px-4 py-2 sm:py-3 rounded-xl border-2 transition-all duration-300 text-xs sm:text-sm font-medium whitespace-nowrap ${
                           formData.frequencyPeriod === 'mois'
                             ? 'border-primary bg-emerald-50 text-slate-900'
@@ -394,7 +417,9 @@ ${m.closing}`
                       </button>
                     </div>
                   </div>
-                  <p className="text-xs text-slate-400 mt-2 sm:mt-3 text-center">{t.form.freqHint}</p>
+                  <p className="text-xs text-slate-400 mt-2 sm:mt-3 text-center">
+                    {formData.frequencyPeriod ? t.form.freqHint : `→ ${t.form.msg.freqToDiscuss}`}
+                  </p>
                 </div>
               </div>
             )}
@@ -451,12 +476,23 @@ ${m.closing}`
             <div className="pt-4 border-t border-slate-200">
               <p className="text-sm text-slate-500 mb-4">{t.form.chooseContact}</p>
 
-              <div className="grid grid-cols-2 gap-4 max-w-2xl mx-auto">
+              <div className="grid grid-cols-3 gap-3 sm:gap-4 max-w-2xl mx-auto">
+                <button
+                  type="button"
+                  onClick={() => handleSubmit('sms')}
+                  disabled={!formData.availability}
+                  className="p-3 sm:p-5 rounded-xl bg-gradient-to-br from-emerald-500 to-teal-600 hover:from-emerald-600 hover:to-teal-700 text-white transition-all duration-300 hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 flex flex-col items-center gap-2"
+                >
+                  <MessageSquare className="w-6 h-6 sm:w-7 sm:h-7" />
+                  <span className="text-xs sm:text-sm font-medium">SMS</span>
+                  <span className="text-[10px] sm:text-xs text-white/70 mt-1">{t.contact.smsDesc}</span>
+                </button>
+
                 <button
                   type="button"
                   onClick={() => handleSubmit('whatsapp')}
                   disabled={!formData.availability}
-                  className="p-4 sm:p-5 rounded-xl bg-gradient-to-br from-emerald-500 to-teal-600 hover:from-emerald-600 hover:to-teal-700 text-white transition-all duration-300 hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 flex flex-col items-center gap-2"
+                  className="p-3 sm:p-5 rounded-xl bg-gradient-to-br from-emerald-500 to-teal-600 hover:from-emerald-600 hover:to-teal-700 text-white transition-all duration-300 hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 flex flex-col items-center gap-2"
                 >
                   <WhatsAppIcon className="w-6 h-6 sm:w-7 sm:h-7" />
                   <span className="text-xs sm:text-sm font-medium">WhatsApp</span>
@@ -467,7 +503,7 @@ ${m.closing}`
                   type="button"
                   onClick={() => handleSubmit('email')}
                   disabled={!formData.availability}
-                  className="p-4 sm:p-5 rounded-xl bg-gradient-to-br from-emerald-500 to-teal-600 hover:from-emerald-600 hover:to-teal-700 text-white transition-all duration-300 hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 flex flex-col items-center gap-2"
+                  className="p-3 sm:p-5 rounded-xl bg-gradient-to-br from-emerald-500 to-teal-600 hover:from-emerald-600 hover:to-teal-700 text-white transition-all duration-300 hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 flex flex-col items-center gap-2"
                 >
                   <Mail className="w-6 h-6 sm:w-7 sm:h-7" />
                   <span className="text-xs sm:text-sm font-medium">Email</span>

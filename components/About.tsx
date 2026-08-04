@@ -82,9 +82,13 @@ export default function About({ diplomeFichier }: AboutProps) {
                     </a>
                   )}
                   {/* Balanced wrapping keeps a trailing year from landing alone on its own line */}
-                  <div className="text-[11px] text-slate-500 leading-snug mt-1 text-balance">
-                    {credential.detail}
-                  </div>
+                  <ul className="mt-1 space-y-0.5 list-none">
+                    {credential.details.map((line) => (
+                      <li key={line} className="text-[11px] text-slate-500 leading-snug text-balance">
+                        {line}
+                      </li>
+                    ))}
+                  </ul>
                 </div>
               </div>
             )

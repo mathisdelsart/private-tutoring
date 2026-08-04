@@ -3,18 +3,10 @@
 import { UserCog, ClipboardCheck, MessageCircle, FileText } from 'lucide-react'
 import { useLanguage } from '@/lib/i18n'
 
+const icons = [UserCog, ClipboardCheck, MessageCircle, FileText]
+
 export default function Method() {
   const { t } = useLanguage()
-
-  // One brand gradient everywhere: colour variation here carried no meaning.
-  const icons = [
-    <UserCog key="a" className="w-8 h-8 text-white" />,
-    <ClipboardCheck key="b" className="w-8 h-8 text-white" />,
-    <MessageCircle key="c" className="w-8 h-8 text-white" />,
-    <FileText key="d" className="w-8 h-8 text-white" />,
-  ]
-
-  const whyChoose = t.method.items.map((item, i) => ({ ...item, icon: icons[i % icons.length] }))
 
   return (
     <section id="methode" className="py-12 sm:py-16 lg:py-20 relative reveal">
@@ -30,20 +22,33 @@ export default function Method() {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 lg:gap-7 xl:gap-8 max-w-6xl mx-auto">
-          {whyChoose.map((item, index) => {
-            const color = { bg: 'bg-white', border: 'border-slate-200' }
+          {t.method.items.map((item, index) => {
+            const Icon = icons[index % icons.length]
 
             return (
               <div
-                key={index}
-                className={`relative overflow-hidden rounded-2xl p-5 sm:p-6 md:p-7 xl:p-8 ${color.bg} border-2 ${color.border} hover:shadow-2xl transition-all duration-400 sm:hover:scale-105 group`}
+                key={item.title}
+                className="group relative overflow-hidden rounded-2xl p-5 sm:p-6 md:p-7 xl:p-8 bg-white border border-slate-200 hover:border-emerald-200 hover:shadow-[0_16px_40px_rgba(5,150,105,0.10)] transition-all duration-500"
               >
-                <div className="hidden sm:block absolute inset-0 bg-gradient-to-br from-slate-50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-400"></div>
-                <div className="relative z-10 w-14 h-14 sm:w-16 sm:h-16 rounded-xl sm:rounded-2xl bg-gradient-to-br from-emerald-500 to-teal-600 flex items-center justify-center mb-4 sm:mb-6 shadow-lg transform group-hover:rotate-6 transition-all duration-300">
-                  {item.icon}
-                </div>
-                <h4 className="relative z-10 text-xl sm:text-2xl font-bold mb-3 sm:mb-4 text-slate-900">{item.title}</h4>
-                <p className="relative z-10 text-sm sm:text-base text-slate-600 leading-relaxed">{item.description}</p>
+                {/* The icon sits in the corner as a watermark rather than a tile,
+                    so the text gets the whole card */}
+                <Icon
+                  aria-hidden="true"
+                  strokeWidth={1.25}
+                  className="pointer-events-none absolute -top-4 -right-4 w-28 h-28 sm:w-32 sm:h-32 text-emerald-600 opacity-[0.07] group-hover:opacity-[0.13] group-hover:-rotate-6 group-hover:scale-105 transition-all duration-500"
+                />
+
+                <div className="hidden sm:block absolute inset-0 bg-gradient-to-br from-emerald-50/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+
+                {/* Accent bar keeps a small anchor of colour on each card */}
+                <div className="relative z-10 h-1 w-9 rounded-full bg-gradient-to-r from-primary to-accent mb-4 sm:mb-5 group-hover:w-16 transition-all duration-500" />
+
+                <h4 className="relative z-10 text-xl sm:text-2xl font-bold mb-2.5 sm:mb-3 text-slate-900 pr-10">
+                  {item.title}
+                </h4>
+                <p className="relative z-10 text-sm sm:text-base text-slate-600 leading-relaxed">
+                  {item.description}
+                </p>
               </div>
             )
           })}

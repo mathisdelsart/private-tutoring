@@ -274,8 +274,11 @@ const fr = {
     credentials: [
       {
         label: 'Formation',
-        value: 'Master ingénieur civil',
-        detail: 'École Polytechnique de Louvain — UCLouvain',
+        value: 'École Polytechnique de Louvain — UCLouvain',
+        details: [
+          '2024 – 2026 · Master ingénieur civil en informatique',
+          '2021 – 2024 · Bachelier ingénieur civil, options informatique & électricité',
+        ],
         linkLabel: '',
         linkUrl: '',
         linkKind: '',
@@ -283,7 +286,7 @@ const fr = {
       {
         label: 'Diplôme',
         value: 'Diplômé avec la plus grande distinction',
-        detail: 'Moyenne de 17,95/20 sur le master',
+        details: ['Moyenne de 17,95/20 sur le master'],
         linkLabel: 'Attestation de diplôme',
         linkUrl: '',
         linkKind: 'file',
@@ -291,8 +294,8 @@ const fr = {
       {
         label: 'Spécialisation',
         value: 'Intelligence artificielle & science des données',
-        detail: 'Article à l’IEEE Conference on Games 2026',
-        linkLabel: 'Consulter le mémoire',
+        details: ['Article à l’IEEE Conference on Games 2026'],
+        linkLabel: 'Consulter mon mémoire',
         linkUrl: 'https://hdl.handle.net/2078.2/49506',
         linkKind: 'external',
       },
@@ -481,10 +484,6 @@ const fr = {
   },
 
   footer: {
-    title: 'Le succès commence par une décision',
-    line1: 'Chaque grand parcours commence par un premier pas.',
-    line2: 'Votre réussite vous attend.',
-    cta: 'Demander un premier cours',
     tagline: 'À Gouy-Lez-Piéton (Courcelles) et en ligne, partout en Belgique.',
     levelsTitle: 'Niveaux',
     subjectsTitle: 'Matières',
@@ -769,8 +768,11 @@ const en: typeof fr = {
     credentials: [
       {
         label: 'Education',
-        value: "Master's in civil engineering",
-        detail: 'École Polytechnique de Louvain — UCLouvain',
+        value: 'École Polytechnique de Louvain — UCLouvain',
+        details: [
+          "2024 – 2026 · Master's in computer science engineering",
+          '2021 – 2024 · Bachelor in engineering, computing & electrical options',
+        ],
         linkLabel: '',
         linkUrl: '',
         linkKind: '',
@@ -778,7 +780,7 @@ const en: typeof fr = {
       {
         label: 'Degree',
         value: 'Graduated with the highest distinction',
-        detail: "A 17.95/20 average for the master's",
+        details: ["A 17.95/20 average for the master's"],
         linkLabel: 'Degree certificate',
         linkUrl: '',
         linkKind: 'file',
@@ -786,8 +788,8 @@ const en: typeof fr = {
       {
         label: 'Specialization',
         value: 'Artificial intelligence & data science',
-        detail: 'Paper at the IEEE Conference on Games 2026',
-        linkLabel: 'Read the thesis',
+        details: ['Paper at the IEEE Conference on Games 2026'],
+        linkLabel: 'Read my thesis',
         linkUrl: 'https://hdl.handle.net/2078.2/49506',
         linkKind: 'external',
       },
@@ -976,10 +978,6 @@ const en: typeof fr = {
   },
 
   footer: {
-    title: 'Success starts with a decision',
-    line1: 'Every great journey begins with a first step.',
-    line2: 'Your success awaits.',
-    cta: 'Request a first lesson',
     tagline: 'In Gouy-Lez-Piéton (Courcelles) and online, anywhere in Belgium.',
     levelsTitle: 'Levels',
     subjectsTitle: 'Subjects',
@@ -1267,8 +1265,11 @@ const nl: typeof fr = {
     credentials: [
       {
         label: 'Opleiding',
-        value: 'Master burgerlijk ingenieur',
-        detail: 'École Polytechnique de Louvain — UCLouvain',
+        value: 'École Polytechnique de Louvain — UCLouvain',
+        details: [
+          '2024 – 2026 · Master burgerlijk ingenieur computerwetenschappen',
+          '2021 – 2024 · Bachelor burgerlijk ingenieur, opties informatica & elektriciteit',
+        ],
         linkLabel: '',
         linkUrl: '',
         linkKind: '',
@@ -1276,7 +1277,7 @@ const nl: typeof fr = {
       {
         label: 'Diploma',
         value: 'Afgestudeerd met de grootste onderscheiding',
-        detail: 'Gemiddelde van 17,95/20 voor de master',
+        details: ['Gemiddelde van 17,95/20 voor de master'],
         linkLabel: 'Diplomabewijs',
         linkUrl: '',
         linkKind: 'file',
@@ -1284,8 +1285,8 @@ const nl: typeof fr = {
       {
         label: 'Specialisatie',
         value: 'Artificiële intelligentie & datawetenschappen',
-        detail: 'Artikel op de IEEE Conference on Games 2026',
-        linkLabel: 'Masterproef bekijken',
+        details: ['Artikel op de IEEE Conference on Games 2026'],
+        linkLabel: 'Mijn masterproef bekijken',
         linkUrl: 'https://hdl.handle.net/2078.2/49506',
         linkKind: 'external',
       },
@@ -1474,10 +1475,6 @@ const nl: typeof fr = {
   },
 
   footer: {
-    title: 'Succes begint met een beslissing',
-    line1: 'Elke grote reis begint met een eerste stap.',
-    line2: 'Uw succes wacht op u.',
-    cta: 'Een eerste les aanvragen',
     tagline: 'In Gouy-Lez-Piéton (Courcelles) en online, overal in België.',
     levelsTitle: 'Niveaus',
     subjectsTitle: 'Vakken',
