@@ -60,9 +60,6 @@ export default function About() {
                   <div className="text-sm sm:text-base font-semibold text-slate-900 leading-snug">
                     {credential.value}
                   </div>
-                  <div className="text-[11px] sm:text-xs text-slate-500 leading-snug mt-1">
-                    {credential.detail}
-                  </div>
                   {credential.linkUrl && (
                     <a
                       href={credential.linkUrl}
@@ -74,6 +71,10 @@ export default function About() {
                       <ExternalLink className="w-3 h-3 group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5 transition-transform" />
                     </a>
                   )}
+                  {/* Balanced wrapping keeps a trailing year from landing alone on its own line */}
+                  <div className="text-[11px] text-slate-500 leading-snug mt-1 text-balance">
+                    {credential.detail}
+                  </div>
                 </div>
               </div>
             )

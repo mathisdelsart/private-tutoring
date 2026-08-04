@@ -289,7 +289,7 @@ const fr = {
       {
         label: 'Spécialisation',
         value: 'Intelligence artificielle & science des données',
-        detail: 'Article sorti à l’IEEE Conference on Games 2026',
+        detail: 'Article à l’IEEE Conference on Games 2026',
         linkLabel: 'Consulter le mémoire',
         linkUrl: 'https://hdl.handle.net/2078.2/49506',
       },
@@ -397,7 +397,7 @@ const fr = {
 
   contact: {
     eyebrow: 'Premier pas',
-    title: 'Contacte-moi',
+    title: 'Contactez-moi',
     subtitle: 'Prêt à transformer vos résultats ? Parlons-en !',
     tabForm: 'Formulaire de demande',
     tabDirect: 'Contact direct',
@@ -412,7 +412,7 @@ const fr = {
 
   form: {
     title: 'Demande de cours',
-    subtitle: 'Remplis ce formulaire pour me contacter directement',
+    subtitle: 'Remplissez ce formulaire pour me contacter directement',
     labelName: 'Prénom de l’élève',
     placeholderName: 'Ex. : Camille',
     labelLevel: 'Niveau',
@@ -781,7 +781,7 @@ const en: typeof fr = {
       {
         label: 'Specialization',
         value: 'Artificial intelligence & data science',
-        detail: 'Paper presented at the IEEE Conference on Games 2026',
+        detail: 'Paper at the IEEE Conference on Games 2026',
         linkLabel: 'Read the thesis',
         linkUrl: 'https://hdl.handle.net/2078.2/49506',
       },
@@ -1276,7 +1276,7 @@ const nl: typeof fr = {
       {
         label: 'Specialisatie',
         value: 'Artificiële intelligentie & datawetenschappen',
-        detail: 'Artikel verschenen op de IEEE Conference on Games 2026',
+        detail: 'Artikel op de IEEE Conference on Games 2026',
         linkLabel: 'Masterproef bekijken',
         linkUrl: 'https://hdl.handle.net/2078.2/49506',
       },
