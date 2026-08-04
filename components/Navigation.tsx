@@ -3,9 +3,12 @@
 import { useEffect, useState } from 'react'
 import { Menu, X, GraduationCap } from 'lucide-react'
 import { useLanguage } from '@/lib/i18n'
+import type { Lang } from '@/locales/translations'
 
 // Section ids are the same in every language, so they can live outside the component.
 const SECTION_IDS = ['accueil', 'methode', 'matieres', 'temoignages', 'faq', 'contact']
+
+const LANGS: Lang[] = ['fr', 'en', 'nl']
 
 export default function Navigation() {
   const { lang, setLang, t } = useLanguage()
@@ -55,24 +58,18 @@ export default function Navigation() {
       role="group"
       aria-label={t.nav.toggleLabel}
     >
-      <button
-        onClick={() => setLang('fr')}
-        className={`px-2.5 sm:px-3 py-1.5 transition-colors duration-300 ${
-          lang === 'fr' ? 'bg-primary text-white' : 'text-slate-500 hover:bg-primary/10'
-        }`}
-        aria-pressed={lang === 'fr'}
-      >
-        FR
-      </button>
-      <button
-        onClick={() => setLang('en')}
-        className={`px-2.5 sm:px-3 py-1.5 transition-colors duration-300 ${
-          lang === 'en' ? 'bg-primary text-white' : 'text-slate-500 hover:bg-primary/10'
-        }`}
-        aria-pressed={lang === 'en'}
-      >
-        EN
-      </button>
+      {LANGS.map((code) => (
+        <button
+          key={code}
+          onClick={() => setLang(code)}
+          className={`px-2 sm:px-3 py-1.5 transition-colors duration-300 ${
+            lang === code ? 'bg-primary text-white' : 'text-slate-500 hover:bg-primary/10'
+          }`}
+          aria-pressed={lang === code}
+        >
+          {t.langName[code]}
+        </button>
+      ))}
     </div>
   )
 

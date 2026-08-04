@@ -1,7 +1,7 @@
-export type Lang = 'fr' | 'en'
+export type Lang = 'fr' | 'en' | 'nl'
 
 const fr = {
-  langName: { fr: 'FR', en: 'EN' },
+  langName: { fr: 'FR', en: 'EN', nl: 'NL' },
 
   nav: {
     brand: 'Cours Particuliers',
@@ -30,8 +30,8 @@ const fr = {
     labelModalites: 'Modalités',
     labelDisponibilite: 'Disponibilité',
     labelLocalisation: 'Localisation',
-    modalites: ['Cours chez le professeur', 'Cours en ligne'],
-    disponibilite: 'Très flexible (semaine & week-end)',
+    modalites: ['Cours à mon domicile', 'Cours en ligne'],
+    disponibilite: 'Flexible (semaine & week-end)',
     zone: '6181 Gouy-Lez-Piéton, Courcelles, Belgique',
   },
 
@@ -316,7 +316,7 @@ const fr = {
     labelSubjects: 'Matière(s) souhaitée(s)',
     subjectsHint: 'Tu peux sélectionner plusieurs matières',
     labelModalite: 'Modalité',
-    optHome: 'Chez le professeur',
+    optHome: 'À mon domicile',
     optOnline: 'En visio',
     btnContinue: 'Continuer',
     btnBack: 'Retour',
@@ -349,7 +349,7 @@ const fr = {
       availability: 'DISPONIBILITÉS',
       message: 'MESSAGE',
       closing: 'Merci pour votre attention !',
-      modalityHome: 'Chez le professeur',
+      modalityHome: 'À mon domicile',
       modalityOnline: 'En visio',
       courseTypeRegular: 'Suivi régulier',
       courseTypeOneoff: 'Cours ponctuels',
@@ -370,7 +370,7 @@ const fr = {
 }
 
 const en: typeof fr = {
-  langName: { fr: 'FR', en: 'EN' },
+  langName: { fr: 'FR', en: 'EN', nl: 'NL' },
 
   nav: {
     brand: 'Private Tutoring',
@@ -399,8 +399,8 @@ const en: typeof fr = {
     labelModalites: 'Format',
     labelDisponibilite: 'Availability',
     labelLocalisation: 'Location',
-    modalites: ["Lessons at the tutor's", 'Online lessons'],
-    disponibilite: 'Very flexible (weekdays & weekends)',
+    modalites: ['Lessons at my place', 'Online lessons'],
+    disponibilite: 'Flexible (weekdays & weekends)',
     zone: '6181 Gouy-Lez-Piéton, Courcelles, Belgium',
   },
 
@@ -685,7 +685,7 @@ const en: typeof fr = {
     labelSubjects: 'Subject(s) wanted',
     subjectsHint: 'You can select several subjects',
     labelModalite: 'Format',
-    optHome: "At the tutor's",
+    optHome: 'At my place',
     optOnline: 'Online',
     btnContinue: 'Continue',
     btnBack: 'Back',
@@ -718,7 +718,7 @@ const en: typeof fr = {
       availability: 'AVAILABILITY',
       message: 'MESSAGE',
       closing: 'Thank you for your attention!',
-      modalityHome: "At the tutor's",
+      modalityHome: 'At my place',
       modalityOnline: 'Online',
       courseTypeRegular: 'Regular follow-up',
       courseTypeOneoff: 'One-off lessons',
@@ -738,5 +738,376 @@ const en: typeof fr = {
   },
 }
 
-export const translations = { fr, en }
+const nl: typeof fr = {
+  langName: { fr: 'FR', en: 'EN', nl: 'NL' },
+
+  nav: {
+    brand: 'Bijlessen',
+    items: [
+      ['Home', 'accueil'],
+      ['Aanpak', 'methode'],
+      ['Vakken', 'matieres'],
+      ['Getuigenissen', 'temoignages'],
+      ['FAQ', 'faq'],
+      ['Contact', 'contact'],
+    ],
+    toggleLabel: 'Taal wijzigen',
+  },
+
+  hero: {
+    title: { p1: 'Verander je ', w1: 'moeilijkheden', p2: ' in ', w2: 'successen' },
+    subtitle1: 'Burgerlijk ingenieur in Computerwetenschappen & AI, met een passie voor lesgeven.',
+    subtitle2:
+      'Van het middelbaar tot het hoger onderwijs, en voorbereiding op de toelatingsexamens burgerlijk ingenieur en arts.',
+    audienceChips: ['Middelbaar', 'Hoger onderwijs', 'Voorbereiding toelatingsexamen'],
+    statStudents: 'Begeleide leerlingen',
+    statExperience: 'Jaar ervaring',
+    quote: { part1: 'Uitmuntendheid is geen bestemming, het is een ', highlight: 'voortdurende reis' },
+    ctaTitle: 'Een les boeken',
+    ctaSubtitle: 'Begin je transformatie',
+    labelModalites: 'Lesvormen',
+    labelDisponibilite: 'Beschikbaarheid',
+    labelLocalisation: 'Locatie',
+    modalites: ['Les bij mij thuis', 'Online les'],
+    disponibilite: 'Flexibel (weekdagen & weekend)',
+    zone: '6181 Gouy-Lez-Piéton, Courcelles, België',
+  },
+
+  method: {
+    title: 'Waarom voor mij kiezen?',
+    subtitle: 'Een persoonlijke aanpak voor jouw succes',
+    items: [
+      {
+        title: 'Persoonlijke aanpak',
+        description:
+          'Elke leerling is uniek. Ik pas mijn lessen en mijn methode aan jouw profiel, jouw doelen en jouw leertempo aan.',
+      },
+      {
+        title: 'Oefeningen & verbeteringen',
+        description:
+          'Ik geef je oefeningen op maat van je niveau en je noden. Ik neem de tijd om alles na te kijken en elk punt uit te leggen, zodat je beter begrijpt en vooruitgaat.',
+      },
+      {
+        title: 'Ook bereikbaar buiten de lessen',
+        description:
+          'Buiten de lessen blijf ik beschikbaar voor korte vragen, om een oefening na te kijken of iets snel te verduidelijken.',
+      },
+    ],
+  },
+
+  services: {
+    title: 'Mijn Specialiteiten',
+    subtitle: 'Van het middelbaar tot het hoger onderwijs • Volledige begeleiding op maat',
+    ellipsis: '… en veel meer',
+    audiences: [
+      {
+        id: 'secondaire',
+        label: 'Middelbaar',
+        labelShort: 'Middelbaar',
+        tagline: 'Van het 1e tot het 6e jaar: bijwerken, vaste begeleiding en examenvoorbereiding.',
+        note: '',
+        subjects: [
+          {
+            title: 'Wiskunde',
+            levels: '1e → 6e Middelbaar',
+            badge: '1-6',
+            topics: ['Analyse', 'Algebra', 'Goniometrie', 'Meetkunde', 'Statistiek'],
+            benefits: [
+              'Grondige beheersing van het officiële leerplan',
+              'Methodologie op maat van je niveau',
+              'Doeltreffende voorbereiding op toetsen en examens',
+              'Heldere, gestructureerde en visuele uitleg',
+            ],
+          },
+          {
+            title: 'Fysica',
+            levels: '3e → 6e Middelbaar',
+            badge: '3-6',
+            topics: ['Elektriciteit', 'Mechanica', 'Optica', 'Golven', 'Thermodynamica'],
+            benefits: [
+              'Grondige beheersing van het officiële leerplan',
+              'Concrete aanpak met echte voorbeelden',
+              'Gerichte voorbereiding op toetsen en examens',
+              'Complexe begrippen eenvoudig uitgelegd',
+            ],
+          },
+          {
+            title: 'Programmeren in Python',
+            levels: 'Beginnersniveau',
+            badge: 'Py',
+            topics: ['Basis', 'Projecten', 'Game Dev', 'Algoritmen', 'Logica'],
+            benefits: [
+              'Van nul naar concrete projecten',
+              'Speels, stapsgewijs en praktisch leren',
+              'Theoretisch inzicht in de kernbegrippen',
+              'Een sleutelvaardigheid waar de arbeidsmarkt om vraagt',
+            ],
+          },
+        ],
+      },
+      {
+        id: 'superieur',
+        label: 'Hoger onderwijs',
+        labelShort: 'Hoger',
+        tagline:
+          'Van bachelor tot master, in wetenschappen en ingenieurswetenschappen: cursussen, oefenzittingen en examens.',
+        note: '',
+        subjects: [
+          {
+            title: 'Hogere wiskunde',
+            levels: 'Bachelor 1 → 2',
+            badge: '∫',
+            topics: ['Analyse', 'Lineaire algebra', 'Kansrekening', 'Statistiek', 'Differentiaalrekening'],
+            benefits: [
+              'De basis heropbouwen waar het middelbaar stopt',
+              'Begeleide oplossing van je oefenreeksen',
+              'Voorbereiding op de examenperiodes van januari en juni',
+              'De nauwkeurigheid van uitwerking die de universiteit verwacht',
+            ],
+          },
+          {
+            title: 'Algemene fysica',
+            levels: 'Bachelor 1 → 2',
+            badge: 'Φ',
+            topics: ['Mechanica', 'Elektromagnetisme', 'Thermodynamica', 'Golven', 'Optica'],
+            benefits: [
+              'Van wiskundig formalisme naar fysische intuïtie',
+              'Oefenen op de examens van vorige jaren',
+              'Eenheden, grootteordes en benaderingen onder de knie',
+              'Een gestructureerde aanpak, stap voor stap',
+            ],
+          },
+          {
+            title: 'Programmeren & algoritmen',
+            levels: 'Bachelor 1 → 3',
+            badge: '</>',
+            topics: ['Python', 'C / C++', 'Datastructuren', 'Complexiteit', 'Objectgericht'],
+            benefits: [
+              'Code live lezen en debuggen',
+              'Begeleiding bij projecten, nooit in jouw plaats gemaakt',
+              'Goede praktijken en leesbare code',
+              'Complexiteit en de juiste datastructuur kiezen',
+            ],
+          },
+          {
+            title: 'Artificiële intelligentie',
+            levels: 'Bachelor 3 → Master',
+            badge: 'AI',
+            topics: ['Machine Learning', 'Deep Learning', 'Neurale netwerken', 'Data science', 'PyTorch'],
+            benefits: [
+              'Mijn eigen specialisatie als burgerlijk ingenieur',
+              'Theorie en implementatie samen aangepakt',
+              'Begeleiding bij projecten en masterproef',
+              'De wiskunde achter de modellen, eenvoudig uitgelegd',
+            ],
+          },
+        ],
+      },
+      {
+        id: 'examens',
+        label: 'Voorbereiding toelatingsexamen',
+        labelShort: 'Toelating',
+        tagline:
+          'Een intensieve en gestructureerde voorbereiding zodat je de examendag met vertrouwen aanvat.',
+        note: 'Voor het toelatingsexamen arts en tandarts behandel ik de onderdelen wiskunde en fysica.',
+        subjects: [
+          {
+            title: 'Toelatingsexamen burgerlijk ingenieur',
+            levels: 'Wiskunde',
+            badge: 'BI',
+            topics: ['Analyse', 'Algebra', 'Goniometrie', 'Analytische meetkunde', 'Complexe getallen'],
+            benefits: [
+              'Het officiële examenprogramma volledig doorgenomen',
+              'Intensief oefenen op vragen van vorige jaren',
+              'Timing en aanpak op de examendag',
+              'Ik heb dit examen zelf afgelegd',
+            ],
+          },
+          {
+            title: 'Toelatingsexamen arts & tandarts',
+            levels: 'Wiskunde & Fysica',
+            badge: 'AT',
+            topics: ['Wiskunde', 'Fysica', 'Redeneren', 'Vorige examens', 'Timing'],
+            benefits: [
+              'De onderdelen wiskunde en fysica van de wetenschapskennis',
+              'Oefenen in meerkeuzeformaat onder tijdsdruk',
+              'Gerichte herhaling van de vastgestelde hiaten',
+              'Een studieplanning die we samen opstellen',
+            ],
+          },
+        ],
+      },
+    ],
+  },
+
+  temoignages: {
+    title: 'Getuigenissen',
+    subtitle: 'Het succes van mijn leerlingen spreekt voor zich',
+    prevLabel: 'Vorige getuigenis',
+    nextLabel: 'Volgende getuigenis',
+    dotLabel: 'Ga naar groep {n}',
+    authorOverrides: { 'Maman de Guido': 'De mama van Guido' } as Record<string, string>,
+    items: [
+      {
+        text: 'Mijn dochter vond haar lessen goniometrie bij Mathis geweldig; hij beheerst de stof duidelijk en kan zich goed in de leerling verplaatsen. Zijn uitleg is helder en hij herhaalt zonder aarzelen wanneer dat nodig is. We doen zeker opnieuw een beroep op hem.',
+        role: 'Ouder – Wiskunde',
+      },
+      {
+        text: 'Heel tevreden. Stipt en vriendelijk. Mijn zoon apprecieerde zijn manier van uitleggen. Een aanrader.',
+        role: 'Ouder – Fysica',
+      },
+      {
+        text: 'Mathis is een uitstekende leraar. Heel ernstig en bijzonder ordelijk. Hij bereidt zijn lessen op voorhand voor en geeft oefeningen mee voor de volgende les. Ik beveel hem sterk aan!',
+        role: 'Ouder – Fysica',
+      },
+      {
+        text: 'Onze zoon Guido had een herexamen wiskunde na een heel moeilijk jaar. In twee weken tijd (2u per dag) heeft Mathis een volledig jaar herhaald en helder uitgelegd. Guido is geslaagd. Een enorme dankjewel voor zijn werk en zijn geduld!',
+        role: 'Ouder – Wiskunde',
+      },
+      {
+        text: 'Mijn zoon volgde lessen wiskunde en fysica bij Mathis om te slagen in zijn tweede zittijd (5e jaar, richting Wiskunde/Wetenschappen). Hij is beschikbaar, beleefd en stipt. Hij bereidt zijn lessen op voorhand voor en is zeer georganiseerd. Mijn zoon is geslaagd voor zijn examens en kan aan zijn laatste jaar beginnen. Ik beveel Mathis aan als privéleraar.',
+        role: 'Ouder – Wiskunde & Fysica',
+      },
+      {
+        text: 'Heel goede leraar, efficiënt studeren in een aangename sfeer. Mijn dochter, die grote moeilijkheden had, kreeg opnieuw vertrouwen en slaagde voor haar examen. Een echte aanrader!',
+        role: 'Ouder – Wiskunde',
+      },
+      {
+        text: 'Hij heeft me geholpen met mijn examens en me weer op niveau gebracht. Hij legt helder uit en past zich aan je noden aan. Ik raad hem zonder twijfel aan.',
+        role: 'Oud-leerling – Wiskunde',
+      },
+      {
+        text: 'Omdat ik zelf hulp van Mathis kreeg bij enkele vakken, kan ik getuigen van zijn vermogen om helder uit te leggen en complexe begrippen toegankelijk te maken, zeker in wiskunde.',
+        role: 'Aanbeveling',
+      },
+      {
+        text: 'Mathis heeft wiskunde en wetenschappen altijd toegankelijk weten te maken. Geduldig en pedagogisch helpt hij je begrijpen en verbanden leggen tussen concepten. Ik beveel hem sterk aan.',
+        role: 'Aanbeveling',
+      },
+      {
+        text: 'Ik beveel Mathis sterk aan voor bijlessen wiskunde en fysica in het middelbaar. Dankzij zijn heldere uitleg en zijn geduldige aanpak helpt hij leerlingen echt vooruit en geeft hij hun meer zelfvertrouwen.',
+        role: 'Aanbeveling',
+      },
+    ],
+  },
+
+  faq: {
+    title: 'Veelgestelde vragen',
+    subtitle: 'Alles wat je wil weten voor we starten',
+    items: [
+      {
+        q: 'Vanaf welk niveau geef je les?',
+        a: 'Van het eerste jaar middelbaar tot en met de master. Ik geef les in het middelbaar (wiskunde, fysica, Python), in het hoger onderwijs (wiskunde, algemene fysica, programmeren en artificiële intelligentie), en ik bereid voor op de toelatingsexamens burgerlijk ingenieur en arts en tandarts.',
+      },
+      {
+        q: 'Hoe verloopt de voorbereiding op het toelatingsexamen burgerlijk ingenieur?',
+        a: 'We nemen het volledige officiële examenprogramma hoofdstuk per hoofdstuk door en schakelen daarna over op intensief oefenen met vragen van vorige jaren. We werken ook aan timing en antwoordstrategie, wat op de examendag vaak het verschil maakt. Als burgerlijk ingenieur heb ik dit examen zelf afgelegd.',
+      },
+      {
+        q: 'Welke vakken behandel je voor het toelatingsexamen arts en tandarts?',
+        a: 'Ik behandel de onderdelen wiskunde en fysica van het wetenschappelijke gedeelte. Ik geef geen biologie of chemie: voor die twee vakken heb je een andere lesgever nodig.',
+      },
+      {
+        q: 'Waar gaan de lessen door?',
+        a: 'Bij mij thuis in Gouy-Lez-Piéton (Courcelles), of online. Het online formaat werkt heel goed voor het hoger onderwijs en voor examenvoorbereiding, en laat je toe te werken waar je ook bent.',
+      },
+      {
+        q: 'Kunnen we een intensieve cursus organiseren vóór een examen?',
+        a: 'Ja, en dat is vaak het meest doeltreffende formaat vóór een herexamen of een toelatingsexamen. Verschillende leerlingen hebben een volledig jaar herhaald in twee weken, aan twee uur per dag. We stellen de planning samen op in functie van jouw examendatum.',
+      },
+      {
+        q: 'Hoe boek ik een eerste les?',
+        a: 'Gebruik het aanvraagformulier onderaan de pagina: het bezorgt me meteen je niveau, je vakken en je beschikbaarheden. Je kan me ook een bericht sturen via WhatsApp of e-mail. Ik antwoord binnen de 24 uur.',
+      },
+    ],
+  },
+
+  contact: {
+    title: 'Contacteer me',
+    subtitle: 'Klaar om je resultaten om te gooien? Laten we praten!',
+    tabForm: 'Aanvraagformulier',
+    tabDirect: 'Rechtstreeks contact',
+    tabHint: 'Het aanvraagformulier is het handigst voor een eerste contact',
+    whatsappDesc: 'Snel antwoord',
+    emailDesc: 'Antwoord binnen 24u',
+    directWhatsappText: 'Hallo {nom}, ik zou graag bijles bij u volgen.',
+    directEmailSubject: 'Aanvraag bijlessen',
+  },
+
+  form: {
+    title: 'Lesaanvraag',
+    subtitle: 'Vul dit formulier in om me rechtstreeks te contacteren',
+    labelName: 'Voornaam van de leerling',
+    placeholderName: 'Je voornaam',
+    labelLevel: 'Niveau',
+    levels: [
+      { id: 'secondaire', label: 'Middelbaar', subjects: ['Wiskunde', 'Fysica', 'Python'] },
+      {
+        id: 'superieur',
+        label: 'Hoger onderwijs',
+        subjects: ['Wiskunde', 'Fysica', 'Programmeren', 'AI'],
+      },
+      {
+        id: 'examens',
+        label: 'Toelatingsexamen',
+        subjects: ['Burgerlijk ingenieur', 'Arts'],
+      },
+    ],
+    labelSubjects: 'Gewenste vak(ken)',
+    subjectsHint: 'Je kan meerdere vakken selecteren',
+    labelModalite: 'Lesvorm',
+    optHome: 'Bij mij thuis',
+    optOnline: 'Online',
+    btnContinue: 'Verder',
+    btnBack: 'Terug',
+    labelCourseType: 'Type les',
+    courseRegularTitle: 'Vaste begeleiding',
+    courseRegularDesc: 'Om duurzaam vooruit te gaan',
+    courseOneoffTitle: 'Eenmalige les',
+    courseOneoffDesc: 'Voor gerichte hulp',
+    labelReason: 'Reden (optioneel)',
+    reasons: ['Belangrijk examen', 'Toets', 'Bijwerken', 'Toelatingsexamen'],
+    labelFrequency: 'Gewenste frequentie (optioneel)',
+    freqWeek: 'Week',
+    freqMonth: 'Maand',
+    freqPer: 'per',
+    freqHint: 'Laat leeg om de frequentie samen te bespreken',
+    labelAvailability: 'Je beschikbaarheden',
+    placeholderAvailability: 'Bv. maandag- en woensdagavond, weekend',
+    labelMessage: 'Extra bericht (optioneel)',
+    placeholderMessage: 'Bijkomende details...',
+    chooseContact: 'Kies je contactmiddel:',
+    msg: {
+      greeting: 'Hallo {nom},',
+      intro: 'Ik zou graag bijles bij u volgen.',
+      student: 'LEERLING',
+      level: 'NIVEAU',
+      subjects: 'GEWENSTE VAK(KEN)',
+      modality: 'LESVORM',
+      courseType: 'TYPE LES',
+      frequency: 'FREQUENTIE',
+      availability: 'BESCHIKBAARHEDEN',
+      message: 'BERICHT',
+      closing: 'Bedankt voor uw aandacht!',
+      modalityHome: 'Bij mij thuis',
+      modalityOnline: 'Online',
+      courseTypeRegular: 'Vaste begeleiding',
+      courseTypeOneoff: 'Eenmalige lessen',
+      freqValue: '{n} keer / {period}',
+      freqToDiscuss: 'Samen te bespreken',
+      periodWeek: 'week',
+      periodMonth: 'maand',
+      emailSubject: 'Lesaanvraag - {subjects}',
+    },
+  },
+
+  footer: {
+    title: 'Succes begint met een beslissing',
+    line1: 'Elke grote reis begint met een eerste stap.',
+    line2: 'Jouw succes wacht op je.',
+    role: 'Privéleraar in {ville}',
+  },
+}
+
+export const translations = { fr, en, nl }
 export type Translation = typeof fr

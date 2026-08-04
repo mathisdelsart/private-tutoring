@@ -22,6 +22,7 @@ export const metadata = {
       },
     ],
     locale: 'fr_BE',
+    alternateLocale: ['en_GB', 'nl_BE'],
     type: 'website',
   },
 }
