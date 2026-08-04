@@ -6,7 +6,7 @@ import { useLanguage } from '@/lib/i18n'
 import type { Lang } from '@/locales/translations'
 
 // Section ids are the same in every language, so they can live outside the component.
-const SECTION_IDS = ['accueil', 'methode', 'matieres', 'temoignages', 'faq', 'contact']
+const SECTION_IDS = ['accueil', 'methode', 'matieres', 'temoignages', 'apropos', 'faq', 'contact']
 
 const LANGS: Lang[] = ['fr', 'en', 'nl']
 
