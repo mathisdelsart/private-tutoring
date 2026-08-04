@@ -27,7 +27,7 @@ export default function Hero({ nom, moyenne, moyenneSur, diplomeFichier }: HeroP
     <section id="accueil" className="relative lg:min-h-[42rem] flex items-center pt-20 sm:pt-24 pb-8 sm:pb-10 overflow-hidden">
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-[1.2fr_380px] xl:grid-cols-[1fr_420px] gap-6 sm:gap-8 lg:gap-10 xl:gap-12 items-stretch">
+        <div className="grid grid-cols-1 lg:grid-cols-[1.6fr_340px] xl:grid-cols-[1.7fr_380px] gap-6 sm:gap-8 lg:gap-10 xl:gap-12 items-start">
           <div className={`flex flex-col justify-between ${mounted ? 'animate-[fadeInUp_1s_ease-out]' : 'opacity-0'}`}>
             <div>
               <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-extrabold leading-[1.08] tracking-tight text-slate-900 mb-3 sm:mb-4">
@@ -144,15 +144,15 @@ export default function Hero({ nom, moyenne, moyenneSur, diplomeFichier }: HeroP
             </div>
           </div>
 
-          <div className={`flex ${mounted ? 'animate-[fadeInUp_1s_ease-out_0.2s_backwards]' : 'opacity-0'}`}>
-            <div className="card p-0 overflow-hidden w-full flex flex-col group/card hover:shadow-[0_20px_50px_rgba(5,150,105,0.14)] hover:border-emerald-200 transition-all duration-500 motion-safe:animate-[floatCard_7s_ease-in-out_infinite]">
-              <div className="relative w-full aspect-[4/3.8] lg:aspect-auto lg:flex-1 lg:min-h-[12rem] overflow-hidden bg-gradient-to-b from-gray-900 to-gray-800">
+          <div className={`${mounted ? 'animate-[fadeInUp_1s_ease-out_0.2s_backwards]' : 'opacity-0'}`}>
+            <div className="card p-0 overflow-hidden group/card hover:shadow-[0_20px_50px_rgba(5,150,105,0.14)] hover:border-emerald-200 transition-all duration-500 motion-safe:animate-[floatCard_7s_ease-in-out_infinite]">
+              <div className="relative w-full aspect-[4/3.8] overflow-hidden bg-gradient-to-b from-gray-900 to-gray-800">
                 <Image
                   src={assetPath('/face_image.jpg')}
                   alt={nom}
                   width={400}
                   height={380}
-                  className="object-cover w-full h-full lg:absolute lg:inset-0 transition-transform duration-700 group-hover/card:scale-[1.04]"
+                  className="object-cover w-full h-full transition-transform duration-700 group-hover/card:scale-[1.04]"
                   priority
                   sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 400px"
                 />

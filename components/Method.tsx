@@ -35,7 +35,7 @@ export default function Method() {
                 <Icon
                   aria-hidden="true"
                   strokeWidth={1.25}
-                  className="pointer-events-none absolute -top-4 -right-4 w-28 h-28 sm:w-32 sm:h-32 text-emerald-600 opacity-[0.07] group-hover:opacity-[0.13] group-hover:-rotate-6 group-hover:scale-105 transition-all duration-500"
+                  className="pointer-events-none absolute top-5 right-5 sm:top-6 sm:right-6 w-16 h-16 sm:w-20 sm:h-20 text-emerald-600 opacity-[0.09] group-hover:opacity-[0.16] group-hover:-rotate-6 group-hover:scale-105 transition-all duration-500"
                 />
 
                 <div className="hidden sm:block absolute inset-0 bg-gradient-to-br from-emerald-50/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />

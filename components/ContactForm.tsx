@@ -58,52 +58,34 @@ export default function ContactForm({ email, whatsapp, nom }: ContactFormProps) 
     const courseTypeText = formData.courseType === 'suivi' ? m.courseTypeRegular : m.courseTypeOneoff
     const levelText = t.form.levels.find((l) => l.id === formData.level)?.label ?? ''
 
+    const lines = [
+      `${m.student} : ${formData.name}`,
+      `${m.level} : ${levelText}`,
+      `${m.subjects} : ${subjectsText}`,
+      `${m.modality} : ${modalityText}`,
+      `${m.courseType} : ${courseTypeText}`,
+    ]
+
+    if (formData.reason) lines.push(`${m.reason} : ${formData.reason}`)
+    if (formData.courseType === 'suivi') lines.push(`${m.frequency} : ${frequencyText}`)
+    lines.push(`${m.availability} : ${formData.availability}`)
+
+    // One short line per field: readable as-is in WhatsApp, SMS and email,
+    // where the previous heavy rules and shouting labels rendered badly.
     let message = `${m.greeting.replace('{nom}', nom)}
 
 ${m.intro}
 
-━━━━━━━━━━━━━━━━━━━━━━━━━━
-
-${m.student}
-${formData.name}
-
-${m.level}
-${levelText}
-
-${m.subjects}
-${subjectsText}
-
-${m.modality}
-${modalityText}
-
-${m.courseType}
-${courseTypeText}`
-
-    if (formData.reason) {
-      message += `\n${formData.reason}`
-    }
-
-    if (formData.courseType === 'suivi') {
-      message += `\n\n${m.frequency}
-${frequencyText}`
-    }
-
-    message += `\n\n${m.availability}
-${formData.availability}`
+${lines.map((line) => `• ${line}`).join('\n')}`
 
     if (formData.message) {
-      message += `\n\n${m.message}
-${formData.message}`
+      message += `\n\n${m.message} :\n${formData.message}`
     }
 
-    message += `\n\n━━━━━━━━━━━━━━━━━━━━━━━━━━
-
-${m.closing}`
+    message += `\n\n${m.closing}`
 
     if (platform === 'sms') {
-      // Trim the decorative rules: an SMS is billed per 160 characters
-      const compact = message.replace(/\n?━+\n?/g, '\n').replace(/\n{3,}/g, '\n\n').trim()
-      window.location.href = `sms:+${whatsapp}?&body=${encodeURIComponent(compact)}`
+      window.location.href = `sms:+${whatsapp}?&body=${encodeURIComponent(message)}`
     } else if (platform === 'whatsapp') {
       const whatsappMessage = encodeURIComponent(message)
       window.open(`https://wa.me/${whatsapp}?text=${whatsappMessage}`, '_blank')
@@ -120,7 +102,7 @@ ${m.closing}`
 
       // Validation pour la fréquence
       if (field === 'frequencyNumber') {
-        const maxValue = prev.frequencyPeriod === 'semaine' ? 4 : 8
+        const maxValue = prev.frequencyPeriod === 'semaine' ? 4 : 16
         const numValue = parseInt(value, 10)
 
         // Ne valider que si c'est un nombre valide
@@ -144,7 +126,7 @@ ${m.closing}`
           // Désélection : on retombe sur "à discuter ensemble"
           newData.frequencyNumber = ''
         } else {
-          const maxValue = value === 'semaine' ? 4 : 8
+          const maxValue = value === 'semaine' ? 4 : 16
           const currentNum = parseInt(prev.frequencyNumber, 10)
 
           if (!prev.frequencyNumber) {
@@ -373,7 +355,7 @@ ${m.closing}`
                     <input
                       type="number"
                       min="1"
-                      max={formData.frequencyPeriod === 'semaine' ? 4 : 8}
+                      max={formData.frequencyPeriod === 'semaine' ? 4 : 16}
                       value={formData.frequencyNumber}
                       onChange={(e) => updateFormData('frequencyNumber', e.target.value)}
                       disabled={!formData.frequencyPeriod}

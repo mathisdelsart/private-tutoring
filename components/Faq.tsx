@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import { ChevronDown } from 'lucide-react'
+import { Plus } from 'lucide-react'
 import { useLanguage } from '@/lib/i18n'
 
 export default function Faq() {
@@ -21,28 +21,31 @@ export default function Faq() {
           </p>
         </div>
 
-        <div className="max-w-3xl mx-auto space-y-3 sm:space-y-4">
+        {/* No cards here: thin rules on the page background keep the section
+            quiet next to the sections that do use cards */}
+        <div className="max-w-3xl mx-auto border-t border-slate-200">
           {t.faq.items.map((item, index) => {
             const isOpen = openIndex === index
 
             return (
-              <div
-                key={item.q}
-                className={`card overflow-hidden transition-colors duration-300 ${
-                  isOpen ? 'border-emerald-200' : 'hover:border-slate-300'
-                }`}
-              >
+              <div key={item.q} className="border-b border-slate-200">
                 <button
                   type="button"
                   onClick={() => setOpenIndex(isOpen ? null : index)}
                   aria-expanded={isOpen}
                   aria-controls={`faq-answer-${index}`}
-                  className="w-full flex items-center justify-between gap-4 text-left px-5 sm:px-6 py-4 sm:py-5"
+                  className="group w-full flex items-start justify-between gap-5 text-left py-5 sm:py-6"
                 >
-                  <span className="text-base sm:text-lg font-semibold text-slate-900">{item.q}</span>
-                  <ChevronDown
-                    className={`w-5 h-5 flex-shrink-0 text-primary transition-transform duration-300 ${
-                      isOpen ? 'rotate-180' : ''
+                  <span
+                    className={`text-base sm:text-lg font-semibold transition-colors duration-300 ${
+                      isOpen ? 'text-primary' : 'text-slate-900 group-hover:text-primary'
+                    }`}
+                  >
+                    {item.q}
+                  </span>
+                  <Plus
+                    className={`w-5 h-5 mt-0.5 flex-shrink-0 transition-all duration-300 ${
+                      isOpen ? 'rotate-45 text-primary' : 'text-slate-400 group-hover:text-primary'
                     }`}
                   />
                 </button>
@@ -56,7 +59,7 @@ export default function Faq() {
                   }`}
                 >
                   <div className="overflow-hidden">
-                    <p className="px-5 sm:px-6 pb-5 sm:pb-6 text-sm sm:text-base text-slate-600 leading-relaxed">
+                    <p className="pb-5 sm:pb-6 pr-10 text-sm sm:text-base text-slate-600 leading-relaxed">
                       {item.a}
                     </p>
                   </div>
