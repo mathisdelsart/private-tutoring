@@ -85,7 +85,7 @@ export default function Footer({ nom, ville, email, whatsapp }: FooterProps) {
                         className="group flex items-center gap-2.5 text-sm text-slate-600 hover:text-primary transition-colors duration-300 break-all"
                       >
                         <span className="flex items-center justify-center w-7 h-7 rounded-lg bg-emerald-50 border border-emerald-200 flex-shrink-0 group-hover:bg-emerald-100 transition-colors">
-                          <Icon className="w-3.5 h-3.5 text-primary" />
+                          <Icon className="w-3.5 h-3.5 text-emerald-800" />
                         </span>
                         {link.label}
                       </a>
