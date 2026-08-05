@@ -521,12 +521,13 @@ const fr = {
 
   footer: {
     tagline: 'À Gouy-Lez-Piéton (Courcelles) et en ligne, partout en Belgique.',
+    cta: 'Réserver un premier cours',
     levelsTitle: 'Niveaux',
     subjectsTitle: 'Matières',
     subjects: ['Mathématiques', 'Physique', 'Programmation', 'Intelligence artificielle'],
     contactTitle: 'Me contacter',
+    navLabel: 'Navigation du site',
     role: 'Professeur particulier à {ville}',
-    rights: 'Tous droits réservés',
   },
 }
 
@@ -1051,12 +1052,13 @@ const en: typeof fr = {
 
   footer: {
     tagline: 'In Gouy-Lez-Piéton (Courcelles) and online, anywhere in Belgium.',
+    cta: 'Book a first lesson',
     levelsTitle: 'Levels',
     subjectsTitle: 'Subjects',
     subjects: ['Mathematics', 'Physics', 'Programming', 'Artificial intelligence'],
     contactTitle: 'Get in touch',
+    navLabel: 'Site navigation',
     role: 'Private tutor in {ville}',
-    rights: 'All rights reserved',
   },
 }
 
@@ -1584,12 +1586,13 @@ const nl: typeof fr = {
 
   footer: {
     tagline: 'In Gouy-Lez-Piéton (Courcelles) en online, overal in België.',
+    cta: 'Een eerste les boeken',
     levelsTitle: 'Niveaus',
     subjectsTitle: 'Vakken',
     subjects: ['Wiskunde', 'Fysica', 'Programmeren', 'Artificiële intelligentie'],
     contactTitle: 'Contact opnemen',
+    navLabel: 'Sitenavigatie',
     role: 'Privéleraar in {ville}',
-    rights: 'Alle rechten voorbehouden',
   },
 }
 

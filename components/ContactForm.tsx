@@ -168,7 +168,7 @@ ${lines.map((line) => `• ${line}`).join('\n')}`
   const subjectGridClass = subjects.length === 3 ? 'grid-cols-3' : 'grid-cols-2'
 
   return (
-    <div className="card p-8 max-w-2xl mx-auto relative">
+    <div className="card p-5 sm:p-8 max-w-2xl mx-auto relative">
       <h3 className="text-2xl font-bold text-slate-900 mb-2">{t.form.title}</h3>
       <p className="text-slate-500 mb-6 text-sm">{t.form.subtitle}</p>
 
