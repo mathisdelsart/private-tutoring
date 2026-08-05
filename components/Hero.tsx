@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react'
 import Image from 'next/image'
-import { Award, Download } from 'lucide-react'
+import { Award, Clock, Download, GraduationCap, MapPin } from 'lucide-react'
 import { assetPath } from '@/lib/assetPath'
 import { useLanguage } from '@/lib/i18n'
 import { MAPS_URL } from '@/lib/maps'
@@ -146,9 +146,13 @@ export default function Hero({ nom, moyenne, moyenneSur, diplomeFichier }: HeroP
               </a>
           </div>
 
-          <div className={`${mounted ? 'animate-[fadeInUp_1s_ease-out_0.2s_backwards]' : 'opacity-0'}`}>
-            <div className="card p-0 overflow-hidden group/card hover:shadow-[0_20px_50px_rgba(5,150,105,0.14)] hover:border-emerald-200 transition-all duration-500">
-              <div className="relative w-full aspect-[4/3.8] overflow-hidden bg-gradient-to-b from-gray-900 to-gray-800">
+          {/* The card is 10 to 40px shorter than the text column depending on
+              the width. From lg up it fills the row and the block under the
+              photo takes those few pixels, so the columns end together without
+              the photo being recropped. */}
+          <div className={`lg:h-full ${mounted ? 'animate-[fadeInUp_1s_ease-out_0.2s_backwards]' : 'opacity-0'}`}>
+            <div className="card p-0 overflow-hidden lg:h-full lg:flex lg:flex-col group/card hover:shadow-[0_20px_50px_rgba(5,150,105,0.14)] hover:border-emerald-200 transition-all duration-500">
+              <div className="relative w-full aspect-[4/3.8] flex-shrink-0 overflow-hidden bg-gradient-to-b from-gray-900 to-gray-800">
                 <Image
                   src={assetPath('/face_image.jpg')}
                   alt={nom}
@@ -171,69 +175,68 @@ export default function Hero({ nom, moyenne, moyenneSur, diplomeFichier }: HeroP
                 </div>
               </div>
 
-              <div className="p-4 sm:p-6 space-y-3 sm:space-y-4">
+              <div className="p-5 sm:p-6 lg:flex-1">
                 {/* inline-block so the rule can grow to exactly the name's width */}
                 <div className="inline-block max-w-full">
-                  <h3 className="text-xl sm:text-2xl font-extrabold text-slate-900 tracking-tight">{nom}</h3>
+                  <h3 className="text-xl sm:text-2xl font-extrabold text-slate-900 tracking-tight">
+                    {nom}
+                  </h3>
                   <div className="mt-1.5 h-0.5 w-10 rounded-full bg-gradient-to-r from-primary to-accent transition-all duration-500 group-hover/card:w-full" />
                 </div>
 
-                <div className="flex items-start gap-2 sm:gap-3">
-                  <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-lg bg-emerald-100 flex items-center justify-center flex-shrink-0">
-                    <svg className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
-                    </svg>
-                  </div>
-                  <div className="min-w-0">
-                    <div className="text-[10px] sm:text-xs text-slate-700 font-semibold uppercase tracking-wide mb-0.5 sm:mb-1">{t.hero.labelModalites}</div>
-                    <div className="text-xs sm:text-sm text-slate-600 font-medium break-words">{t.hero.modalites.join(' • ')}</div>
-                  </div>
-                </div>
-
-                <div className="flex items-start gap-2 sm:gap-3">
-                  <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-lg bg-emerald-100 flex items-center justify-center flex-shrink-0">
-                    <svg
-                      className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-emerald-600"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
-                      />
-                    </svg>
-                  </div>
-
-                  <div className="min-w-0">
-                    <div className="text-[10px] sm:text-xs text-slate-700 font-semibold uppercase tracking-wide mb-0.5 sm:mb-1">
-                      {t.hero.labelDisponibilite}
-                    </div>
-                    <div className="text-xs sm:text-sm text-slate-600 font-medium break-words">
-                      {t.hero.disponibilite}
+                {/* Plain icons rather than tinted tiles: the card is about the
+                    person, not about three little green squares */}
+                <dl className="mt-5 space-y-4">
+                  <div className="flex items-start gap-3">
+                    <GraduationCap
+                      className="w-[18px] h-[18px] mt-0.5 text-primary flex-shrink-0"
+                      strokeWidth={1.9}
+                    />
+                    <div className="min-w-0">
+                      <dt className="text-[10px] font-semibold uppercase tracking-[0.14em] text-slate-400">
+                        {t.hero.labelModalites}
+                      </dt>
+                      <dd className="mt-0.5 text-[13px] sm:text-sm text-slate-700">
+                        {t.hero.modalites.join(' · ')}
+                      </dd>
                     </div>
                   </div>
-                </div>
 
-                <a
-                  href={MAPS_URL}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-start gap-2 sm:gap-3 group hover:bg-slate-50 -mx-2 px-2 py-2 rounded-lg transition-all duration-300"
-                >
-                  <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-lg bg-emerald-100 flex items-center justify-center flex-shrink-0 group-hover:bg-emerald-200 transition-colors">
-                    <svg className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                    </svg>
+                  <div className="flex items-start gap-3">
+                    <Clock
+                      className="w-[18px] h-[18px] mt-0.5 text-primary flex-shrink-0"
+                      strokeWidth={1.9}
+                    />
+                    <div className="min-w-0">
+                      <dt className="text-[10px] font-semibold uppercase tracking-[0.14em] text-slate-400">
+                        {t.hero.labelDisponibilite}
+                      </dt>
+                      <dd className="mt-0.5 text-[13px] sm:text-sm text-slate-700">
+                        {t.hero.disponibilite}
+                      </dd>
+                    </div>
                   </div>
-                  <div className="min-w-0">
-                    <div className="text-[10px] sm:text-xs text-slate-700 font-semibold uppercase tracking-wide mb-0.5 sm:mb-1">{t.hero.labelLocalisation}</div>
-                    <div className="text-xs sm:text-sm text-slate-600 font-medium group-hover:text-primary transition-colors truncate">{t.hero.zone}</div>
-                  </div>
-                </a>
+
+                  <a
+                    href={MAPS_URL}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group/map flex items-start gap-3"
+                  >
+                    <MapPin
+                      className="w-[18px] h-[18px] mt-0.5 text-primary flex-shrink-0"
+                      strokeWidth={1.9}
+                    />
+                    <div className="min-w-0">
+                      <dt className="text-[10px] font-semibold uppercase tracking-[0.14em] text-slate-400">
+                        {t.hero.labelLocalisation}
+                      </dt>
+                      <dd className="mt-0.5 text-[13px] sm:text-sm text-slate-700 group-hover/map:text-primary transition-colors">
+                        {t.hero.zone}
+                      </dd>
+                    </div>
+                  </a>
+                </dl>
               </div>
             </div>
           </div>

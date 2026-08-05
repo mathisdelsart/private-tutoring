@@ -2,6 +2,7 @@
 
 import { Target, Lightbulb, MessageCircle, FileText } from 'lucide-react'
 import { useLanguage } from '@/lib/i18n'
+import SectionHeader from './SectionHeader'
 
 const icons = [Target, Lightbulb, MessageCircle, FileText]
 
@@ -11,41 +12,39 @@ export default function Method() {
   return (
     <section id="methode" className="py-12 sm:py-16 lg:py-20 relative reveal">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-12 sm:mb-16 lg:mb-20">
-          <span className="eyebrow mb-4">{t.method.eyebrow}</span>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold mb-4 sm:mb-6 text-slate-900">
-            {t.method.title}
-          </h2>
-          <p className="text-base sm:text-lg lg:text-xl text-textSecondary max-w-3xl mx-auto px-4">
-            {t.method.subtitle}
-          </p>
-        </div>
+        <SectionHeader
+          eyebrow={t.method.eyebrow}
+          title={t.method.title}
+          subtitle={t.method.subtitle}
+        />
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 lg:gap-7 xl:gap-8 max-w-6xl mx-auto">
+        {/* Four claims on a rule each, rather than four boxes: the eye reads the
+            titles first and the section stays lighter than the subjects grid */}
+        <div className="grid md:grid-cols-2 gap-x-10 lg:gap-x-16 gap-y-9 sm:gap-y-11 max-w-5xl mx-auto">
           {t.method.items.map((item, index) => {
             const Icon = icons[index % icons.length]
 
             return (
-              <div
-                key={item.title}
-                className="group relative overflow-hidden rounded-2xl p-5 sm:p-6 md:p-7 xl:p-8 bg-white border border-slate-200 hover:border-emerald-200 hover:shadow-[0_16px_40px_rgba(5,150,105,0.10)] transition-all duration-500"
-              >
-                {/* The icon sits in the corner as a watermark rather than a tile,
-                    so the text gets the whole card */}
-                <Icon
+              <div key={item.title} className="group relative pt-5 border-t border-slate-200">
+                {/* The rule carries the accent: a short green segment that runs
+                    the full width on hover */}
+                <span
                   aria-hidden="true"
-                  strokeWidth={1.25}
-                  className="pointer-events-none absolute top-3.5 right-3.5 sm:top-4 sm:right-4 w-11 h-11 sm:w-14 sm:h-14 text-emerald-600 opacity-[0.10] group-hover:opacity-[0.18] transition-opacity duration-500"
+                  className="absolute -top-px left-0 h-px w-10 bg-primary transition-all duration-700 ease-out group-hover:w-full"
                 />
 
-                <div className="hidden sm:block absolute inset-0 bg-gradient-to-br from-emerald-50/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-
-                {/* inline-block so the accent bar can grow to exactly the title's width */}
-                <div className="relative z-10 inline-block max-w-full pr-10 mb-4 sm:mb-5">
-                  <h4 className="text-xl sm:text-2xl font-bold text-slate-900">{item.title}</h4>
-                  <div className="mt-2.5 sm:mt-3 h-1 w-9 rounded-full bg-gradient-to-r from-primary to-accent group-hover:w-full transition-all duration-500" />
+                <div className="flex items-start gap-2.5">
+                  <Icon
+                    aria-hidden="true"
+                    strokeWidth={1.75}
+                    className="w-5 h-5 mt-[3px] flex-shrink-0 text-primary"
+                  />
+                  <h3 className="text-lg sm:text-xl font-bold text-slate-900 tracking-tight">
+                    {item.title}
+                  </h3>
                 </div>
-                <p className="relative z-10 text-sm sm:text-base text-slate-600 leading-relaxed">
+
+                <p className="mt-3 text-sm sm:text-[0.9375rem] text-slate-600 leading-relaxed">
                   {item.description}
                 </p>
               </div>
