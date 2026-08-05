@@ -28,25 +28,28 @@ export default function Hero({ nom, moyenne, moyenneSur, diplomeFichier }: HeroP
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-[1.6fr_340px] xl:grid-cols-[1.7fr_380px] gap-6 sm:gap-8 lg:gap-10 xl:gap-12 items-stretch">
-          <div className={`flex flex-col justify-between ${mounted ? 'animate-[fadeInUp_1s_ease-out]' : 'opacity-0'}`}>
-            <div>
-              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-extrabold leading-[1.08] tracking-tight text-slate-900 mb-4 sm:mb-5">
+          <div
+            className={`flex flex-col justify-between gap-4 sm:gap-5 ${
+              mounted ? 'animate-[fadeInUp_1s_ease-out]' : 'opacity-0'
+            }`}
+          >
+              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-extrabold leading-[1.08] tracking-tight text-slate-900 text-balance">
                 {t.hero.title.p1}
                 <span className="gradient-text">{t.hero.title.w1}</span>
                 {t.hero.title.p2}
                 <span className="gradient-text">{t.hero.title.w2}</span>
               </h1>
 
-              <div className="space-y-2 sm:space-y-2.5 max-w-2xl mb-5 sm:mb-6">
+              <div className="space-y-2 sm:space-y-2.5 max-w-2xl">
                 <p className="text-base sm:text-lg lg:text-[17px] xl:text-lg text-slate-600 leading-relaxed">
                   {t.hero.subtitle1}
                 </p>
-                <p className="text-sm sm:text-base text-slate-500 leading-relaxed">
+                <p className="text-sm sm:text-base text-slate-500 leading-relaxed text-balance">
                   {t.hero.subtitle2}
                 </p>
               </div>
 
-              <div className="flex flex-wrap gap-2 mb-5 sm:mb-6">
+              <div className="flex flex-wrap gap-2">
                 {t.hero.audienceChips.map((chip, i) => (
                   <span
                     key={chip}
@@ -60,9 +63,6 @@ export default function Hero({ nom, moyenne, moyenneSur, diplomeFichier }: HeroP
                 ))}
               </div>
 
-            </div>
-
-            <div className="space-y-3.5 lg:pr-4">
               <div className="grid grid-cols-2 gap-3 sm:gap-4">
                 <div className="card p-3 sm:p-4 text-center hover:scale-105 transition-transform duration-300">
                   <Counter
@@ -118,7 +118,10 @@ export default function Hero({ nom, moyenne, moyenneSur, diplomeFichier }: HeroP
                   )}
                 </div>
                 <p className="mt-1 text-[11px] text-slate-500 leading-snug">
-                  {t.hero.diploma.school} · <span className="italic">{t.hero.diploma.note}</span>
+                  {t.hero.diploma.school}
+                </p>
+                <p className="mt-0.5 text-[11px] italic text-slate-500 leading-snug">
+                  {t.hero.diploma.note}
                 </p>
               </div>
 
@@ -141,7 +144,6 @@ export default function Hero({ nom, moyenne, moyenneSur, diplomeFichier }: HeroP
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
                 </svg>
               </a>
-            </div>
           </div>
 
           <div className={`${mounted ? 'animate-[fadeInUp_1s_ease-out_0.2s_backwards]' : 'opacity-0'}`}>

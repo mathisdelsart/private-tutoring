@@ -81,12 +81,12 @@ const fr = {
         id: 'secondaire',
         label: 'Secondaire',
         labelShort: 'Secondaire',
-        tagline: 'De la 1re à la 6e : remise à niveau, suivi régulier et préparation aux examens.',
+        tagline: 'De la 1ère à la 6ème : remise à niveau, suivi régulier et préparation aux examens.',
         note: '',
         subjects: [
           {
             title: 'Mathématiques',
-            levels: '1re → 6e Secondaire',
+            levels: '1ère → 6ème Secondaire',
             badge: '1-6',
             topics: ['Analyse', 'Algèbre', 'Trigonométrie', 'Géométrie', 'Statistiques'],
             benefits: [
@@ -98,9 +98,9 @@ const fr = {
           },
           {
             title: 'Physique',
-            levels: '3e → 6e Secondaire',
+            levels: '3ème → 6ème Secondaire',
             badge: '3-6',
-            topics: ['Électricité', 'Mécanique', 'Optique', 'Ondes', 'Thermodynamique'],
+            topics: ['Électricité', 'Mécanique', 'Nucléaire', 'Ondes', 'Thermodynamique'],
             benefits: [
               'Maîtrise approfondie du programme officiel',
               'Approche concrète par exemples réels',
@@ -117,7 +117,6 @@ const fr = {
               'De zéro aux projets concrets',
               'Apprentissage ludique, progressif et pratique',
               'Compréhension théorique des concepts clés',
-              'Compétence clé recherchée sur le marché',
             ],
           },
         ],
@@ -157,7 +156,7 @@ const fr = {
             title: 'Programmation & algorithmique',
             levels: 'Bac 1 → Bac 3',
             badge: '</>',
-            topics: ['Python', 'C / C++', 'Structures de données', 'Complexité', 'Orienté objet'],
+            topics: ['Python', 'C', 'Java', 'Structures de données', 'Complexité', 'Orienté objet'],
             benefits: [
               'Lecture et débogage de code en direct',
               'Projets de cours accompagnés, jamais faits à la place de l’étudiant',
@@ -173,7 +172,7 @@ const fr = {
             benefits: [
               'Ma spécialité d’ingénieur civil',
               'Théorie et implémentation menées en parallèle',
-              'Accompagnement sur projets et mémoire',
+              'Accompagnement sur projets',
               'Les maths derrière les modèles, expliquées simplement',
             ],
           },
@@ -338,7 +337,7 @@ const fr = {
       {
         q: 'Une anecdote de cours à raconter ?',
         a: [
-          'Un élève de 5e secondaire, bloqué sur les dérivées, m’a dit à la première séance : « je sais faire les calculs, mais je ne comprends pas ce que je calcule ». Symptôme classique.',
+          'Un élève de 5ème secondaire, bloqué sur les dérivées, m’a dit à la première séance : « je sais faire les calculs, mais je ne comprends pas ce que je calcule ». Symptôme classique.',
           'J’ai fermé le cours de maths et je lui ai demandé de me décrire ce que fait le compteur de vitesse d’une voiture. Il m’a répondu : « il donne la vitesse à l’instant où je regarde ». Parfait. Je lui ai fait remarquer que sur un trajet Bruxelles–Namur, on peut calculer une vitesse moyenne — la distance divisée par le temps — mais que ça ne dit rien de ce qui se passe à un instant précis. Le compteur, lui, donne la vitesse maintenant. Et pour l’obtenir, il faut réduire l’intervalle de temps de plus en plus, jusqu’à le faire tendre vers zéro.',
           'Là il a levé la tête : « attends, c’est la limite du cours de maths, ça ». Exactement. Donc : la position en fonction du temps, c’est ta fonction ; le compteur de vitesse, c’est sa dérivée ; et l’accélération que tu ressens dans le dos quand tu accélères, c’est la dérivée du compteur. On a fini par relire ensemble un exercice de physique sur le mouvement rectiligne qu’il avait raté deux semaines plus tôt, et **il l’a refait seul en cinq minutes**.',
           'Ce qu’il a compris ce jour-là dépasse largement le chapitre : **les maths et la physique ne sont pas deux cours différents** qu’on aurait mis dans deux fardes séparées. Les maths sont l’outil, la physique est ce qu’on décrit avec. Beaucoup d’élèves les travaillent en parallèle sans jamais faire le lien — et le jour où le lien se fait, les deux cours deviennent nettement plus faciles en même temps. C’est exactement pour ces moments-là que je continue à donner cours.',
@@ -348,7 +347,7 @@ const fr = {
         q: 'Avez-vous déjà connu des difficultés à l’école ?',
         a: [
           'Bien sûr, et deux moments précis.',
-          'En 4e secondaire, j’ai eu la sensation brutale que la matière devenait énorme par rapport aux années précédentes. Avec le recul, je pense que le problème venait moins du programme que de la manière dont il était transmis : quand les explications ne suivent pas, on croit que la matière est devenue infranchissable. J’ai fini par bien m’en sortir, mais j’ai gardé de cette année-là une conviction utile : un élève qui « ne comprend rien » **n’est presque jamais un élève limité**, c’est un élève à qui on n’a pas encore expliqué de la bonne manière.',
+          'En 4ème secondaire, j’ai eu la sensation brutale que la matière devenait énorme par rapport aux années précédentes. Avec le recul, je pense que le problème venait moins du programme que de la manière dont il était transmis : quand les explications ne suivent pas, on croit que la matière est devenue infranchissable. J’ai fini par bien m’en sortir, mais j’ai gardé de cette année-là une conviction utile : un élève qui « ne comprend rien » **n’est presque jamais un élève limité**, c’est un élève à qui on n’a pas encore expliqué de la bonne manière.',
           'Le vrai choc est venu plus tard, en première année d’ingénieur civil, au premier quadrimestre. Pas la difficulté de la matière en soi, mais la quantité de travail hebdomadaire et le niveau de réflexion attendu, qui n’avaient plus rien à voir avec le secondaire. Ma façon de travailler — celle qui avait toujours fonctionné — s’est écroulée en quelques semaines. J’ai dû tout reconstruire : planifier, hiérarchiser, apprendre à travailler la matière plutôt qu’à la relire. C’est probablement ce que je transmets de plus précieux à mes élèves aujourd’hui, en particulier à ceux qui visent l’examen d’admission : **la méthode compte autant que le talent**.',
         ],
       },
@@ -377,7 +376,7 @@ const fr = {
     items: [
       {
         q: 'Quels niveaux sont couverts ?',
-        a: 'De la 1re secondaire au master. Je donne cours au secondaire (maths, physique, Python), dans l’enseignement supérieur (maths, physique générale, programmation et intelligence artificielle) et je prépare aux examens d’entrée en école d’ingénieur civil et en médecine.',
+        a: 'De la 1ère secondaire au master. Je donne cours au secondaire (maths, physique, Python), dans l’enseignement supérieur (maths, physique générale, programmation et intelligence artificielle) et je prépare aux examens d’entrée en école d’ingénieur civil et en médecine.',
       },
       {
         q: 'Comment se passe la préparation à l’examen d’entrée ingénieur civil ?',
@@ -596,7 +595,7 @@ const en: typeof fr = {
             title: 'Physics',
             levels: '3rd → 6th Secondary',
             badge: '3-6',
-            topics: ['Electricity', 'Mechanics', 'Optics', 'Waves', 'Thermodynamics'],
+            topics: ['Electricity', 'Mechanics', 'Nuclear', 'Waves', 'Thermodynamics'],
             benefits: [
               'Thorough mastery of the official curriculum',
               'Hands-on approach with real examples',
@@ -613,7 +612,6 @@ const en: typeof fr = {
               'From zero to real projects',
               'Fun, progressive and hands-on learning',
               'Theoretical grasp of key concepts',
-              'A key skill in demand on the job market',
             ],
           },
         ],
@@ -653,7 +651,7 @@ const en: typeof fr = {
             title: 'Programming & algorithms',
             levels: 'Year 1 → Year 3',
             badge: '</>',
-            topics: ['Python', 'C / C++', 'Data structures', 'Complexity', 'Object-oriented'],
+            topics: ['Python', 'C', 'Java', 'Data structures', 'Complexity', 'Object-oriented'],
             benefits: [
               'Live code reading and debugging',
               'Coursework projects supported, never done for you',
@@ -669,7 +667,7 @@ const en: typeof fr = {
             benefits: [
               'My own engineering specialty',
               'Theory and implementation taught side by side',
-              'Support on projects and your thesis',
+              'Support on projects',
               'The maths behind the models, explained simply',
             ],
           },
@@ -1093,7 +1091,7 @@ const nl: typeof fr = {
             title: 'Fysica',
             levels: '3e → 6e Middelbaar',
             badge: '3-6',
-            topics: ['Elektriciteit', 'Mechanica', 'Optica', 'Golven', 'Thermodynamica'],
+            topics: ['Elektriciteit', 'Mechanica', 'Kernfysica', 'Golven', 'Thermodynamica'],
             benefits: [
               'Grondige beheersing van het officiële leerplan',
               'Concrete aanpak met echte voorbeelden',
@@ -1110,7 +1108,6 @@ const nl: typeof fr = {
               'Van nul naar concrete projecten',
               'Speels, stapsgewijs en praktisch leren',
               'Theoretisch inzicht in de kernbegrippen',
-              'Een sleutelvaardigheid waar de arbeidsmarkt om vraagt',
             ],
           },
         ],
@@ -1151,7 +1148,7 @@ const nl: typeof fr = {
             title: 'Programmeren & algoritmen',
             levels: 'Bachelor 1 → 3',
             badge: '</>',
-            topics: ['Python', 'C / C++', 'Datastructuren', 'Complexiteit', 'Objectgericht'],
+            topics: ['Python', 'C', 'Java', 'Datastructuren', 'Complexiteit', 'Objectgericht'],
             benefits: [
               'Code live lezen en debuggen',
               'Begeleiding bij projecten, nooit in de plaats van de student gemaakt',
@@ -1167,7 +1164,7 @@ const nl: typeof fr = {
             benefits: [
               'Mijn eigen specialisatie als burgerlijk ingenieur',
               'Theorie en implementatie samen aangepakt',
-              'Begeleiding bij projecten en masterproef',
+              'Begeleiding bij projecten',
               'De wiskunde achter de modellen, eenvoudig uitgelegd',
             ],
           },

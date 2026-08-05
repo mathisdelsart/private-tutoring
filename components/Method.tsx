@@ -41,9 +41,9 @@ export default function Method() {
                 <div className="hidden sm:block absolute inset-0 bg-gradient-to-br from-emerald-50/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
                 {/* inline-block so the accent bar can grow to exactly the title's width */}
-                <div className="relative z-10 inline-block max-w-full pr-10 mb-2.5 sm:mb-3">
-                  <div className="h-1 w-9 rounded-full bg-gradient-to-r from-primary to-accent mb-4 sm:mb-5 group-hover:w-full transition-all duration-500" />
+                <div className="relative z-10 inline-block max-w-full pr-10 mb-4 sm:mb-5">
                   <h4 className="text-xl sm:text-2xl font-bold text-slate-900">{item.title}</h4>
+                  <div className="mt-2.5 sm:mt-3 h-1 w-9 rounded-full bg-gradient-to-r from-primary to-accent group-hover:w-full transition-all duration-500" />
                 </div>
                 <p className="relative z-10 text-sm sm:text-base text-slate-600 leading-relaxed">
                   {item.description}

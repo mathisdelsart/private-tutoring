@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import { useLanguage } from '@/lib/i18n'
+import { withOrdinals } from '@/lib/ordinals'
 
 // A single brand gradient across the site: per-card colour shifts carried no
 // meaning and read as inconsistency.
@@ -79,7 +80,7 @@ export default function Services() {
         {/* Remounting on tab change replays the staggered card animation */}
         <div id={`panel-${active.id}`} role="tabpanel" key={active.id}>
           <p className="text-center text-sm sm:text-base text-slate-500 max-w-2xl mx-auto mb-8 sm:mb-12 px-4 animate-[fadeInUp_0.4s_ease-out]">
-            {active.tagline}
+            {withOrdinals(active.tagline)}
           </p>
 
           <div className={`grid grid-cols-1 gap-6 sm:gap-8 lg:gap-10 ${gridClassFor(active.subjects.length)}`}>
@@ -114,7 +115,7 @@ export default function Services() {
                       </div>
 
                       <p className="text-sm sm:text-base text-slate-600 font-semibold mb-3 sm:mb-4">
-                        {subject.levels}
+                        {withOrdinals(subject.levels)}
                       </p>
 
                       <div className="flex flex-wrap gap-1.5 mb-4 sm:mb-6">
