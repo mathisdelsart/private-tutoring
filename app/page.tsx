@@ -64,9 +64,9 @@ export default function Home() {
           diplomeFichier={prof.diplomeFichier}
         />
 
-        <Method />
-
         <Services />
+
+        <Method />
 
         <Temoignage />
 

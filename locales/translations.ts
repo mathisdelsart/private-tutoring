@@ -7,8 +7,8 @@ const fr = {
     brand: 'Cours Particuliers',
     items: [
       ['Accueil', 'accueil'],
-      ['Méthode', 'methode'],
       ['Matières', 'matieres'],
+      ['Méthode', 'methode'],
       ['Témoignages', 'temoignages'],
       ['À propos', 'apropos'],
       ['FAQ', 'faq'],
@@ -381,11 +381,32 @@ const fr = {
         ],
       },
       {
+        q: 'Combien de temps dure une séance ?',
+        a: [
+          'Une séance dure deux heures. C’est à mon sens la durée optimale : le temps de revoir la théorie, de faire des exercices et de les corriger sans se presser.',
+          'Pour un élève qui a du mal à tenir sa concentration, on passe à une heure et demie. En revanche, je déconseille les séances d’une heure : le temps de se mettre dedans, il ne reste presque plus rien pour travailler vraiment.',
+        ],
+      },
+      {
         q: 'Où les cours se donnent-ils ?',
         a: [
           'Chez moi, à Gouy-Lez-Piéton (Courcelles), ou en ligne. Je ne me déplace plus au domicile des élèves : la demande est devenue trop importante pour que j’ajoute des trajets à mon planning, et ce temps est bien mieux investi dans la préparation des séances.',
           'Le format en ligne fonctionne très bien pour l’enseignement supérieur, pour la préparation aux examens d’entrée, et pour les élèves en école à la maison ou suffisamment autonomes pour rester concentrés seuls devant un écran.',
           'En revanche, je le déconseille franchement aux élèves qui ont des difficultés de concentration ou un trouble de l’attention, ainsi qu’en dessous de la 3ème secondaire. Dans ces situations, le présentiel est nettement plus efficace : je vois tout de suite à quel moment l’élève décroche.',
+        ],
+      },
+      {
+        q: 'Faut-il du matériel particulier pour les cours en ligne ?',
+        a: [
+          'Non, rien de spécial de votre côté. J’ai une tablette : je prends note et je fais les exercices dans GoodNotes, et je partage mon écran via Discord — vous suivez exactement ce que j’écris, comme sur un tableau.',
+          'Les documents circulent par un Drive partagé. La seule chose nécessaire, c’est le cours en version numérique : soit le PDF fourni par le professeur, soit une photo ou un scan des feuilles.',
+        ],
+      },
+      {
+        q: 'Est-ce que les parents ont un retour après le cours ?',
+        a: [
+          'Oui. Je donne d’abord le retour à l’élève pendant la séance, puis aux parents juste après le cours si c’est utile.',
+          'Pour un retour plus détaillé, je l’envoie par SMS ou WhatsApp après la séance : ce qui a été vu, ce qui coince encore, et le cas échéant ce qu’il y a à préparer pour la fois suivante.',
         ],
       },
       {
@@ -517,8 +538,8 @@ const en: typeof fr = {
     brand: 'Private Tutoring',
     items: [
       ['Home', 'accueil'],
-      ['Method', 'methode'],
       ['Subjects', 'matieres'],
+      ['Method', 'methode'],
       ['Testimonials', 'temoignages'],
       ['About', 'apropos'],
       ['FAQ', 'faq'],
@@ -891,11 +912,32 @@ const en: typeof fr = {
         ],
       },
       {
+        q: 'How long does a lesson last?',
+        a: [
+          'A lesson lasts two hours. To my mind that is the optimal length: enough time to go back over the theory, work through exercises and correct them without rushing.',
+          'For a student who finds it hard to stay focused, we drop to an hour and a half. I do advise against one-hour lessons: by the time you are properly into it, there is almost nothing left to actually work with.',
+        ],
+      },
+      {
         q: 'Where do the lessons take place?',
         a: [
           'At my place in Gouy-Lez-Piéton (Courcelles), or online. I no longer travel to students’ homes: demand has grown too high to add journeys to my schedule, and that time is far better spent preparing the sessions.',
           'The online format works very well for higher education, for entrance exam preparation, and for home-schooled students or those independent enough to stay focused alone in front of a screen.',
           'I do, however, strongly advise against it for students who struggle to concentrate or have an attention disorder, and below the third year of secondary school. In those cases, teaching in person is markedly more effective: I see straight away where the student loses the thread.',
+        ],
+      },
+      {
+        q: 'Do I need any equipment for online lessons?',
+        a: [
+          'No, nothing special on your side. I use a tablet: I write and work through the exercises in GoodNotes, and share my screen over Discord — you follow exactly what I write, as if on a board.',
+          'Documents go through a shared Drive. The only thing needed is a digital copy of the course: either the PDF from the teacher, or simply a photo or a scan of the sheets.',
+        ],
+      },
+      {
+        q: 'Do parents get feedback after the lesson?',
+        a: [
+          'Yes. I give the feedback to the student first, during the session, then to the parents right after the lesson when that is useful.',
+          'For something more detailed, I send it by SMS or WhatsApp after the session: what we covered, what is still shaky, and where relevant what to prepare for next time.',
         ],
       },
       {
@@ -1027,8 +1069,8 @@ const nl: typeof fr = {
     brand: 'Bijlessen',
     items: [
       ['Home', 'accueil'],
-      ['Aanpak', 'methode'],
       ['Vakken', 'matieres'],
+      ['Aanpak', 'methode'],
       ['Getuigenissen', 'temoignages'],
       ['Over mij', 'apropos'],
       ['FAQ', 'faq'],
@@ -1404,11 +1446,32 @@ const nl: typeof fr = {
         ],
       },
       {
+        q: 'Hoe lang duurt een les?',
+        a: [
+          'Een les duurt twee uur. Dat is volgens mij de ideale duur: genoeg tijd om de theorie te overlopen, oefeningen te maken en ze rustig te verbeteren.',
+          'Voor een leerling die moeite heeft om geconcentreerd te blijven, gaan we naar anderhalf uur. Lessen van één uur raad ik af: tegen dat je goed bezig bent, blijft er nauwelijks tijd over om echt te werken.',
+        ],
+      },
+      {
         q: 'Waar gaan de lessen door?',
         a: [
           'Bij mij thuis in Gouy-Lez-Piéton (Courcelles), of online. Ik verplaats me niet meer naar de leerlingen thuis: de vraag is te groot geworden om verplaatsingen in te plannen, en die tijd besteed ik veel beter aan de voorbereiding van de sessies.',
           'Het online formaat werkt heel goed voor het hoger onderwijs, voor de voorbereiding op toelatingsexamens, en voor thuisonderwijs of leerlingen die zelfstandig genoeg zijn om alleen voor een scherm geconcentreerd te blijven.',
           'Ik raad het echter uitdrukkelijk af voor leerlingen die moeite hebben met concentratie of een aandachtsstoornis hebben, en onder het derde jaar middelbaar. In die situaties werkt fysieke les duidelijk beter: ik zie meteen waar de leerling afhaakt.',
+        ],
+      },
+      {
+        q: 'Is er speciaal materiaal nodig voor online les?',
+        a: [
+          'Nee, aan uw kant niets bijzonders. Ik gebruik een tablet: ik schrijf en maak de oefeningen in GoodNotes, en ik deel mijn scherm via Discord — u volgt precies wat ik schrijf, net als op een bord.',
+          'De documenten gaan via een gedeelde Drive. Het enige wat nodig is, is de cursus in digitale vorm: ofwel de pdf van de leerkracht, ofwel gewoon een foto of scan van de bladen.',
+        ],
+      },
+      {
+        q: 'Krijgen ouders feedback na de les?',
+        a: [
+          'Ja. Ik geef de feedback eerst aan de leerling tijdens de sessie, en daarna aan de ouders vlak na de les wanneer dat nuttig is.',
+          'Voor iets uitgebreiders stuur ik het na de sessie via sms of WhatsApp: wat we gezien hebben, waar het nog moeilijk gaat, en indien nodig wat er tegen de volgende keer voorbereid moet worden.',
         ],
       },
       {
