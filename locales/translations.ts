@@ -32,8 +32,8 @@ const fr = {
     },
     statStudents: 'Élèves accompagnés',
     statExperience: 'Années d’expérience',
-    quote: { part1: 'L’excellence n’est pas une destination, c’est un ', highlight: 'voyage continu' },
     ctaTitle: 'Réserver un cours',
+    ctaSecondary: 'Voir les matières',
     ctaSubtitle: 'Premier contact sans engagement',
     labelModalites: 'Modalités',
     labelDisponibilite: 'Disponibilité',
@@ -221,6 +221,7 @@ const fr = {
     prevLabel: 'Témoignage précédent',
     nextLabel: 'Témoignage suivant',
     dotLabel: 'Aller au groupe {n}',
+    kinds: { avis: 'Avis', recommandation: 'Recommandation' },
     authorOverrides: {} as Record<string, string>,
     items: [
       {
@@ -253,15 +254,15 @@ const fr = {
       },
       {
         text: 'Ayant reçu de l’aide de Mathis dans certains cours, je peux témoigner de sa capacité à expliquer clairement et à rendre accessibles des notions complexes, en particulier en mathématiques.',
-        role: 'Recommandation',
+        role: '',
       },
       {
         text: 'Mathis a toujours su rendre les mathématiques et les sciences accessibles. Patient et pédagogue, il aide à comprendre et à faire des liens entre les concepts. Je le recommande vivement.',
-        role: 'Recommandation',
+        role: '',
       },
       {
         text: 'Je recommande vivement Mathis pour des cours de mathématiques et de physique au secondaire. Grâce à ses explications claires et à son approche patiente, il aide réellement les élèves à progresser et à gagner en confiance.',
-        role: 'Recommandation',
+        role: '',
       },
     ],
   },
@@ -442,7 +443,8 @@ const fr = {
     subtitle: 'Prêt à transformer vos résultats ? Parlons-en !',
     tabForm: 'Formulaire de demande',
     tabDirect: 'Contact direct',
-    tabHint: 'Le formulaire de demande est à privilégier pour un premier contact',
+    hintDirect: 'Écrivez-moi directement : vos questions, votre situation, ce dont vous avez besoin.',
+    hintForm: 'Un formulaire guidé : niveau, matières et disponibilités, en trois étapes.',
     smsDesc: 'Sans application',
     whatsappDesc: 'Réponse rapide',
     emailDesc: 'Réponse sous 24h',
@@ -453,6 +455,7 @@ const fr = {
 
   form: {
     title: 'Demande de cours',
+    stepLabel: 'Étape {n} sur 3',
     subtitle: 'Remplissez ce formulaire pour me contacter directement',
     labelName: 'Prénom de l’élève',
     placeholderName: 'Ex. : Camille',
@@ -563,8 +566,8 @@ const en: typeof fr = {
     },
     statStudents: 'Students supported',
     statExperience: 'Years of experience',
-    quote: { part1: 'Excellence is not a destination, it’s a ', highlight: 'continuous journey' },
     ctaTitle: 'Book a lesson',
+    ctaSecondary: 'See the subjects',
     ctaSubtitle: 'Start your transformation',
     labelModalites: 'Format',
     labelDisponibilite: 'Availability',
@@ -752,6 +755,7 @@ const en: typeof fr = {
     prevLabel: 'Previous testimonial',
     nextLabel: 'Next testimonial',
     dotLabel: 'Go to group {n}',
+    kinds: { avis: 'Review', recommandation: 'Recommendation' },
     authorOverrides: { 'Maman de Guido': "Guido's mum" } as Record<string, string>,
     items: [
       {
@@ -784,15 +788,15 @@ const en: typeof fr = {
       },
       {
         text: 'Having received help from Mathis in some courses, I can attest to his ability to explain clearly and make complex notions accessible, especially in mathematics.',
-        role: 'Recommendation',
+        role: '',
       },
       {
         text: 'Mathis has always known how to make mathematics and science accessible. Patient and a great teacher, he helps you understand and connect concepts. I highly recommend him.',
-        role: 'Recommendation',
+        role: '',
       },
       {
         text: 'I highly recommend Mathis for secondary-school maths and physics lessons. Thanks to his clear explanations and patient approach, he genuinely helps students progress and gain confidence.',
-        role: 'Recommendation',
+        role: '',
       },
     ],
   },
@@ -973,7 +977,8 @@ const en: typeof fr = {
     subtitle: 'Ready to transform your results? Let’s talk!',
     tabForm: 'Request form',
     tabDirect: 'Direct contact',
-    tabHint: 'The request form is best for a first contact',
+    hintDirect: 'Write to me directly: your questions, your situation, what you need.',
+    hintForm: 'A guided form: level, subjects and availability, in three steps.',
     smsDesc: 'No app needed',
     whatsappDesc: 'Quick reply',
     emailDesc: 'Reply within 24h',
@@ -984,6 +989,7 @@ const en: typeof fr = {
 
   form: {
     title: 'Lesson request',
+    stepLabel: 'Step {n} of 3',
     subtitle: 'Fill out this form to contact me directly',
     labelName: 'Student’s first name',
     placeholderName: 'e.g. Camille',
@@ -1095,8 +1101,8 @@ const nl: typeof fr = {
     },
     statStudents: 'Begeleide leerlingen',
     statExperience: 'Jaar ervaring',
-    quote: { part1: 'Uitmuntendheid is geen bestemming, het is een ', highlight: 'voortdurende reis' },
     ctaTitle: 'Een les boeken',
+    ctaSecondary: 'Bekijk de vakken',
     ctaSubtitle: 'Vrijblijvend eerste contact',
     labelModalites: 'Lesvormen',
     labelDisponibilite: 'Beschikbaarheid',
@@ -1286,6 +1292,7 @@ const nl: typeof fr = {
     prevLabel: 'Vorige getuigenis',
     nextLabel: 'Volgende getuigenis',
     dotLabel: 'Ga naar groep {n}',
+    kinds: { avis: 'Beoordeling', recommandation: 'Aanbeveling' },
     authorOverrides: { 'Maman de Guido': 'De mama van Guido' } as Record<string, string>,
     items: [
       {
@@ -1318,15 +1325,15 @@ const nl: typeof fr = {
       },
       {
         text: 'Omdat ik zelf hulp van Mathis kreeg bij enkele vakken, kan ik getuigen van zijn vermogen om helder uit te leggen en complexe begrippen toegankelijk te maken, zeker in wiskunde.',
-        role: 'Aanbeveling',
+        role: '',
       },
       {
         text: 'Mathis heeft wiskunde en wetenschappen altijd toegankelijk weten te maken. Geduldig en pedagogisch helpt hij je begrijpen en verbanden leggen tussen concepten. Ik beveel hem sterk aan.',
-        role: 'Aanbeveling',
+        role: '',
       },
       {
         text: 'Ik beveel Mathis sterk aan voor bijlessen wiskunde en fysica in het middelbaar. Dankzij zijn heldere uitleg en zijn geduldige aanpak helpt hij leerlingen echt vooruit en geeft hij hun meer zelfvertrouwen.',
-        role: 'Aanbeveling',
+        role: '',
       },
     ],
   },
@@ -1507,7 +1514,8 @@ const nl: typeof fr = {
     subtitle: 'Klaar om uw resultaten om te gooien? Laten we praten!',
     tabForm: 'Aanvraagformulier',
     tabDirect: 'Rechtstreeks contact',
-    tabHint: 'Het aanvraagformulier is het handigst voor een eerste contact',
+    hintDirect: 'Schrijf me rechtstreeks: uw vragen, uw situatie, wat u nodig hebt.',
+    hintForm: 'Een begeleid formulier: niveau, vakken en beschikbaarheid, in drie stappen.',
     smsDesc: 'Geen app nodig',
     whatsappDesc: 'Snel antwoord',
     emailDesc: 'Antwoord binnen 24u',
@@ -1518,6 +1526,7 @@ const nl: typeof fr = {
 
   form: {
     title: 'Lesaanvraag',
+    stepLabel: 'Stap {n} van 3',
     subtitle: 'Vul dit formulier in om me rechtstreeks te contacteren',
     labelName: 'Voornaam van de leerling',
     placeholderName: 'Bv. Camille',

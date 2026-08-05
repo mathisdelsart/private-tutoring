@@ -6,6 +6,7 @@ import { assetPath } from '@/lib/assetPath'
 import { useLanguage } from '@/lib/i18n'
 import { useIsomorphicLayoutEffect } from '@/lib/layoutEffect'
 import { withHighlights } from '@/lib/highlight'
+import SectionHeader from './SectionHeader'
 
 const credentialIcons = [GraduationCap, Award, Brain]
 
@@ -59,15 +60,12 @@ export default function About({ diplomeFichier }: AboutProps) {
   return (
     <section id="apropos" className="py-12 sm:py-16 lg:py-20 relative reveal">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-8 sm:mb-10 lg:mb-12">
-          <span className="eyebrow mb-4">{t.about.eyebrow}</span>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold mb-4 sm:mb-6 text-slate-900">
-            {t.about.title}
-          </h2>
-          <p className="text-base sm:text-lg lg:text-xl text-textSecondary max-w-3xl mx-auto px-4">
-            {t.about.subtitle}
-          </p>
-        </div>
+        <SectionHeader
+          eyebrow={t.about.eyebrow}
+          title={t.about.title}
+          subtitle={t.about.subtitle}
+          className="mb-8 sm:mb-12"
+        />
 
         {/* Credentials: a banded strip framed by two rules, split by vertical
             dividers. Typography carries it — the icon only labels the column. */}
@@ -182,9 +180,11 @@ export default function About({ diplomeFichier }: AboutProps) {
                   <p
                     key={i}
                     className={
-                      // The opening paragraph carries the answer; the rest supports it
+                      // The opening paragraph carries the answer; the rest
+                      // supports it. Same size as the body text everywhere else
+                      // on the site — the weight of the colour is enough.
                       i === 0
-                        ? 'text-[17px] text-slate-700 leading-[1.7]'
+                        ? 'text-[15px] text-slate-700 leading-[1.75]'
                         : 'text-[15px] text-slate-600 leading-[1.75]'
                     }
                   >
@@ -235,8 +235,8 @@ export default function About({ diplomeFichier }: AboutProps) {
                             key={i}
                             className={
                               i === 0
-                                ? 'text-[15px] sm:text-base text-slate-700 leading-[1.7]'
-                                : 'text-sm sm:text-[15px] text-slate-600 leading-[1.75]'
+                                ? 'text-[15px] text-slate-700 leading-[1.75]'
+                                : 'text-[15px] text-slate-600 leading-[1.75]'
                             }
                           >
                             {withHighlights(paragraph)}

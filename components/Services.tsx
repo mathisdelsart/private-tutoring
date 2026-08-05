@@ -6,6 +6,7 @@ import { useLanguage } from '@/lib/i18n'
 import { onAudienceSelect } from '@/lib/audience'
 import { withOrdinals } from '@/lib/ordinals'
 import Segmented from './Segmented'
+import SectionHeader from './SectionHeader'
 
 // Two subjects breathe on one row, four read best as a 2×2 block, three keep the
 // original three-up layout.
@@ -29,15 +30,12 @@ export default function Services() {
   return (
     <section id="matieres" className="py-12 sm:py-16 lg:py-20 relative reveal">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-8 sm:mb-10 lg:mb-12">
-          <span className="eyebrow mb-4">{t.services.eyebrow}</span>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold mb-4 sm:mb-6 text-slate-900">
-            {t.services.title}
-          </h2>
-          <p className="text-base sm:text-lg lg:text-xl text-textSecondary max-w-3xl mx-auto px-4">
-            {t.services.subtitle}
-          </p>
-        </div>
+        <SectionHeader
+          eyebrow={t.services.eyebrow}
+          title={t.services.title}
+          subtitle={t.services.subtitle}
+          className="mb-8 sm:mb-10"
+        />
 
         {/* Audience switcher */}
         <div className="flex justify-center">
@@ -61,19 +59,30 @@ export default function Services() {
             {active.subjects.map((subject, index) => (
               <article
                 key={subject.title}
-                className="group flex flex-col rounded-2xl bg-white border border-slate-200 p-5 sm:p-6 lg:p-7 transition-[transform,border-color,box-shadow] duration-300 hover:-translate-y-1 hover:border-emerald-200 hover:shadow-[0_16px_40px_rgba(5,150,105,0.10)] animate-[fadeInUp_0.5s_ease-out_backwards]"
+                className="group relative overflow-hidden flex flex-col rounded-2xl bg-white border border-slate-200 p-5 sm:p-6 lg:p-7 shadow-[0_1px_2px_rgba(15,23,42,0.04),0_8px_24px_rgba(15,23,42,0.05)] transition-[transform,border-color,box-shadow] duration-300 hover:-translate-y-1 hover:border-emerald-200 hover:shadow-[0_20px_45px_rgba(5,150,105,0.16)] animate-[fadeInUp_0.5s_ease-out_backwards]"
                 style={{ animationDelay: `${index * 90}ms` }}
               >
+                {/* Two quiet green signs of life on hover: a line drawn along
+                    the top edge, and a wash falling from it */}
+                <span
+                  aria-hidden="true"
+                  className="absolute inset-x-0 top-0 h-0.5 bg-gradient-to-r from-primary to-accent origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-500 ease-out"
+                />
+                <span
+                  aria-hidden="true"
+                  className="pointer-events-none absolute inset-x-0 top-0 h-28 bg-gradient-to-b from-emerald-50/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+                />
+
                 {/* The level leads as a label so the subject can be the only
                     heading — the old badge repeated it inside a coloured tile */}
-                <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-slate-500">
+                <p className="relative text-[13px] font-semibold tracking-wide text-slate-500">
                   {withOrdinals(subject.levels)}
                 </p>
-                <h3 className="mt-2 text-xl sm:text-2xl font-extrabold text-slate-900 tracking-tight">
+                <h3 className="relative mt-1.5 text-xl sm:text-2xl font-extrabold text-slate-900 tracking-tight">
                   {subject.title}
                 </h3>
 
-                <div className="mt-5 pt-5 border-t border-slate-100">
+                <div className="relative mt-5 pt-5 border-t border-slate-100">
                   <div className="flex flex-wrap items-center gap-1.5">
                     {subject.topics.map((topic) => (
                       <span

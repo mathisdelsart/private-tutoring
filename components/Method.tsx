@@ -2,6 +2,7 @@
 
 import { Target, Lightbulb, MessageCircle, FileText } from 'lucide-react'
 import { useLanguage } from '@/lib/i18n'
+import SectionHeader from './SectionHeader'
 
 const icons = [Target, Lightbulb, MessageCircle, FileText]
 
@@ -11,15 +12,11 @@ export default function Method() {
   return (
     <section id="methode" className="py-12 sm:py-16 lg:py-20 relative reveal">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-10 sm:mb-14">
-          <span className="eyebrow mb-4">{t.method.eyebrow}</span>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold mb-4 sm:mb-6 text-slate-900">
-            {t.method.title}
-          </h2>
-          <p className="text-base sm:text-lg lg:text-xl text-textSecondary max-w-3xl mx-auto px-4">
-            {t.method.subtitle}
-          </p>
-        </div>
+        <SectionHeader
+          eyebrow={t.method.eyebrow}
+          title={t.method.title}
+          subtitle={t.method.subtitle}
+        />
 
         {/* Four claims on a rule each, rather than four boxes: the eye reads the
             titles first and the section stays lighter than the subjects grid */}

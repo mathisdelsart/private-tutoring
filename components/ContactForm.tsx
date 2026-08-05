@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import {
+  ArrowUpRight,
   Mail,
   MessageSquare,
   Home,
@@ -28,6 +29,18 @@ const subjectIcons: Record<string, typeof Calculator[]> = {
   superieur: [Calculator, Atom, Code, Brain],
   examens: [Compass, Stethoscope],
 }
+
+// Every choice in the form is the same object: a bordered cell that turns green
+// once picked. One selected state, not three.
+const choiceBase =
+  'rounded-xl border text-left transition-[background-color,border-color,color] duration-200'
+const choiceIdle = 'border-slate-200 bg-white text-slate-600 hover:border-slate-300 hover:bg-slate-50'
+const choicePicked = 'border-primary bg-emerald-50/70 text-slate-900'
+
+const fieldClass =
+  'w-full px-4 py-3 bg-white border border-slate-200 rounded-xl text-[15px] text-slate-900 placeholder-slate-400 transition-colors duration-200 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary/30'
+
+const labelClass = 'block text-[13px] font-semibold text-slate-700 mb-2.5'
 
 export default function ContactForm({ email, whatsapp, nom }: ContactFormProps) {
   const { t } = useLanguage()
@@ -157,60 +170,65 @@ ${lines.map((line) => `• ${line}`).join('\n')}`
     setFormData(prev => (prev.level === levelId ? prev : { ...prev, level: levelId, subjects: [] }))
   }
 
-  const subjectGradient = 'from-emerald-500 to-teal-600'
   const activeLevel = t.form.levels.find((l) => l.id === formData.level) ?? t.form.levels[0]
   const icons = subjectIcons[activeLevel.id] ?? subjectIcons.secondaire
-  const subjects = activeLevel.subjects.map((name, i) => ({
-    name,
-    icon: icons[i % icons.length],
-    color: subjectGradient,
-  }))
-  const subjectGridClass = subjects.length === 3 ? 'grid-cols-3' : 'grid-cols-2'
+  const subjects = activeLevel.subjects.map((name, i) => ({ name, icon: icons[i % icons.length] }))
+
+  // The three ways to send are the same object as the direct contact rows
+  const sendChannels = [
+    { id: 'sms' as const, icon: MessageSquare, label: 'SMS', description: t.contact.smsDesc },
+    { id: 'whatsapp' as const, icon: WhatsAppIcon, label: 'WhatsApp', description: t.contact.whatsappDesc },
+    { id: 'email' as const, icon: Mail, label: 'Email', description: t.contact.emailDesc },
+  ]
 
   return (
-    <div className="card p-5 sm:p-8 max-w-2xl mx-auto relative">
-      <h3 className="text-2xl font-bold text-slate-900 mb-2">{t.form.title}</h3>
-      <p className="text-slate-500 mb-6 text-sm">{t.form.subtitle}</p>
+    <div className="max-w-2xl mx-auto rounded-2xl border border-slate-200 bg-white p-5 sm:p-8 shadow-[0_1px_2px_rgba(15,23,42,0.04),0_8px_24px_rgba(15,23,42,0.05)]">
+      <div className="flex items-baseline justify-between gap-4">
+        <h3 className="text-lg sm:text-xl font-bold text-slate-900 tracking-tight">{t.form.title}</h3>
+        <span className="text-[11px] font-semibold uppercase tracking-[0.14em] text-slate-400 whitespace-nowrap">
+          {t.form.stepLabel.replace('{n}', String(step))}
+        </span>
+      </div>
+      <p className="mt-1 text-sm text-slate-500">{t.form.subtitle}</p>
 
-      {/* Progress bar */}
-      <div className="flex gap-2 mb-8">
-        <div className={`h-1 flex-1 rounded-full transition-all duration-300 ${step >= 1 ? 'bg-gradient-to-r from-primary to-accent' : 'bg-slate-200'}`} />
-        <div className={`h-1 flex-1 rounded-full transition-all duration-300 ${step >= 2 ? 'bg-gradient-to-r from-primary to-accent' : 'bg-slate-200'}`} />
-        <div className={`h-1 flex-1 rounded-full transition-all duration-300 ${step >= 3 ? 'bg-gradient-to-r from-primary to-accent' : 'bg-slate-200'}`} />
+      {/* One track that fills, rather than three coloured segments */}
+      <div className="mt-5 mb-7 h-px bg-slate-200">
+        <div
+          className="h-px bg-primary transition-[width] duration-500 ease-out"
+          style={{ width: `${(step / 3) * 100}%` }}
+        />
       </div>
 
       <form className="space-y-6" onSubmit={(e) => e.preventDefault()}>
         {/* Step 1: Informations de base */}
         {step === 1 && (
-          <div className="space-y-6 animate-[fadeInUp_0.5s_ease-out]">
+          <div className="space-y-6 animate-[fadeInUp_0.4s_ease-out]">
             <div>
-              <label className="block text-sm font-medium text-slate-700 mb-2">
-                {t.form.labelName} <span className="text-accent">*</span>
+              <label className={labelClass}>
+                {t.form.labelName} <span className="text-primary">*</span>
               </label>
               <input
                 type="text"
                 required
                 value={formData.name}
                 onChange={(e) => updateFormData('name', e.target.value)}
-                className="w-full px-4 py-3 bg-white border border-slate-300 rounded-xl focus:ring-2 focus:ring-primary focus:border-transparent text-slate-900 placeholder-slate-400 transition-all"
+                className={fieldClass}
                 placeholder={t.form.placeholderName}
               />
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-slate-700 mb-3">
-                {t.form.labelLevel} <span className="text-accent">*</span>
+              <label className={labelClass}>
+                {t.form.labelLevel} <span className="text-primary">*</span>
               </label>
-              <div className="grid grid-cols-3 gap-2 sm:gap-3">
+              <div className="grid grid-cols-3 gap-2">
                 {t.form.levels.map((level) => (
                   <button
                     key={level.id}
                     type="button"
                     onClick={() => selectLevel(level.id)}
-                    className={`px-2 py-3 rounded-xl border-2 text-xs sm:text-sm font-medium transition-all duration-300 ${
-                      formData.level === level.id
-                        ? 'border-primary bg-emerald-50 text-slate-900'
-                        : 'border-slate-200 bg-white text-slate-600 hover:border-primary/50'
+                    className={`${choiceBase} px-3 py-2.5 text-center text-xs sm:text-[13px] font-medium ${
+                      formData.level === level.id ? choicePicked : choiceIdle
                     }`}
                   >
                     {level.label}
@@ -220,10 +238,10 @@ ${lines.map((line) => `• ${line}`).join('\n')}`
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-slate-700 mb-3">
-                {t.form.labelSubjects} <span className="text-accent">*</span>
+              <label className={labelClass}>
+                {t.form.labelSubjects} <span className="text-primary">*</span>
               </label>
-              <div className={`grid ${subjectGridClass} gap-3`}>
+              <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
                 {subjects.map((subject) => {
                   const Icon = subject.icon
                   const isSelected = formData.subjects.includes(subject.name)
@@ -232,14 +250,16 @@ ${lines.map((line) => `• ${line}`).join('\n')}`
                       key={subject.name}
                       type="button"
                       onClick={() => toggleSubject(subject.name)}
-                      className={`p-4 rounded-xl border-2 transition-all duration-300 ${
-                        isSelected
-                          ? `border-primary bg-gradient-to-br ${subject.color} text-white shadow-lg`
-                          : 'border-slate-200 bg-white text-slate-600 hover:border-primary/50'
+                      className={`${choiceBase} flex items-center gap-2 px-3 py-2.5 text-[13px] font-medium ${
+                        isSelected ? choicePicked : choiceIdle
                       }`}
                     >
-                      <Icon className={`w-6 h-6 mx-auto mb-2 ${isSelected ? 'text-white' : 'text-primary'}`} />
-                      <div className="text-xs font-medium">{subject.name}</div>
+                      <Icon
+                        className={`w-4 h-4 flex-shrink-0 ${
+                          isSelected ? 'text-primary' : 'text-slate-400'
+                        }`}
+                      />
+                      {subject.name}
                     </button>
                   )
                 })}
@@ -250,34 +270,34 @@ ${lines.map((line) => `• ${line}`).join('\n')}`
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-slate-700 mb-3">
-                {t.form.labelModalite} <span className="text-accent">*</span>
+              <label className={labelClass}>
+                {t.form.labelModalite} <span className="text-primary">*</span>
               </label>
-              <div className="grid grid-cols-2 gap-3">
-                <button
-                  type="button"
-                  onClick={() => updateFormData('location', 'domicile')}
-                  className={`p-4 rounded-xl border-2 transition-all duration-300 flex flex-col items-center gap-2 ${
-                    formData.location === 'domicile'
-                      ? 'border-primary bg-emerald-50 text-slate-900'
-                      : 'border-slate-200 bg-white text-slate-600 hover:border-primary/50'
-                  }`}
-                >
-                  <Home className={`w-6 h-6 ${formData.location === 'domicile' ? 'text-primary' : 'text-slate-400'}`} />
-                  <div className="text-sm font-medium">{t.form.optHome}</div>
-                </button>
-                <button
-                  type="button"
-                  onClick={() => updateFormData('location', 'visio')}
-                  className={`p-4 rounded-xl border-2 transition-all duration-300 flex flex-col items-center gap-2 ${
-                    formData.location === 'visio'
-                      ? 'border-primary bg-emerald-50 text-slate-900'
-                      : 'border-slate-200 bg-white text-slate-600 hover:border-primary/50'
-                  }`}
-                >
-                  <Video className={`w-6 h-6 ${formData.location === 'visio' ? 'text-primary' : 'text-slate-400'}`} />
-                  <div className="text-sm font-medium">{t.form.optOnline}</div>
-                </button>
+              <div className="grid grid-cols-2 gap-2">
+                {[
+                  { id: 'domicile', label: t.form.optHome, icon: Home },
+                  { id: 'visio', label: t.form.optOnline, icon: Video },
+                ].map((option) => {
+                  const Icon = option.icon
+                  const isSelected = formData.location === option.id
+                  return (
+                    <button
+                      key={option.id}
+                      type="button"
+                      onClick={() => updateFormData('location', option.id)}
+                      className={`${choiceBase} flex items-center gap-2.5 px-3 py-3 text-[13px] font-medium ${
+                        isSelected ? choicePicked : choiceIdle
+                      }`}
+                    >
+                      <Icon
+                        className={`w-4 h-4 flex-shrink-0 ${
+                          isSelected ? 'text-primary' : 'text-slate-400'
+                        }`}
+                      />
+                      {option.label}
+                    </button>
+                  )
+                })}
               </div>
             </div>
 
@@ -285,7 +305,7 @@ ${lines.map((line) => `• ${line}`).join('\n')}`
               type="button"
               onClick={() => setStep(2)}
               disabled={!formData.name || formData.subjects.length === 0}
-              className="w-full btn-primary disabled:opacity-50 disabled:cursor-not-allowed"
+              className="w-full btn-primary disabled:opacity-40 disabled:cursor-not-allowed disabled:shadow-none disabled:hover:translate-y-0"
             >
               {t.form.btnContinue}
             </button>
@@ -294,53 +314,54 @@ ${lines.map((line) => `• ${line}`).join('\n')}`
 
         {/* Step 2: Type de cours */}
         {step === 2 && (
-          <div className="space-y-6 animate-[fadeInUp_0.5s_ease-out]">
+          <div className="space-y-6 animate-[fadeInUp_0.4s_ease-out]">
             <div>
-              <label className="block text-sm font-medium text-slate-700 mb-3">
-                {t.form.labelCourseType} <span className="text-accent">*</span>
+              <label className={labelClass}>
+                {t.form.labelCourseType} <span className="text-primary">*</span>
               </label>
-              <div className="grid grid-cols-2 gap-3">
-                <button
-                  type="button"
-                  onClick={() => updateFormData('courseType', 'suivi')}
-                  className={`p-5 rounded-xl border-2 transition-all duration-300 ${
-                    formData.courseType === 'suivi'
-                      ? 'border-primary bg-emerald-50 text-slate-900'
-                      : 'border-slate-200 bg-white text-slate-600 hover:border-primary/50'
-                  }`}
-                >
-                  <div className="text-lg font-semibold mb-1">{t.form.courseRegularTitle}</div>
-                  <div className="text-xs text-slate-500">{t.form.courseRegularDesc}</div>
-                </button>
-                <button
-                  type="button"
-                  onClick={() => updateFormData('courseType', 'ponctuel')}
-                  className={`p-5 rounded-xl border-2 transition-all duration-300 ${
-                    formData.courseType === 'ponctuel'
-                      ? 'border-primary bg-emerald-50 text-slate-900'
-                      : 'border-slate-200 bg-white text-slate-600 hover:border-primary/50'
-                  }`}
-                >
-                  <div className="text-lg font-semibold mb-1">{t.form.courseOneoffTitle}</div>
-                  <div className="text-xs text-slate-500">{t.form.courseOneoffDesc}</div>
-                </button>
+              <div className="grid grid-cols-2 gap-2">
+                {[
+                  {
+                    id: 'suivi',
+                    title: t.form.courseRegularTitle,
+                    description: t.form.courseRegularDesc,
+                  },
+                  {
+                    id: 'ponctuel',
+                    title: t.form.courseOneoffTitle,
+                    description: t.form.courseOneoffDesc,
+                  },
+                ].map((option) => {
+                  const isSelected = formData.courseType === option.id
+                  return (
+                    <button
+                      key={option.id}
+                      type="button"
+                      onClick={() => updateFormData('courseType', option.id)}
+                      className={`${choiceBase} px-4 py-3.5 ${isSelected ? choicePicked : choiceIdle}`}
+                    >
+                      <span className="block text-[15px] font-semibold text-slate-900">
+                        {option.title}
+                      </span>
+                      <span className="block mt-0.5 text-xs text-slate-500">
+                        {option.description}
+                      </span>
+                    </button>
+                  )
+                })}
               </div>
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-slate-700 mb-3">
-                {t.form.labelReason}
-              </label>
-              <div className="grid grid-cols-2 gap-3">
+              <label className={labelClass}>{t.form.labelReason}</label>
+              <div className="grid grid-cols-2 gap-2">
                 {t.form.reasons.map((r) => (
                   <button
                     key={r}
                     type="button"
                     onClick={() => updateFormData('reason', formData.reason === r ? '' : r)}
-                    className={`p-3 rounded-xl border-2 transition-all duration-300 text-sm ${
-                      formData.reason === r
-                        ? 'border-primary bg-emerald-50 text-slate-900'
-                        : 'border-slate-200 bg-white text-slate-600 hover:border-primary/50'
+                    className={`${choiceBase} px-3 py-2.5 text-[13px] font-medium ${
+                      formData.reason === r ? choicePicked : choiceIdle
                     }`}
                   >
                     {r}
@@ -351,78 +372,53 @@ ${lines.map((line) => `• ${line}`).join('\n')}`
 
             {formData.courseType === 'suivi' && (
               <div>
-                <label className="block text-sm font-medium text-slate-700 mb-3">
-                  {t.form.labelFrequency}
-                </label>
-                <div className="card p-3 sm:p-4 bg-slate-50 border-slate-200">
-                  <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2 sm:gap-3">
-                    <input
-                      type="number"
-                      min="1"
-                      max={formData.frequencyPeriod === 'semaine' ? 4 : 16}
-                      value={formData.frequencyNumber}
-                      onChange={(e) => updateFormData('frequencyNumber', e.target.value)}
-                      disabled={!formData.frequencyPeriod}
-                      className="w-full sm:w-20 md:w-24 px-3 sm:px-4 py-2 sm:py-3 bg-white border border-slate-300 rounded-xl focus:ring-2 focus:ring-primary focus:border-primary text-slate-900 text-center font-semibold transition-all text-base sm:text-lg disabled:bg-slate-100 disabled:text-slate-400"
-                      placeholder="—"
-                    />
-                    <span className="hidden sm:inline text-slate-500 font-medium">×</span>
-                    <span className="hidden sm:inline text-slate-500 text-sm">{t.form.freqPer}</span>
-                    <div className="flex-1 grid grid-cols-2 gap-2">
+                <label className={labelClass}>{t.form.labelFrequency}</label>
+                <div className="flex items-center gap-2">
+                  <input
+                    type="number"
+                    min="1"
+                    max={formData.frequencyPeriod === 'semaine' ? 4 : 16}
+                    value={formData.frequencyNumber}
+                    onChange={(e) => updateFormData('frequencyNumber', e.target.value)}
+                    disabled={!formData.frequencyPeriod}
+                    className={`${fieldClass} w-16 flex-shrink-0 text-center font-semibold px-0 disabled:bg-slate-50 disabled:text-slate-300`}
+                    placeholder="—"
+                  />
+                  <span className="text-sm text-slate-400 flex-shrink-0">{t.form.freqPer}</span>
+                  <div className="flex-1 grid grid-cols-2 gap-2">
+                    {[
+                      { id: 'semaine', label: t.form.freqWeek },
+                      { id: 'mois', label: t.form.freqMonth },
+                    ].map((period) => (
                       <button
+                        key={period.id}
                         type="button"
                         onClick={() =>
                           updateFormData(
                             'frequencyPeriod',
-                            formData.frequencyPeriod === 'semaine' ? '' : 'semaine'
+                            formData.frequencyPeriod === period.id ? '' : period.id
                           )
                         }
-                        className={`px-2 sm:px-3 md:px-4 py-2 sm:py-3 rounded-xl border-2 transition-all duration-300 text-xs sm:text-sm font-medium whitespace-nowrap ${
-                          formData.frequencyPeriod === 'semaine'
-                            ? 'border-primary bg-emerald-50 text-slate-900'
-                            : 'border-slate-200 bg-white text-slate-500 hover:border-primary/50'
+                        className={`${choiceBase} px-3 py-3 text-center text-[13px] font-medium ${
+                          formData.frequencyPeriod === period.id ? choicePicked : choiceIdle
                         }`}
                       >
-                        {t.form.freqWeek}
+                        {period.label}
                       </button>
-                      <button
-                        type="button"
-                        onClick={() =>
-                          updateFormData(
-                            'frequencyPeriod',
-                            formData.frequencyPeriod === 'mois' ? '' : 'mois'
-                          )
-                        }
-                        className={`px-2 sm:px-3 md:px-4 py-2 sm:py-3 rounded-xl border-2 transition-all duration-300 text-xs sm:text-sm font-medium whitespace-nowrap ${
-                          formData.frequencyPeriod === 'mois'
-                            ? 'border-primary bg-emerald-50 text-slate-900'
-                            : 'border-slate-200 bg-white text-slate-500 hover:border-primary/50'
-                        }`}
-                      >
-                        {t.form.freqMonth}
-                      </button>
-                    </div>
+                    ))}
                   </div>
-                  <p className="text-xs text-slate-400 mt-2 sm:mt-3 text-center">
-                    {formData.frequencyPeriod ? t.form.freqHint : `→ ${t.form.msg.freqToDiscuss}`}
-                  </p>
                 </div>
+                <p className="text-xs text-slate-400 mt-2">
+                  {formData.frequencyPeriod ? t.form.freqHint : `→ ${t.form.msg.freqToDiscuss}`}
+                </p>
               </div>
             )}
 
             <div className="flex gap-3">
-              <button
-                type="button"
-                onClick={() => setStep(1)}
-                className="btn-secondary flex-1"
-              >
+              <button type="button" onClick={() => setStep(1)} className="btn-secondary flex-1">
                 {t.form.btnBack}
               </button>
-              <button
-                type="button"
-                onClick={() => setStep(3)}
-                className="btn-primary flex-1"
-              >
+              <button type="button" onClick={() => setStep(3)} className="btn-primary flex-1">
                 {t.form.btnContinue}
               </button>
             </div>
@@ -431,70 +427,64 @@ ${lines.map((line) => `• ${line}`).join('\n')}`
 
         {/* Step 3: Disponibilités et envoi */}
         {step === 3 && (
-          <div className="space-y-6 animate-[fadeInUp_0.5s_ease-out]">
+          <div className="space-y-6 animate-[fadeInUp_0.4s_ease-out]">
             <div>
-              <label className="block text-sm font-medium text-slate-700 mb-2">
-                {t.form.labelAvailability} <span className="text-accent">*</span>
+              <label className={labelClass}>
+                {t.form.labelAvailability} <span className="text-primary">*</span>
               </label>
               <input
                 type="text"
                 required
                 value={formData.availability}
                 onChange={(e) => updateFormData('availability', e.target.value)}
-                className="w-full px-4 py-3 bg-white border border-slate-300 rounded-xl focus:ring-2 focus:ring-primary focus:border-transparent text-slate-900 placeholder-slate-400 transition-all"
+                className={fieldClass}
                 placeholder={t.form.placeholderAvailability}
               />
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-slate-700 mb-2">
-                {t.form.labelMessage}
-              </label>
+              <label className={labelClass}>{t.form.labelMessage}</label>
               <textarea
                 value={formData.message}
                 onChange={(e) => updateFormData('message', e.target.value)}
                 rows={3}
-                className="w-full px-4 py-3 bg-white border border-slate-300 rounded-xl focus:ring-2 focus:ring-primary focus:border-transparent text-slate-900 placeholder-slate-400 transition-all resize-none"
+                className={`${fieldClass} resize-none`}
                 placeholder={t.form.placeholderMessage}
               />
             </div>
 
-            <div className="pt-4 border-t border-slate-200">
-              <p className="text-sm text-slate-500 mb-4">{t.form.chooseContact}</p>
+            <div className="pt-5 border-t border-slate-200">
+              <p className={labelClass}>{t.form.chooseContact}</p>
 
-              <div className="grid grid-cols-3 gap-3 sm:gap-4 max-w-2xl mx-auto">
-                <button
-                  type="button"
-                  onClick={() => handleSubmit('sms')}
-                  disabled={!formData.availability}
-                  className="p-3 sm:p-5 rounded-xl bg-gradient-to-br from-emerald-500 to-teal-600 hover:from-emerald-600 hover:to-teal-700 text-white transition-all duration-300 hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 flex flex-col items-center gap-2"
-                >
-                  <MessageSquare className="w-6 h-6 sm:w-7 sm:h-7" />
-                  <span className="text-xs sm:text-sm font-medium">SMS</span>
-                  <span className="text-[10px] sm:text-xs text-white/70 mt-1">{t.contact.smsDesc}</span>
-                </button>
-
-                <button
-                  type="button"
-                  onClick={() => handleSubmit('whatsapp')}
-                  disabled={!formData.availability}
-                  className="p-3 sm:p-5 rounded-xl bg-gradient-to-br from-emerald-500 to-teal-600 hover:from-emerald-600 hover:to-teal-700 text-white transition-all duration-300 hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 flex flex-col items-center gap-2"
-                >
-                  <WhatsAppIcon className="w-6 h-6 sm:w-7 sm:h-7" />
-                  <span className="text-xs sm:text-sm font-medium">WhatsApp</span>
-                  <span className="text-[10px] sm:text-xs text-white/70 mt-1">{t.contact.whatsappDesc}</span>
-                </button>
-
-                <button
-                  type="button"
-                  onClick={() => handleSubmit('email')}
-                  disabled={!formData.availability}
-                  className="p-3 sm:p-5 rounded-xl bg-gradient-to-br from-emerald-500 to-teal-600 hover:from-emerald-600 hover:to-teal-700 text-white transition-all duration-300 hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 flex flex-col items-center gap-2"
-                >
-                  <Mail className="w-6 h-6 sm:w-7 sm:h-7" />
-                  <span className="text-xs sm:text-sm font-medium">Email</span>
-                  <span className="text-[10px] sm:text-xs text-white/70 mt-1">{t.contact.emailDesc}</span>
-                </button>
+              {/* Same rows as the direct contact block, so sending the form
+                  looks like what it is: choosing a channel */}
+              <div className="rounded-xl border border-slate-200 divide-y divide-slate-100 overflow-hidden">
+                {sendChannels.map((channel) => {
+                  const Icon = channel.icon
+                  return (
+                    <button
+                      key={channel.id}
+                      type="button"
+                      onClick={() => handleSubmit(channel.id)}
+                      disabled={!formData.availability}
+                      className="group w-full flex items-center gap-3.5 px-4 py-3.5 text-left transition-colors duration-200 hover:bg-slate-50 disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:bg-transparent"
+                    >
+                      <span className="w-9 h-9 rounded-lg bg-emerald-50 border border-emerald-100 flex items-center justify-center flex-shrink-0 text-primary transition-colors duration-200 group-hover:bg-emerald-100 group-disabled:group-hover:bg-emerald-50">
+                        <Icon className="w-4 h-4" />
+                      </span>
+                      <span className="flex-1 text-sm font-semibold text-slate-900">
+                        {channel.label}
+                      </span>
+                      <span className="hidden sm:block text-xs text-slate-500">
+                        {channel.description}
+                      </span>
+                      <ArrowUpRight
+                        aria-hidden="true"
+                        className="w-4 h-4 flex-shrink-0 text-slate-300 transition-all duration-300 group-hover:text-primary group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                      />
+                    </button>
+                  )
+                })}
               </div>
 
               <button

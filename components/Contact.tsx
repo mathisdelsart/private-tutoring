@@ -4,6 +4,7 @@ import { useState } from 'react'
 import { ArrowUpRight, Mail, MessageSquare } from 'lucide-react'
 import ContactForm from './ContactForm'
 import Segmented from './Segmented'
+import SectionHeader from './SectionHeader'
 import WhatsAppIcon from './WhatsAppIcon'
 import { useLanguage } from '@/lib/i18n'
 
@@ -15,8 +16,8 @@ interface ContactProps {
 
 export default function Contact({ email, whatsapp, nom }: ContactProps) {
   const { t } = useLanguage()
-  // The form is the recommended route, so it is the one on screen first
-  const [mode, setMode] = useState<'form' | 'direct'>('form')
+  // Writing directly is the lightest way in, so it is the one on screen first
+  const [mode, setMode] = useState<'form' | 'direct'>('direct')
   const phoneDisplay = '+32 468.38.63.54'
   const whatsappText = t.contact.directWhatsappText.replace('{nom}', nom)
   const whatsappLink = `https://wa.me/${whatsapp}?text=${encodeURIComponent(whatsappText)}`
@@ -57,22 +58,19 @@ export default function Contact({ email, whatsapp, nom }: ContactProps) {
   return (
     <section id="contact" className="py-12 sm:py-16 lg:py-20 relative reveal">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-8 sm:mb-10">
-          <span className="eyebrow mb-4">{t.contact.eyebrow}</span>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold mb-4 sm:mb-6 text-slate-900">
-            {t.contact.title}
-          </h2>
-          <p className="text-base sm:text-lg lg:text-xl text-textSecondary max-w-3xl mx-auto px-4">
-            {t.contact.subtitle}
-          </p>
-        </div>
+        <SectionHeader
+          eyebrow={t.contact.eyebrow}
+          title={t.contact.title}
+          subtitle={t.contact.subtitle}
+          className="mb-8 sm:mb-10"
+        />
 
         {/* Same switcher as the subjects section, so the two read as one system */}
         <div className="flex justify-center">
           <Segmented
             options={[
-              { id: 'form', label: t.contact.tabForm },
               { id: 'direct', label: t.contact.tabDirect },
+              { id: 'form', label: t.contact.tabForm },
             ]}
             value={mode}
             onChange={(id) => setMode(id as 'form' | 'direct')}
@@ -81,8 +79,12 @@ export default function Contact({ email, whatsapp, nom }: ContactProps) {
             className="w-full sm:w-auto max-w-md"
           />
         </div>
-        <p className="mt-4 mb-8 sm:mb-10 text-center text-xs sm:text-sm text-slate-500 px-4">
-          {t.contact.tabHint}
+        {/* The caption says what the chosen route is, instead of pushing one */}
+        <p
+          key={mode}
+          className="mt-4 mb-8 sm:mb-10 text-center text-[13px] sm:text-sm text-slate-500 max-w-xl mx-auto px-4 animate-[fadeInUp_0.35s_ease-out]"
+        >
+          {mode === 'direct' ? t.contact.hintDirect : t.contact.hintForm}
         </p>
 
         <div id={`contact-panel-${mode}`} role="tabpanel">

@@ -3,6 +3,7 @@
 import { useState } from 'react'
 import { Plus } from 'lucide-react'
 import { useLanguage } from '@/lib/i18n'
+import SectionHeader from './SectionHeader'
 
 export default function Faq() {
   const { t } = useLanguage()
@@ -11,15 +12,7 @@ export default function Faq() {
   return (
     <section id="faq" className="py-12 sm:py-16 lg:py-20 relative reveal">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-10 sm:mb-14">
-          <span className="eyebrow mb-4">{t.faq.eyebrow}</span>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold mb-4 sm:mb-6 text-slate-900">
-            {t.faq.title}
-          </h2>
-          <p className="text-base sm:text-lg lg:text-xl text-textSecondary max-w-3xl mx-auto px-4">
-            {t.faq.subtitle}
-          </p>
-        </div>
+        <SectionHeader eyebrow={t.faq.eyebrow} title={t.faq.title} subtitle={t.faq.subtitle} />
 
         {/* No cards here: thin rules on the page background keep the section
             quiet next to the sections that do use cards. The list is narrower
@@ -37,7 +30,11 @@ export default function Faq() {
                   aria-controls={`faq-answer-${index}`}
                   className="group w-[calc(100%+2rem)] -ml-4 px-4 py-5 flex items-start justify-between gap-6 text-left rounded-xl hover:bg-white/80 transition-colors duration-200"
                 >
-                  <span className="text-[15px] sm:text-[17px] font-semibold text-slate-900 leading-snug tracking-tight">
+                  <span
+                    className={`text-[15px] sm:text-[17px] font-semibold leading-snug tracking-tight transition-colors duration-200 ${
+                      isOpen ? 'text-primary' : 'text-slate-900 group-hover:text-primary'
+                    }`}
+                  >
                     {item.q}
                   </span>
                   <Plus
