@@ -1,8 +1,9 @@
 'use client'
 
 import { useState } from 'react'
-import { Mail, MessageCircle } from 'lucide-react'
+import { Mail, MessageCircle, MessageSquare } from 'lucide-react'
 import ContactForm from './ContactForm'
+import WhatsAppIcon from './WhatsAppIcon'
 import { useLanguage } from '@/lib/i18n'
 
 interface ContactProps {
@@ -14,29 +15,42 @@ interface ContactProps {
 export default function Contact({ email, whatsapp, nom }: ContactProps) {
   const { t } = useLanguage()
   const [showForm, setShowForm] = useState(false)
+  const phoneDisplay = '+32 468.38.63.54'
   const whatsappText = t.contact.directWhatsappText.replace('{nom}', nom)
   const whatsappLink = `https://wa.me/${whatsapp}?text=${encodeURIComponent(whatsappText)}`
   const emailLink = `mailto:${email}?subject=${encodeURIComponent(t.contact.directEmailSubject)}`
+  // "?&body=" is the form both iOS and Android accept: iOS expects the body after
+  // "&", Android after "?", and this satisfies each of them.
+  const smsLink = `sms:+${whatsapp}?&body=${encodeURIComponent(
+    t.contact.directSmsText.replace('{nom}', nom)
+  )}`
 
   const contactMethods = [
     {
-      icon: <MessageCircle />,
+      icon: <MessageSquare className="w-7 h-7 sm:w-8 sm:h-8" />,
+      title: 'SMS',
+      value: phoneDisplay,
+      link: smsLink,
+      newTab: false,
+      color: 'from-emerald-500 to-teal-600',
+      description: t.contact.smsDesc
+    },
+    {
+      icon: <WhatsAppIcon className="w-7 h-7 sm:w-8 sm:h-8" />,
       title: 'WhatsApp',
-      value: `+32 468.38.63.54`,
+      value: phoneDisplay,
       link: whatsappLink,
-      color: 'from-green-500 to-emerald-600',
-      bgColor: 'bg-emerald-50',
-      borderColor: 'border-emerald-200',
+      newTab: true,
+      color: 'from-emerald-500 to-teal-600',
       description: t.contact.whatsappDesc
     },
     {
-      icon: <Mail />,
+      icon: <Mail className="w-7 h-7 sm:w-8 sm:h-8" />,
       title: 'Email',
       value: email,
       link: emailLink,
-      color: 'from-teal-500 to-emerald-600',
-      bgColor: 'bg-emerald-50',
-      borderColor: 'border-emerald-200',
+      newTab: false,
+      color: 'from-emerald-500 to-teal-600',
       description: t.contact.emailDesc
     },
   ]
@@ -45,6 +59,7 @@ export default function Contact({ email, whatsapp, nom }: ContactProps) {
     <section id="contact" className="py-12 sm:py-16 lg:py-20 relative reveal">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12 sm:mb-16">
+          <span className="eyebrow mb-4">{t.contact.eyebrow}</span>
           <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold mb-4 sm:mb-6 text-slate-900">
             {t.contact.title}
           </h2>
@@ -86,19 +101,19 @@ export default function Contact({ email, whatsapp, nom }: ContactProps) {
           <ContactForm email={email} whatsapp={whatsapp} nom={nom} />
         ) : (
           <div className="max-w-7xl mx-auto">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 lg:gap-8 max-w-4xl mx-auto">
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-5 lg:gap-6 max-w-5xl mx-auto">
             {contactMethods.map((method, index) => (
               <a
                 key={index}
                 href={method.link}
-                target={method.title === 'Email' ? '_self' : '_blank'}
+                target={method.newTab ? '_blank' : '_self'}
                 rel="noopener noreferrer"
-                className={`relative overflow-hidden rounded-2xl p-6 sm:p-8 group hover:scale-105 transition-all duration-400 ${method.bgColor} border-2 ${method.borderColor} hover:shadow-2xl flex flex-col items-center text-center`}
+                className="card relative overflow-hidden p-6 sm:p-8 group hover:-translate-y-1 hover:border-emerald-200 hover:shadow-[0_18px_45px_rgba(5,150,105,0.13)] transition-all duration-400 flex flex-col items-center text-center"
               >
                 {/* Effet de brillance au hover - Désactivé sur mobile */}
-                <div className="hidden sm:block absolute inset-0 bg-gradient-to-r from-transparent via-white/40 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
+                <div className="absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-emerald-50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
 
-                <div className={`w-16 h-16 sm:w-20 sm:h-20 rounded-xl sm:rounded-2xl bg-gradient-to-br ${method.color} flex items-center justify-center text-3xl sm:text-4xl mb-4 sm:mb-6 shadow-lg transform group-hover:scale-110 group-hover:rotate-6 transition-all duration-300`}>
+                <div className={`w-16 h-16 sm:w-20 sm:h-20 rounded-xl sm:rounded-2xl bg-gradient-to-br ${method.color} flex items-center justify-center text-white mb-4 sm:mb-6 shadow-lg transform group-hover:scale-110 group-hover:rotate-6 transition-all duration-300`}>
                   {method.icon}
                 </div>
                 <div className="relative z-10">

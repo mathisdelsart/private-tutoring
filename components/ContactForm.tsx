@@ -1,8 +1,20 @@
 'use client'
 
 import { useState } from 'react'
-import { Mail, MessageCircle, Home, Video, Calculator, Lightbulb, Code } from 'lucide-react'
+import {
+  Mail,
+  MessageSquare,
+  Home,
+  Video,
+  Calculator,
+  Atom,
+  Code,
+  Brain,
+  Compass,
+  Stethoscope,
+} from 'lucide-react'
 import { useLanguage } from '@/lib/i18n'
+import WhatsAppIcon from './WhatsAppIcon'
 
 interface ContactFormProps {
   email: string
@@ -10,23 +22,31 @@ interface ContactFormProps {
   nom: string
 }
 
+// One icon set per level, so the subject buttons stay meaningful whatever the level.
+const subjectIcons: Record<string, typeof Calculator[]> = {
+  secondaire: [Calculator, Atom, Code],
+  superieur: [Calculator, Atom, Code, Brain],
+  examens: [Compass, Stethoscope],
+}
+
 export default function ContactForm({ email, whatsapp, nom }: ContactFormProps) {
   const { t } = useLanguage()
   const [formData, setFormData] = useState({
     name: '',
+    level: 'secondaire',
     subjects: [] as string[],
     location: 'domicile',
     courseType: 'suivi',
     reason: '',
-    frequencyNumber: '2',
-    frequencyPeriod: 'semaine',
+    frequencyNumber: '',
+    frequencyPeriod: '',
     availability: '',
     message: ''
   })
 
   const [step, setStep] = useState(1)
 
-  const handleSubmit = async (platform: 'whatsapp' | 'email') => {
+  const handleSubmit = async (platform: 'whatsapp' | 'email' | 'sms') => {
     const m = t.form.msg
     const subjectsText = formData.subjects.join(' + ')
     const periodText = formData.frequencyPeriod === 'semaine' ? m.periodWeek : m.periodMonth
@@ -36,47 +56,37 @@ export default function ContactForm({ email, whatsapp, nom }: ContactFormProps) 
 
     const modalityText = formData.location === 'domicile' ? m.modalityHome : m.modalityOnline
     const courseTypeText = formData.courseType === 'suivi' ? m.courseTypeRegular : m.courseTypeOneoff
+    const levelText = t.form.levels.find((l) => l.id === formData.level)?.label ?? ''
 
+    const lines = [
+      `${m.student} : ${formData.name}`,
+      `${m.level} : ${levelText}`,
+      `${m.subjects} : ${subjectsText}`,
+      `${m.modality} : ${modalityText}`,
+      `${m.courseType} : ${courseTypeText}`,
+    ]
+
+    if (formData.reason) lines.push(`${m.reason} : ${formData.reason}`)
+    if (formData.courseType === 'suivi') lines.push(`${m.frequency} : ${frequencyText}`)
+    lines.push(`${m.availability} : ${formData.availability}`)
+
+    // One short line per field: readable as-is in WhatsApp, SMS and email,
+    // where the previous heavy rules and shouting labels rendered badly.
     let message = `${m.greeting.replace('{nom}', nom)}
 
 ${m.intro}
 
-━━━━━━━━━━━━━━━━━━━━━━━━━━
-
-${m.student}
-${formData.name}
-
-${m.subjects}
-${subjectsText}
-
-${m.modality}
-${modalityText}
-
-${m.courseType}
-${courseTypeText}`
-
-    if (formData.reason) {
-      message += `\n${formData.reason}`
-    }
-
-    if (formData.courseType === 'suivi') {
-      message += `\n\n${m.frequency}
-${frequencyText}`
-    }
-
-    message += `\n\n${m.availability}
-${formData.availability}`
+${lines.map((line) => `• ${line}`).join('\n')}`
 
     if (formData.message) {
-      message += `\n\n${m.message}
-${formData.message}`
+      message += `\n\n${m.message} :\n${formData.message}`
     }
 
-    message += `\n\n━━━━━━━━━━━━━━━━━━━━━━━━━━
+    message += `\n\n${m.closing}`
 
-${m.closing}`
-
-    if (platform === 'whatsapp') {
+    if (platform === 'sms') {
+      window.location.href = `sms:+${whatsapp}?&body=${encodeURIComponent(message)}`
+    } else if (platform === 'whatsapp') {
       const whatsappMessage = encodeURIComponent(message)
       window.open(`https://wa.me/${whatsapp}?text=${whatsappMessage}`, '_blank')
     } else if (platform === 'email') {
@@ -92,7 +102,7 @@ ${m.closing}`
 
       // Validation pour la fréquence
       if (field === 'frequencyNumber') {
-        const maxValue = prev.frequencyPeriod === 'semaine' ? 4 : 8
+        const maxValue = prev.frequencyPeriod === 'semaine' ? 4 : 16
         const numValue = parseInt(value, 10)
 
         // Ne valider que si c'est un nombre valide
@@ -112,11 +122,18 @@ ${m.closing}`
 
       // Si on change la période, vérifier que la fréquence est toujours valide
       if (field === 'frequencyPeriod') {
-        const maxValue = value === 'semaine' ? 4 : 8
-        const currentNum = parseInt(prev.frequencyNumber, 10)
+        if (!value) {
+          // Désélection : on retombe sur "à discuter ensemble"
+          newData.frequencyNumber = ''
+        } else {
+          const maxValue = value === 'semaine' ? 4 : 16
+          const currentNum = parseInt(prev.frequencyNumber, 10)
 
-        if (!isNaN(currentNum) && currentNum > maxValue) {
-          newData.frequencyNumber = maxValue.toString()
+          if (!prev.frequencyNumber) {
+            newData.frequencyNumber = '2'
+          } else if (!isNaN(currentNum) && currentNum > maxValue) {
+            newData.frequencyNumber = maxValue.toString()
+          }
         }
       }
 
@@ -126,19 +143,29 @@ ${m.closing}`
 
   const toggleSubject = (subject: string) => {
     setFormData(prev => {
-      const subjects = prev.subjects.includes(subject)
-        ? prev.subjects.filter(s => s !== subject)
-        : [...prev.subjects, subject]
+      if (prev.subjects.includes(subject)) {
+        return { ...prev, subjects: prev.subjects.filter(s => s !== subject) }
+      }
+      // The two entrance exams cannot be sat together, so that level is single choice
+      const subjects = prev.level === 'examens' ? [subject] : [...prev.subjects, subject]
       return { ...prev, subjects }
     })
   }
 
-  const subjectVisuals = [
-    { icon: Calculator, color: 'from-emerald-500 to-teal-600' },
-    { icon: Lightbulb, color: 'from-teal-500 to-emerald-600' },
-    { icon: Code, color: 'from-green-500 to-emerald-600' }
-  ]
-  const subjects = t.form.subjects.map((name, i) => ({ name, ...subjectVisuals[i] }))
+  // Subject names differ from one level to the next, so the selection is reset with the level.
+  const selectLevel = (levelId: string) => {
+    setFormData(prev => (prev.level === levelId ? prev : { ...prev, level: levelId, subjects: [] }))
+  }
+
+  const subjectGradient = 'from-emerald-500 to-teal-600'
+  const activeLevel = t.form.levels.find((l) => l.id === formData.level) ?? t.form.levels[0]
+  const icons = subjectIcons[activeLevel.id] ?? subjectIcons.secondaire
+  const subjects = activeLevel.subjects.map((name, i) => ({
+    name,
+    icon: icons[i % icons.length],
+    color: subjectGradient,
+  }))
+  const subjectGridClass = subjects.length === 3 ? 'grid-cols-3' : 'grid-cols-2'
 
   return (
     <div className="card p-8 max-w-2xl mx-auto relative">
@@ -172,9 +199,31 @@ ${m.closing}`
 
             <div>
               <label className="block text-sm font-medium text-slate-700 mb-3">
+                {t.form.labelLevel} <span className="text-accent">*</span>
+              </label>
+              <div className="grid grid-cols-3 gap-2 sm:gap-3">
+                {t.form.levels.map((level) => (
+                  <button
+                    key={level.id}
+                    type="button"
+                    onClick={() => selectLevel(level.id)}
+                    className={`px-2 py-3 rounded-xl border-2 text-xs sm:text-sm font-medium transition-all duration-300 ${
+                      formData.level === level.id
+                        ? 'border-primary bg-emerald-50 text-slate-900'
+                        : 'border-slate-200 bg-white text-slate-600 hover:border-primary/50'
+                    }`}
+                  >
+                    {level.label}
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            <div>
+              <label className="block text-sm font-medium text-slate-700 mb-3">
                 {t.form.labelSubjects} <span className="text-accent">*</span>
               </label>
-              <div className="grid grid-cols-3 gap-3">
+              <div className={`grid ${subjectGridClass} gap-3`}>
                 {subjects.map((subject) => {
                   const Icon = subject.icon
                   const isSelected = formData.subjects.includes(subject.name)
@@ -195,7 +244,9 @@ ${m.closing}`
                   )
                 })}
               </div>
-              <p className="text-xs text-slate-400 mt-2">{t.form.subjectsHint}</p>
+              {formData.level !== 'examens' && (
+                <p className="text-xs text-slate-400 mt-2">{t.form.subjectsHint}</p>
+              )}
             </div>
 
             <div>
@@ -308,18 +359,24 @@ ${m.closing}`
                     <input
                       type="number"
                       min="1"
-                      max={formData.frequencyPeriod === 'semaine' ? 4 : 8}
+                      max={formData.frequencyPeriod === 'semaine' ? 4 : 16}
                       value={formData.frequencyNumber}
                       onChange={(e) => updateFormData('frequencyNumber', e.target.value)}
-                      className="w-full sm:w-20 md:w-24 px-3 sm:px-4 py-2 sm:py-3 bg-white border border-slate-300 rounded-xl focus:ring-2 focus:ring-primary focus:border-primary text-slate-900 text-center font-semibold transition-all text-base sm:text-lg"
-                      placeholder="2"
+                      disabled={!formData.frequencyPeriod}
+                      className="w-full sm:w-20 md:w-24 px-3 sm:px-4 py-2 sm:py-3 bg-white border border-slate-300 rounded-xl focus:ring-2 focus:ring-primary focus:border-primary text-slate-900 text-center font-semibold transition-all text-base sm:text-lg disabled:bg-slate-100 disabled:text-slate-400"
+                      placeholder="—"
                     />
                     <span className="hidden sm:inline text-slate-500 font-medium">×</span>
                     <span className="hidden sm:inline text-slate-500 text-sm">{t.form.freqPer}</span>
                     <div className="flex-1 grid grid-cols-2 gap-2">
                       <button
                         type="button"
-                        onClick={() => updateFormData('frequencyPeriod', 'semaine')}
+                        onClick={() =>
+                          updateFormData(
+                            'frequencyPeriod',
+                            formData.frequencyPeriod === 'semaine' ? '' : 'semaine'
+                          )
+                        }
                         className={`px-2 sm:px-3 md:px-4 py-2 sm:py-3 rounded-xl border-2 transition-all duration-300 text-xs sm:text-sm font-medium whitespace-nowrap ${
                           formData.frequencyPeriod === 'semaine'
                             ? 'border-primary bg-emerald-50 text-slate-900'
@@ -330,7 +387,12 @@ ${m.closing}`
                       </button>
                       <button
                         type="button"
-                        onClick={() => updateFormData('frequencyPeriod', 'mois')}
+                        onClick={() =>
+                          updateFormData(
+                            'frequencyPeriod',
+                            formData.frequencyPeriod === 'mois' ? '' : 'mois'
+                          )
+                        }
                         className={`px-2 sm:px-3 md:px-4 py-2 sm:py-3 rounded-xl border-2 transition-all duration-300 text-xs sm:text-sm font-medium whitespace-nowrap ${
                           formData.frequencyPeriod === 'mois'
                             ? 'border-primary bg-emerald-50 text-slate-900'
@@ -341,7 +403,9 @@ ${m.closing}`
                       </button>
                     </div>
                   </div>
-                  <p className="text-xs text-slate-400 mt-2 sm:mt-3 text-center">{t.form.freqHint}</p>
+                  <p className="text-xs text-slate-400 mt-2 sm:mt-3 text-center">
+                    {formData.frequencyPeriod ? t.form.freqHint : `→ ${t.form.msg.freqToDiscuss}`}
+                  </p>
                 </div>
               </div>
             )}
@@ -398,14 +462,25 @@ ${m.closing}`
             <div className="pt-4 border-t border-slate-200">
               <p className="text-sm text-slate-500 mb-4">{t.form.chooseContact}</p>
 
-              <div className="grid grid-cols-2 gap-4 max-w-2xl mx-auto">
+              <div className="grid grid-cols-3 gap-3 sm:gap-4 max-w-2xl mx-auto">
+                <button
+                  type="button"
+                  onClick={() => handleSubmit('sms')}
+                  disabled={!formData.availability}
+                  className="p-3 sm:p-5 rounded-xl bg-gradient-to-br from-emerald-500 to-teal-600 hover:from-emerald-600 hover:to-teal-700 text-white transition-all duration-300 hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 flex flex-col items-center gap-2"
+                >
+                  <MessageSquare className="w-6 h-6 sm:w-7 sm:h-7" />
+                  <span className="text-xs sm:text-sm font-medium">SMS</span>
+                  <span className="text-[10px] sm:text-xs text-white/70 mt-1">{t.contact.smsDesc}</span>
+                </button>
+
                 <button
                   type="button"
                   onClick={() => handleSubmit('whatsapp')}
                   disabled={!formData.availability}
-                  className="p-4 sm:p-5 rounded-xl bg-gradient-to-br from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 text-white transition-all duration-300 hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 flex flex-col items-center gap-2"
+                  className="p-3 sm:p-5 rounded-xl bg-gradient-to-br from-emerald-500 to-teal-600 hover:from-emerald-600 hover:to-teal-700 text-white transition-all duration-300 hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 flex flex-col items-center gap-2"
                 >
-                  <MessageCircle className="w-6 h-6 sm:w-7 sm:h-7" />
+                  <WhatsAppIcon className="w-6 h-6 sm:w-7 sm:h-7" />
                   <span className="text-xs sm:text-sm font-medium">WhatsApp</span>
                   <span className="text-[10px] sm:text-xs text-white/70 mt-1">{t.contact.whatsappDesc}</span>
                 </button>
@@ -414,7 +489,7 @@ ${m.closing}`
                   type="button"
                   onClick={() => handleSubmit('email')}
                   disabled={!formData.availability}
-                  className="p-4 sm:p-5 rounded-xl bg-gradient-to-br from-teal-500 to-emerald-600 hover:from-teal-600 hover:to-emerald-700 text-white transition-all duration-300 hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 flex flex-col items-center gap-2"
+                  className="p-3 sm:p-5 rounded-xl bg-gradient-to-br from-emerald-500 to-teal-600 hover:from-emerald-600 hover:to-teal-700 text-white transition-all duration-300 hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 flex flex-col items-center gap-2"
                 >
                   <Mail className="w-6 h-6 sm:w-7 sm:h-7" />
                   <span className="text-xs sm:text-sm font-medium">Email</span>

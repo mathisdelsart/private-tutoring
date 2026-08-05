@@ -3,18 +3,47 @@
 import { useEffect, useState } from 'react'
 import { Menu, X, GraduationCap } from 'lucide-react'
 import { useLanguage } from '@/lib/i18n'
+import type { Lang } from '@/locales/translations'
+
+// Section ids are the same in every language, so they can live outside the component.
+const SECTION_IDS = ['accueil', 'matieres', 'methode', 'temoignages', 'apropos', 'faq', 'contact']
+
+const LANGS: Lang[] = ['fr', 'en', 'nl']
 
 export default function Navigation() {
   const { lang, setLang, t } = useLanguage()
   const [isScrolled, setIsScrolled] = useState(false)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
+  const [activeSection, setActiveSection] = useState(SECTION_IDS[0])
+  const [progress, setProgress] = useState(0)
 
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50)
+
+      const scrollable = document.documentElement.scrollHeight - window.innerHeight
+      setProgress(scrollable > 0 ? Math.min(100, (window.scrollY / scrollable) * 100) : 0)
+
+      // The section currently sitting under the navbar is the active one.
+      const threshold = 140
+      let current = SECTION_IDS[0]
+      SECTION_IDS.forEach((id) => {
+        const element = document.getElementById(id)
+        if (element && element.getBoundingClientRect().top <= threshold) {
+          current = id
+        }
+      })
+      setActiveSection(current)
     }
-    window.addEventListener('scroll', handleScroll)
-    return () => window.removeEventListener('scroll', handleScroll)
+
+    window.addEventListener('scroll', handleScroll, { passive: true })
+    window.addEventListener('resize', handleScroll)
+    handleScroll()
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll)
+      window.removeEventListener('resize', handleScroll)
+    }
   }, [])
 
   const menuItems = t.nav.items
@@ -29,24 +58,18 @@ export default function Navigation() {
       role="group"
       aria-label={t.nav.toggleLabel}
     >
-      <button
-        onClick={() => setLang('fr')}
-        className={`px-2.5 sm:px-3 py-1.5 transition-colors duration-300 ${
-          lang === 'fr' ? 'bg-primary text-white' : 'text-slate-500 hover:bg-primary/10'
-        }`}
-        aria-pressed={lang === 'fr'}
-      >
-        FR
-      </button>
-      <button
-        onClick={() => setLang('en')}
-        className={`px-2.5 sm:px-3 py-1.5 transition-colors duration-300 ${
-          lang === 'en' ? 'bg-primary text-white' : 'text-slate-500 hover:bg-primary/10'
-        }`}
-        aria-pressed={lang === 'en'}
-      >
-        EN
-      </button>
+      {LANGS.map((code) => (
+        <button
+          key={code}
+          onClick={() => setLang(code)}
+          className={`px-2 sm:px-3 py-1.5 transition-colors duration-300 ${
+            lang === code ? 'bg-primary text-white' : 'text-slate-500 hover:bg-primary/10'
+          }`}
+          aria-pressed={lang === code}
+        >
+          {t.langName[code]}
+        </button>
+      ))}
     </div>
   )
 
@@ -67,22 +90,28 @@ export default function Navigation() {
           </a>
 
           {/* Right side: menu (desktop) + language toggle + mobile menu button */}
-          <div className="flex items-center gap-4 lg:gap-8 xl:gap-12">
+          <div className="flex items-center gap-4 lg:gap-6 xl:gap-10">
             {/* Desktop Menu */}
-            <ul className="hidden lg:flex gap-8 xl:gap-12 list-none">
-              {menuItems.map(([label, id]) => (
-                <li key={id}>
-                  <a
-                    href={`#${id}`}
-                    className="text-slate-700 text-sm xl:text-base font-medium transition-all duration-300 relative py-2 hover:text-accent hover:[text-shadow:0_0_20px_rgba(16,185,129,0.5)]
-                      before:content-[''] before:absolute before:bottom-0 before:left-1/2 before:-translate-x-1/2 before:w-0 before:h-0.5
-                      before:bg-gradient-to-r before:from-primary before:to-accent before:transition-all before:duration-300
-                      hover:before:w-full"
-                  >
-                    {label}
-                  </a>
-                </li>
-              ))}
+            <ul className="hidden lg:flex gap-5 xl:gap-8 list-none">
+              {menuItems.map(([label, id]) => {
+                const isActive = activeSection === id
+                return (
+                  <li key={id}>
+                    <a
+                      href={`#${id}`}
+                      aria-current={isActive ? 'true' : undefined}
+                      className={`text-sm xl:text-base font-medium transition-all duration-300 relative py-2 hover:text-accent
+                        before:content-[''] before:absolute before:bottom-0 before:left-1/2 before:-translate-x-1/2 before:h-0.5
+                        before:bg-gradient-to-r before:from-primary before:to-accent before:transition-all before:duration-300
+                        hover:before:w-full ${
+                          isActive ? 'text-primary before:w-full' : 'text-slate-700 before:w-0'
+                        }`}
+                    >
+                      {label}
+                    </a>
+                  </li>
+                )
+              })}
             </ul>
 
             <LangToggle />
@@ -101,6 +130,13 @@ export default function Navigation() {
             </button>
           </div>
         </div>
+
+        {/* Reading progress */}
+        <div
+          className="absolute bottom-0 left-0 h-0.5 bg-gradient-to-r from-primary to-accent"
+          style={{ width: `${progress}%` }}
+          aria-hidden="true"
+        />
       </nav>
 
       {/* Mobile Menu Overlay */}
@@ -124,7 +160,11 @@ export default function Navigation() {
                 <a
                   href={`#${id}`}
                   onClick={handleMenuClick}
-                  className="block px-4 py-3 text-slate-700 font-medium text-lg rounded-lg hover:bg-primary/10 hover:text-accent transition-all duration-300 border border-transparent hover:border-primary/30"
+                  className={`block px-4 py-3 font-medium text-lg rounded-lg transition-all duration-300 border ${
+                    activeSection === id
+                      ? 'bg-primary/10 text-primary border-primary/30'
+                      : 'text-slate-700 border-transparent hover:bg-primary/10 hover:text-accent hover:border-primary/30'
+                  }`}
                 >
                   {label}
                 </a>

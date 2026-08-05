@@ -20,16 +20,121 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Sober flat background — soft off-white with the faintest green wash, no animated blobs */
+/* Background: a soft off-white base with three very low-opacity washes that drift
+   slowly. Sober by construction — the movement is barely perceptible, and the
+   sand/teal tints keep it from reading as a flat block of green. */
 .app-bg {
   position: fixed;
   inset: 0;
   z-index: -10;
   pointer-events: none;
+  background: #FAFAF9;
+  overflow: hidden;
+}
+
+.app-bg::before,
+.app-bg::after {
+  content: '';
+  position: absolute;
+  border-radius: 9999px;
+  filter: blur(90px);
+}
+
+.app-bg::before {
+  width: 46rem;
+  height: 40rem;
+  top: -12rem;
+  right: -10rem;
+  background: radial-gradient(circle, rgba(16, 185, 129, 0.13), transparent 68%);
+  animation: drift 26s ease-in-out infinite;
+}
+
+.app-bg::after {
+  width: 42rem;
+  height: 38rem;
+  bottom: -14rem;
+  left: -12rem;
+  background: radial-gradient(circle, rgba(13, 148, 136, 0.11), transparent 68%);
+  animation: drift 32s ease-in-out infinite reverse;
+}
+
+/* A warm sand accent so the palette is not green-on-white only */
+.app-bg-accent {
+  position: fixed;
+  inset: 0;
+  z-index: -9;
+  pointer-events: none;
   background:
-    radial-gradient(ellipse 800px 600px at 100% 0%, rgba(16, 185, 129, 0.06), transparent 60%),
-    radial-gradient(ellipse 700px 600px at 0% 100%, rgba(5, 150, 105, 0.05), transparent 60%),
-    #FAFAF9;
+    radial-gradient(ellipse 60rem 34rem at 50% 42%, rgba(245, 158, 11, 0.045), transparent 62%);
+}
+
+@keyframes drift {
+  0%, 100% { transform: translate3d(0, 0, 0) scale(1); }
+  50% { transform: translate3d(-3rem, 2.5rem, 0) scale(1.08); }
+}
+
+/* Continuous testimonial marquee. The track holds the list twice, so shifting
+   by exactly half its width loops seamlessly. */
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+.marquee-track {
+  animation-name: marquee;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  will-change: transform;
+}
+
+.marquee-mask {
+  /* The mask only fades the edges — the track is far wider than the viewport,
+     so it must also be clipped or the whole page scrolls sideways. */
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 6rem, #000 calc(100% - 6rem), transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 6rem, #000 calc(100% - 6rem), transparent);
+}
+
+@media (max-width: 640px) {
+  .marquee-mask {
+    -webkit-mask-image: linear-gradient(90deg, transparent, #000 2rem, #000 calc(100% - 2rem), transparent);
+    mask-image: linear-gradient(90deg, transparent, #000 2rem, #000 calc(100% - 2rem), transparent);
+  }
+}
+
+/* Without motion the marquee stops and the track scrolls by hand instead */
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track {
+    animation: none;
+  }
+
+  .marquee-mask {
+    overflow-x: auto;
+  }
+}
+
+/* Small uppercase label above each section title */
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #047857;
+}
+
+.eyebrow::before,
+.eyebrow::after {
+  content: '';
+  height: 1px;
+  width: 1.75rem;
+  background: linear-gradient(90deg, transparent, rgba(5, 150, 105, 0.55));
+}
+
+.eyebrow::after {
+  background: linear-gradient(90deg, rgba(5, 150, 105, 0.55), transparent);
 }
 
 /* Green gradient text for the logo and highlights */
@@ -193,14 +298,10 @@ html {
   scroll-behavior: smooth;
 }
 
-/* Section scroll offset for sticky navbar */
+/* Section scroll offset for the fixed navbar. Anchor clicks are handled by
+   SmoothScroll; this covers direct hash URLs and keyboard navigation. */
 section[id] {
-  scroll-margin-top: 6rem;
-}
-
-section#matieres,
-section#temoignages {
-  scroll-margin-top: -8rem;
+  scroll-margin-top: 7rem;
 }
 
 /* Selection styling */
@@ -245,5 +346,15 @@ img {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
+  }
+
+  html {
+    scroll-behavior: auto;
+  }
+
+  /* Reveal is driven by an observer; without motion it must not hide content */
+  .reveal {
+    opacity: 1;
+    transform: none;
   }
 }

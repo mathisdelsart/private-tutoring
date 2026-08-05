@@ -13,13 +13,15 @@ const LanguageContext = createContext<LanguageContextValue | undefined>(undefine
 
 const STORAGE_KEY = 'site-lang'
 
+const isLang = (value: unknown): value is Lang => value === 'fr' || value === 'en' || value === 'nl'
+
 export function LanguageProvider({ children }: { children: ReactNode }) {
   // Default to French; read a saved preference after mount to avoid hydration mismatch.
   const [lang, setLangState] = useState<Lang>('fr')
 
   useEffect(() => {
     const stored = window.localStorage.getItem(STORAGE_KEY)
-    if (stored === 'fr' || stored === 'en') {
+    if (isLang(stored)) {
       setLangState(stored)
     }
   }, [])
