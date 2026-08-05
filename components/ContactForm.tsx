@@ -143,9 +143,11 @@ ${lines.map((line) => `• ${line}`).join('\n')}`
 
   const toggleSubject = (subject: string) => {
     setFormData(prev => {
-      const subjects = prev.subjects.includes(subject)
-        ? prev.subjects.filter(s => s !== subject)
-        : [...prev.subjects, subject]
+      if (prev.subjects.includes(subject)) {
+        return { ...prev, subjects: prev.subjects.filter(s => s !== subject) }
+      }
+      // The two entrance exams cannot be sat together, so that level is single choice
+      const subjects = prev.level === 'examens' ? [subject] : [...prev.subjects, subject]
       return { ...prev, subjects }
     })
   }
@@ -242,7 +244,9 @@ ${lines.map((line) => `• ${line}`).join('\n')}`
                   )
                 })}
               </div>
-              <p className="text-xs text-slate-400 mt-2">{t.form.subjectsHint}</p>
+              {formData.level !== 'examens' && (
+                <p className="text-xs text-slate-400 mt-2">{t.form.subjectsHint}</p>
+              )}
             </div>
 
             <div>

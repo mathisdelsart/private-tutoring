@@ -376,27 +376,42 @@ const fr = {
     items: [
       {
         q: 'Quels niveaux sont couverts ?',
-        a: 'De la 1ère secondaire au master. Je donne cours au secondaire (maths, physique, Python), dans l’enseignement supérieur (maths, physique générale, programmation et intelligence artificielle) et je prépare aux examens d’entrée en école d’ingénieur civil et en médecine.',
-      },
-      {
-        q: 'Comment se passe la préparation à l’examen d’entrée ingénieur civil ?',
-        a: 'On couvre l’ensemble du programme officiel de l’examen, chapitre par chapitre, puis on bascule sur un entraînement intensif à partir des questions des années précédentes. On travaille aussi la gestion du temps et la stratégie de réponse, qui font souvent la différence le jour J. Étant moi-même ingénieur civil, je suis passé par cet examen.',
-      },
-      {
-        q: 'Quelles matières sont couvertes pour l’examen d’entrée en médecine ?',
-        a: 'J’interviens sur les volets mathématiques et physique de la partie « connaissances scientifiques ». Je ne donne pas cours de biologie ni de chimie : pour ces deux matières, il vous faudra un autre enseignant.',
+        a: [
+          'De la 1ère secondaire au master. Je donne cours au secondaire (maths, physique, programmation), dans l’enseignement supérieur (maths, physique générale, programmation et intelligence artificielle) et je prépare aux examens d’entrée en école d’ingénieur civil et en médecine.',
+        ],
       },
       {
         q: 'Où les cours se donnent-ils ?',
-        a: 'Chez moi, à Gouy-Lez-Piéton (Courcelles), ou en ligne. Le format en ligne fonctionne très bien pour le supérieur et la préparation aux examens, et permet de travailler depuis n’importe où.',
+        a: [
+          'Chez moi, à Gouy-Lez-Piéton (Courcelles), ou en ligne. Je ne me déplace plus au domicile des élèves : la demande est devenue trop importante pour que j’ajoute des trajets à mon planning, et ce temps est bien mieux investi dans la préparation des séances.',
+          'Le format en ligne fonctionne très bien pour l’enseignement supérieur, pour la préparation aux examens d’entrée, et pour les élèves en école à la maison ou suffisamment autonomes pour rester concentrés seuls devant un écran.',
+          'En revanche, je le déconseille franchement aux élèves qui ont des difficultés de concentration ou un trouble de l’attention, ainsi qu’en dessous de la 3ème secondaire. Dans ces situations, le présentiel est nettement plus efficace : je vois tout de suite à quel moment l’élève décroche.',
+        ],
       },
       {
-        q: 'Peut-on organiser un stage intensif avant un examen ?',
-        a: 'Oui, et c’est souvent le format le plus efficace avant une seconde session ou un examen d’entrée. Plusieurs élèves ont revu une année complète en deux semaines à raison de deux heures par jour. On construit le planning ensemble en fonction de la date de votre examen.',
+        q: 'Peut-on organiser un « stage » intensif avant un examen ?',
+        a: [
+          'Oui, et c’est souvent le format le plus efficace avant une seconde session ou un examen d’entrée. Plusieurs élèves ont revu une année complète en deux semaines, à raison de deux heures par jour. On construit le planning ensemble en fonction de la date de votre examen.',
+        ],
+      },
+      {
+        q: 'Comment se passe la préparation à l’examen d’entrée ingénieur civil ?',
+        a: [
+          'On couvre l’ensemble du programme officiel de l’examen, chapitre par chapitre, puis on bascule sur un entraînement intensif à partir des questions des années précédentes. On travaille aussi la gestion du temps et la stratégie de réponse, qui font souvent la différence le jour J. Étant moi-même ingénieur civil, je suis passé par cet examen.',
+          'C’est la trame générale, pas un passage obligé : si vous préférez ne travailler qu’un seul chapitre ou qu’une seule matière, on s’en tient à ça. Le programme s’adapte à la demande.',
+        ],
+      },
+      {
+        q: 'Quelles matières sont couvertes pour l’examen d’entrée en médecine ?',
+        a: [
+          'J’interviens sur les volets mathématiques et physique de la partie « connaissances scientifiques ». Je ne donne pas cours de biologie ni de chimie : pour ces deux matières, il vous faudra un autre enseignant.',
+        ],
       },
       {
         q: 'Comment réserver un premier cours ?',
-        a: 'Passez par le formulaire de demande en bas de page : il me transmet directement le niveau, les matières et les disponibilités. Vous pouvez aussi m’écrire sur WhatsApp ou par email. Je réponds sous 24 heures.',
+        a: [
+          'Passez par le formulaire de demande en bas de page : il me transmet directement le niveau, les matières et les disponibilités. Vous pouvez aussi m’écrire par SMS, sur WhatsApp ou par email. Je réponds sous 24 heures.',
+        ],
       },
     ],
   },
@@ -871,27 +886,42 @@ const en: typeof fr = {
     items: [
       {
         q: 'Which levels do you teach?',
-        a: 'From the first year of secondary school up to master’s level. I teach secondary school (maths, physics, Python), higher education (mathematics, general physics, programming and artificial intelligence), and I prepare students for the civil engineering and medical entrance exams.',
-      },
-      {
-        q: 'How does preparation for the civil engineering entrance exam work?',
-        a: 'We cover the entire official exam syllabus chapter by chapter, then switch to intensive practice on questions from previous years. We also work on time management and answering strategy, which often make the difference on the day. As a civil engineer myself, I sat this exam.',
-      },
-      {
-        q: 'Which subjects do you cover for the medical entrance exam?',
-        a: 'I cover the mathematics and physics parts of the science section. I do not teach biology or chemistry: for those two subjects you will need another tutor.',
+        a: [
+          'From the first year of secondary school up to master’s level. I teach secondary school (maths, physics, programming), higher education (mathematics, general physics, programming and artificial intelligence), and I prepare students for the civil engineering and medical entrance exams.',
+        ],
       },
       {
         q: 'Where do the lessons take place?',
-        a: 'At my place in Gouy-Lez-Piéton (Courcelles), or online. The online format works very well for higher education and exam preparation, and lets you work from wherever you are.',
+        a: [
+          'At my place in Gouy-Lez-Piéton (Courcelles), or online. I no longer travel to students’ homes: demand has grown too high to add journeys to my schedule, and that time is far better spent preparing the sessions.',
+          'The online format works very well for higher education, for entrance exam preparation, and for home-schooled students or those independent enough to stay focused alone in front of a screen.',
+          'I do, however, strongly advise against it for students who struggle to concentrate or have an attention disorder, and below the third year of secondary school. In those cases, teaching in person is markedly more effective: I see straight away where the student loses the thread.',
+        ],
       },
       {
         q: 'Can we organize an intensive course before an exam?',
-        a: 'Yes, and it is often the most effective format before a retake or an entrance exam. Several students have reviewed a full year in two weeks at two hours a day. We build the schedule together based on your exam date.',
+        a: [
+          'Yes, and it is often the most effective format before a retake or an entrance exam. Several students have reviewed a full year in two weeks at two hours a day. We build the schedule together based on your exam date.',
+        ],
+      },
+      {
+        q: 'How does preparation for the civil engineering entrance exam work?',
+        a: [
+          'We cover the entire official exam syllabus chapter by chapter, then switch to intensive practice on questions from previous years. We also work on time management and answering strategy, which often make the difference on the day. As a civil engineer myself, I sat this exam.',
+          'That is the general outline, not a fixed path: if you would rather work on a single chapter or a single subject, we stick to that. The plan follows your request.',
+        ],
+      },
+      {
+        q: 'Which subjects do you cover for the medical entrance exam?',
+        a: [
+          'I cover the mathematics and physics parts of the science section. I do not teach biology or chemistry: for those two subjects you will need another tutor.',
+        ],
       },
       {
         q: 'How do I book a first lesson?',
-        a: 'Use the request form at the bottom of the page: it sends me your level, subjects and availability directly. You can also message me on WhatsApp or by email. I reply within 24 hours.',
+        a: [
+          'Use the request form at the bottom of the page: it sends me your level, subjects and availability directly. You can also reach me by SMS, on WhatsApp or by email. I reply within 24 hours.',
+        ],
       },
     ],
   },
@@ -1369,27 +1399,42 @@ const nl: typeof fr = {
     items: [
       {
         q: 'Welke niveaus worden gedekt?',
-        a: 'Van het eerste jaar middelbaar tot en met de master. Ik geef les in het middelbaar (wiskunde, fysica, Python), in het hoger onderwijs (wiskunde, algemene fysica, programmeren en artificiële intelligentie), en ik bereid voor op de toelatingsexamens burgerlijk ingenieur en arts en tandarts.',
-      },
-      {
-        q: 'Hoe verloopt de voorbereiding op het toelatingsexamen burgerlijk ingenieur?',
-        a: 'We nemen het volledige officiële examenprogramma hoofdstuk per hoofdstuk door en schakelen daarna over op intensief oefenen met vragen van vorige jaren. We werken ook aan timing en antwoordstrategie, wat op de examendag vaak het verschil maakt. Als burgerlijk ingenieur heb ik dit examen zelf afgelegd.',
-      },
-      {
-        q: 'Welke vakken worden behandeld voor het toelatingsexamen arts en tandarts?',
-        a: 'Ik behandel de onderdelen wiskunde en fysica van het wetenschappelijke gedeelte. Ik geef geen biologie of chemie: voor die twee vakken heeft u een andere lesgever nodig.',
+        a: [
+          'Van het eerste jaar middelbaar tot en met de master. Ik geef les in het middelbaar (wiskunde, fysica, programmeren), in het hoger onderwijs (wiskunde, algemene fysica, programmeren en artificiële intelligentie), en ik bereid voor op de toelatingsexamens burgerlijk ingenieur en arts en tandarts.',
+        ],
       },
       {
         q: 'Waar gaan de lessen door?',
-        a: 'Bij mij thuis in Gouy-Lez-Piéton (Courcelles), of online. Het online formaat werkt heel goed voor het hoger onderwijs en voor examenvoorbereiding, en laat u toe te werken waar u ook bent.',
+        a: [
+          'Bij mij thuis in Gouy-Lez-Piéton (Courcelles), of online. Ik verplaats me niet meer naar de leerlingen thuis: de vraag is te groot geworden om verplaatsingen in te plannen, en die tijd besteed ik veel beter aan de voorbereiding van de sessies.',
+          'Het online formaat werkt heel goed voor het hoger onderwijs, voor de voorbereiding op toelatingsexamens, en voor thuisonderwijs of leerlingen die zelfstandig genoeg zijn om alleen voor een scherm geconcentreerd te blijven.',
+          'Ik raad het echter uitdrukkelijk af voor leerlingen die moeite hebben met concentratie of een aandachtsstoornis hebben, en onder het derde jaar middelbaar. In die situaties werkt fysieke les duidelijk beter: ik zie meteen waar de leerling afhaakt.',
+        ],
       },
       {
         q: 'Kunnen we een intensieve cursus organiseren vóór een examen?',
-        a: 'Ja, en dat is vaak het meest doeltreffende formaat vóór een herexamen of een toelatingsexamen. Verschillende leerlingen hebben een volledig jaar herhaald in twee weken, aan twee uur per dag. We stellen de planning samen op in functie van uw examendatum.',
+        a: [
+          'Ja, en dat is vaak het meest doeltreffende formaat vóór een herexamen of een toelatingsexamen. Verschillende leerlingen hebben een volledig jaar herhaald in twee weken, aan twee uur per dag. We stellen de planning samen op in functie van uw examendatum.',
+        ],
+      },
+      {
+        q: 'Hoe verloopt de voorbereiding op het toelatingsexamen burgerlijk ingenieur?',
+        a: [
+          'We nemen het volledige officiële examenprogramma hoofdstuk per hoofdstuk door en schakelen daarna over op intensief oefenen met vragen van vorige jaren. We werken ook aan timing en antwoordstrategie, wat op de examendag vaak het verschil maakt. Als burgerlijk ingenieur heb ik dit examen zelf afgelegd.',
+          'Dat is de algemene lijn, geen verplicht traject: wil u liever aan één hoofdstuk of één vak werken, dan houden we het daarbij. Het programma volgt uw vraag.',
+        ],
+      },
+      {
+        q: 'Welke vakken worden behandeld voor het toelatingsexamen arts en tandarts?',
+        a: [
+          'Ik behandel de onderdelen wiskunde en fysica van het wetenschappelijke gedeelte. Ik geef geen biologie of chemie: voor die twee vakken heeft u een andere lesgever nodig.',
+        ],
       },
       {
         q: 'Hoe boek ik een eerste les?',
-        a: 'Gebruik het aanvraagformulier onderaan de pagina: het bezorgt me meteen het niveau, de vakken en de beschikbaarheden. U kan me ook een bericht sturen via WhatsApp of e-mail. Ik antwoord binnen de 24 uur.',
+        a: [
+          'Gebruik het aanvraagformulier onderaan de pagina: het bezorgt me meteen het niveau, de vakken en de beschikbaarheden. U kan me ook een sms sturen, via WhatsApp of per e-mail. Ik antwoord binnen de 24 uur.',
+        ],
       },
     ],
   },

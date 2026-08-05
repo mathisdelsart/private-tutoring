@@ -37,7 +37,7 @@ export default function Home() {
     mainEntity: translations.fr.faq.items.map((item) => ({
       '@type': 'Question',
       name: item.q,
-      acceptedAnswer: { '@type': 'Answer', text: item.a },
+      acceptedAnswer: { '@type': 'Answer', text: item.a.join(' ') },
     })),
   }
 

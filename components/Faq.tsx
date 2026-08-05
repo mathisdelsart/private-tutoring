@@ -59,9 +59,11 @@ export default function Faq() {
                   }`}
                 >
                   <div className="overflow-hidden">
-                    <p className="pb-5 sm:pb-6 pr-10 text-sm sm:text-base text-slate-600 leading-relaxed">
-                      {item.a}
-                    </p>
+                    <div className="pb-5 sm:pb-6 pr-10 space-y-3 text-sm sm:text-base text-slate-600 leading-relaxed">
+                      {item.a.map((paragraph) => (
+                        <p key={paragraph}>{paragraph}</p>
+                      ))}
+                    </div>
                   </div>
                 </div>
               </div>
