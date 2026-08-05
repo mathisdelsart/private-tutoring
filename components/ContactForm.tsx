@@ -89,17 +89,24 @@ export default function ContactForm({ email, whatsapp, nom }: ContactFormProps) 
 
     // One short line per field: readable as-is in WhatsApp, SMS and email,
     // where the previous heavy rules and shouting labels rendered badly.
-    let message = `${m.greeting.replace('{nom}', nom)}
-
-${m.intro}
-
-${lines.map((line) => `• ${line}`).join('\n')}`
+    //
+    // Some messaging apps drop the line breaks of a body handed to them by a
+    // link, and the message arrives as one run-on paragraph. Every line
+    // therefore ends with a space: invisible when the break survives, and the
+    // separator that keeps the message readable when it does not.
+    const paragraphs = [
+      m.greeting.replace('{nom}', nom),
+      m.intro,
+      lines.map((line) => `• ${line}`).join(' \n'),
+    ]
 
     if (formData.message) {
-      message += `\n\n${m.message} :\n${formData.message}`
+      // The visitor's own line breaks get the same treatment
+      paragraphs.push(`${m.message} : \n${formData.message.replace(/\r?\n/g, ' \n')}`)
     }
+    paragraphs.push(m.closing)
 
-    message += `\n\n${m.closing}`
+    const message = paragraphs.join(' \n\n')
 
     if (platform === 'sms') {
       window.location.href = `sms:+${whatsapp}?&body=${encodeURIComponent(message)}`
@@ -107,8 +114,10 @@ ${lines.map((line) => `• ${line}`).join('\n')}`
       const whatsappMessage = encodeURIComponent(message)
       window.open(`https://wa.me/${whatsapp}?text=${whatsappMessage}`, '_blank')
     } else if (platform === 'email') {
+      // RFC 6068 wants CRLF between the lines of a mailto body. A bare LF is
+      // what makes several mail clients run the whole message together.
       const emailSubject = encodeURIComponent(m.emailSubject.replace('{subjects}', subjectsText))
-      const emailBody = encodeURIComponent(message)
+      const emailBody = encodeURIComponent(message.replace(/\r?\n/g, '\r\n'))
       window.location.href = `mailto:${email}?subject=${emailSubject}&body=${emailBody}`
     }
   }

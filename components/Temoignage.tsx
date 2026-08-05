@@ -36,7 +36,14 @@ export default function Temoignage() {
       className="card w-[19rem] sm:w-[22rem] lg:w-[24rem] flex-shrink-0 mr-5 sm:mr-6 p-6 flex flex-col hover:border-emerald-200 hover:shadow-[0_16px_40px_rgba(5,150,105,0.10)] transition-all duration-300"
     >
       <div className="flex items-start justify-between gap-3 mb-4">
-        <Quote className="w-6 h-6 text-primary/25 flex-shrink-0" fill="currentColor" strokeWidth={0} />
+        {/* The lucide glyph is a closing mark — the mass sits at the top and the
+            tails hang down — so the opening one is the rotated one */}
+        <Quote
+          aria-hidden="true"
+          className="w-6 h-6 rotate-180 text-primary/25 flex-shrink-0"
+          fill="currentColor"
+          strokeWidth={0}
+        />
         {/* A word rather than five stars: it says what kind of testimonial
             this is, which a rating never did */}
         <span
@@ -56,7 +63,7 @@ export default function Temoignage() {
             spot, so it lands right after the last line whatever its length */}
         <Quote
           aria-hidden="true"
-          className="block w-5 h-5 ml-auto mt-2 rotate-180 text-primary/25"
+          className="block w-5 h-5 ml-auto mt-2 text-primary/25"
           fill="currentColor"
           strokeWidth={0}
         />
