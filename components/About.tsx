@@ -46,8 +46,10 @@ export default function About({ diplomeFichier }: AboutProps) {
           </p>
         </div>
 
-        {/* Credentials */}
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4 max-w-5xl mx-auto mb-10 sm:mb-14">
+        {/* Credentials: a banded strip framed by two rules, columns split by
+            vertical dividers, rather than three separate white cards */}
+        <div className="max-w-5xl mx-auto mb-10 sm:mb-14 border-y border-slate-200">
+          <div className="grid grid-cols-1 sm:grid-cols-3 divide-y sm:divide-y-0 sm:divide-x divide-slate-200">
           {t.about.credentials.map((credential, index) => {
             const Icon = credentialIcons[index % credentialIcons.length]
             // 'file' points at the local certificate, whose name lives in prof.json
@@ -58,7 +60,7 @@ export default function About({ diplomeFichier }: AboutProps) {
             return (
               <div
                 key={credential.label}
-                className="card p-4 sm:p-5 flex items-start gap-3 sm:gap-4 hover:border-emerald-200 hover:shadow-[0_12px_30px_rgba(5,150,105,0.09)] transition-all duration-300"
+                className="group/cred p-5 sm:p-6 flex items-start gap-3 sm:gap-4"
               >
                 <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-xl bg-gradient-to-br from-emerald-500 to-teal-600 flex items-center justify-center flex-shrink-0 shadow-sm shadow-emerald-600/20">
                   <Icon className="w-5 h-5 sm:w-6 sm:h-6 text-white" strokeWidth={2.2} />
@@ -93,6 +95,7 @@ export default function About({ diplomeFichier }: AboutProps) {
               </div>
             )
           })}
+          </div>
         </div>
 
         {isWide ? (

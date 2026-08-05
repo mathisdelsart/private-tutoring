@@ -128,9 +128,13 @@ export default function Services() {
                           </span>
                         ))}
 
-                        <span className="px-2 py-1 sm:py-1.5 text-[10px] sm:text-xs italic text-slate-400 select-none">
-                          {t.services.ellipsis}
-                        </span>
+                        {/* Entrance exams follow a fixed official syllabus, so
+                            promising "and much more" there would be wrong */}
+                        {active.id !== 'examens' && (
+                          <span className="px-2 py-1 sm:py-1.5 text-[10px] sm:text-xs italic text-slate-400 select-none">
+                            {t.services.ellipsis}
+                          </span>
+                        )}
                       </div>
 
                       <ul className="space-y-2 sm:space-y-3">

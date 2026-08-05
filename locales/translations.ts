@@ -183,13 +183,13 @@ const fr = {
         label: 'Préparation examens d’entrée',
         labelShort: 'Préparation',
         tagline: 'Une préparation intensive et structurée pour aborder le jour J en confiance.',
-        note: 'Pour l’examen d’entrée en médecine, j’interviens sur les volets mathématiques et physique.',
+        note: '',
         subjects: [
           {
             title: 'Examen d’entrée ingénieur civil',
             levels: 'Mathématiques',
             badge: 'IC',
-            topics: ['Analyse', 'Algèbre', 'Trigonométrie', 'Géométrie analytique', 'Nombres complexes'],
+            topics: ['Analyse', 'Algèbre', 'Trigonométrie', 'Géométrie'],
             benefits: [
               'Le programme officiel de l’examen couvert de A à Z',
               'Entraînement intensif sur les questions des années passées',
@@ -201,7 +201,7 @@ const fr = {
             title: 'Examen d’entrée médecine & dentisterie',
             levels: 'Mathématiques & Physique',
             badge: 'MD',
-            topics: ['Mathématiques', 'Physique', 'Raisonnement', 'Annales', 'Gestion du temps'],
+            topics: ['Mathématiques', 'Physique', 'Raisonnement', 'Gestion du temps'],
             benefits: [
               'Les volets maths et physique des connaissances scientifiques',
               'Entraînement au format QCM chronométré',
@@ -678,13 +678,13 @@ const en: typeof fr = {
         label: 'Entrance exam preparation',
         labelShort: 'Preparation',
         tagline: 'Intensive, structured preparation so you walk into exam day with confidence.',
-        note: 'For the medical entrance exam, I cover the mathematics and physics parts.',
+        note: '',
         subjects: [
           {
             title: 'Civil engineering entrance exam',
             levels: 'Mathematics',
             badge: 'CE',
-            topics: ['Calculus', 'Algebra', 'Trigonometry', 'Analytic geometry', 'Complex numbers'],
+            topics: ['Calculus', 'Algebra', 'Trigonometry', 'Geometry'],
             benefits: [
               'The official exam syllabus covered from A to Z',
               'Intensive practice on past exam questions',
@@ -696,7 +696,7 @@ const en: typeof fr = {
             title: 'Medical & dental entrance exam',
             levels: 'Mathematics & Physics',
             badge: 'MD',
-            topics: ['Mathematics', 'Physics', 'Reasoning', 'Past papers', 'Time management'],
+            topics: ['Mathematics', 'Physics', 'Reasoning', 'Time management'],
             benefits: [
               'The maths and physics parts of the science section',
               'Practice under timed multiple-choice conditions',
@@ -1176,13 +1176,13 @@ const nl: typeof fr = {
         labelShort: 'Voorbereiding',
         tagline:
           'Een intensieve en gestructureerde voorbereiding zodat de examendag met vertrouwen wordt aangevat.',
-        note: 'Voor het toelatingsexamen arts en tandarts behandel ik de onderdelen wiskunde en fysica.',
+        note: '',
         subjects: [
           {
             title: 'Toelatingsexamen burgerlijk ingenieur',
             levels: 'Wiskunde',
             badge: 'BI',
-            topics: ['Analyse', 'Algebra', 'Goniometrie', 'Analytische meetkunde', 'Complexe getallen'],
+            topics: ['Analyse', 'Algebra', 'Goniometrie', 'Meetkunde'],
             benefits: [
               'Het officiële examenprogramma volledig doorgenomen',
               'Intensief oefenen op vragen van vorige jaren',
@@ -1194,7 +1194,7 @@ const nl: typeof fr = {
             title: 'Toelatingsexamen arts & tandarts',
             levels: 'Wiskunde & Fysica',
             badge: 'AT',
-            topics: ['Wiskunde', 'Fysica', 'Redeneren', 'Vorige examens', 'Timing'],
+            topics: ['Wiskunde', 'Fysica', 'Redeneren', 'Timing'],
             benefits: [
               'De onderdelen wiskunde en fysica van de wetenschapskennis',
               'Oefenen in meerkeuzeformaat onder tijdsdruk',
