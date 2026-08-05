@@ -1,7 +1,8 @@
 'use client'
 
 import { useState } from 'react'
-import { ArrowUpRight, Mail, MessageSquare } from 'lucide-react'
+import { Mail, MessageSquare } from 'lucide-react'
+import ContactChannels, { type Channel } from './ContactChannels'
 import ContactForm from './ContactForm'
 import Segmented from './Segmented'
 import SectionHeader from './SectionHeader'
@@ -28,29 +29,30 @@ export default function Contact({ email, whatsapp, nom }: ContactProps) {
     t.contact.directSmsText.replace('{nom}', nom)
   )}`
 
-  const contactMethods = [
+  const contactMethods: Channel[] = [
     {
+      id: 'sms',
       icon: MessageSquare,
       title: 'SMS',
       value: phoneDisplay,
-      link: smsLink,
-      newTab: false,
+      href: smsLink,
       description: t.contact.smsDesc,
     },
     {
+      id: 'whatsapp',
       icon: WhatsAppIcon,
       title: 'WhatsApp',
       value: phoneDisplay,
-      link: whatsappLink,
+      href: whatsappLink,
       newTab: true,
       description: t.contact.whatsappDesc,
     },
     {
+      id: 'email',
       icon: Mail,
       title: 'Email',
       value: email,
-      link: emailLink,
-      newTab: false,
+      href: emailLink,
       description: t.contact.emailDesc,
     },
   ]
@@ -91,44 +93,10 @@ export default function Contact({ email, whatsapp, nom }: ContactProps) {
           {mode === 'form' ? (
             <ContactForm email={email} whatsapp={whatsapp} nom={nom} />
           ) : (
-            /* Three rows in one block rather than three tall cards: the same
-               information, a third of the height, and every row is a real target */
-            <div className="max-w-2xl mx-auto rounded-2xl border border-slate-200 bg-white divide-y divide-slate-100 overflow-hidden shadow-[0_1px_2px_rgba(15,23,42,0.04),0_8px_24px_rgba(15,23,42,0.05)]">
-              {contactMethods.map((method) => {
-                const Icon = method.icon
-                return (
-                  <a
-                    key={method.title}
-                    href={method.link}
-                    target={method.newTab ? '_blank' : '_self'}
-                    rel="noopener noreferrer"
-                    className="group flex items-center gap-4 px-4 sm:px-6 py-4 sm:py-5 hover:bg-slate-50 transition-colors duration-200"
-                  >
-                    <span className="w-10 h-10 rounded-xl bg-emerald-50 border border-emerald-100 flex items-center justify-center flex-shrink-0 text-primary group-hover:bg-emerald-100 transition-colors duration-200">
-                      <Icon className="w-[18px] h-[18px]" />
-                    </span>
-
-                    <span className="min-w-0 flex-1">
-                      <span className="block text-sm font-semibold text-slate-900">
-                        {method.title}
-                      </span>
-                      <span className="block text-sm text-slate-600 break-words">
-                        {method.value}
-                      </span>
-                    </span>
-
-                    <span className="hidden sm:block text-xs text-slate-500 whitespace-nowrap">
-                      {method.description}
-                    </span>
-
-                    <ArrowUpRight
-                      aria-hidden="true"
-                      className="w-4 h-4 flex-shrink-0 text-slate-300 group-hover:text-primary transition-all duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
-                    />
-                  </a>
-                )
-              })}
-            </div>
+            <ContactChannels
+              channels={contactMethods}
+              className="max-w-2xl mx-auto shadow-[0_1px_2px_rgba(15,23,42,0.04),0_8px_24px_rgba(15,23,42,0.05)]"
+            />
           )}
         </div>
       </div>

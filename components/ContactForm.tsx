@@ -2,7 +2,6 @@
 
 import { useState } from 'react'
 import {
-  ArrowUpRight,
   Mail,
   MessageSquare,
   Home,
@@ -15,6 +14,7 @@ import {
   Stethoscope,
 } from 'lucide-react'
 import { useLanguage } from '@/lib/i18n'
+import ContactChannels, { type Channel } from './ContactChannels'
 import WhatsAppIcon from './WhatsAppIcon'
 
 interface ContactFormProps {
@@ -37,8 +37,12 @@ const choiceBase =
 const choiceIdle = 'border-slate-200 bg-white text-slate-600 hover:border-slate-300 hover:bg-slate-50'
 const choicePicked = 'border-primary bg-emerald-50/70 text-slate-900'
 
-const fieldClass =
-  'w-full px-4 py-3 bg-white border border-slate-200 rounded-xl text-[15px] text-slate-900 placeholder-slate-400 transition-colors duration-200 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary/30'
+// No width here: Tailwind emits w-16 before w-full, so a field that carried
+// both ended up full width and pushed the rest of its row off the card.
+const fieldBase =
+  'px-4 py-3 bg-white border border-slate-200 rounded-xl text-[15px] text-slate-900 placeholder-slate-400 transition-colors duration-200 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary/30'
+
+const fieldClass = `w-full ${fieldBase}`
 
 const labelClass = 'block text-[13px] font-semibold text-slate-700 mb-2.5'
 
@@ -174,12 +178,16 @@ ${lines.map((line) => `• ${line}`).join('\n')}`
   const icons = subjectIcons[activeLevel.id] ?? subjectIcons.secondaire
   const subjects = activeLevel.subjects.map((name, i) => ({ name, icon: icons[i % icons.length] }))
 
-  // The three ways to send are the same object as the direct contact rows
-  const sendChannels = [
-    { id: 'sms' as const, icon: MessageSquare, label: 'SMS', description: t.contact.smsDesc },
-    { id: 'whatsapp' as const, icon: WhatsAppIcon, label: 'WhatsApp', description: t.contact.whatsappDesc },
-    { id: 'email' as const, icon: Mail, label: 'Email', description: t.contact.emailDesc },
-  ]
+  // The three ways to send are the same block as the direct contact one
+  const sendChannels: Channel[] = [
+    { id: 'sms', icon: MessageSquare, title: 'SMS', description: t.contact.smsDesc },
+    { id: 'whatsapp', icon: WhatsAppIcon, title: 'WhatsApp', description: t.contact.whatsappDesc },
+    { id: 'email', icon: Mail, title: 'Email', description: t.contact.emailDesc },
+  ].map((channel) => ({
+    ...channel,
+    onClick: () => handleSubmit(channel.id as 'sms' | 'whatsapp' | 'email'),
+    disabled: !formData.availability,
+  }))
 
   return (
     <div className="max-w-2xl mx-auto rounded-2xl border border-slate-200 bg-white p-5 sm:p-8 shadow-[0_1px_2px_rgba(15,23,42,0.04),0_8px_24px_rgba(15,23,42,0.05)]">
@@ -381,7 +389,7 @@ ${lines.map((line) => `• ${line}`).join('\n')}`
                     value={formData.frequencyNumber}
                     onChange={(e) => updateFormData('frequencyNumber', e.target.value)}
                     disabled={!formData.frequencyPeriod}
-                    className={`${fieldClass} w-16 flex-shrink-0 text-center font-semibold px-0 disabled:bg-slate-50 disabled:text-slate-300`}
+                    className={`${fieldBase} w-16 flex-shrink-0 text-center font-semibold px-0 disabled:bg-slate-50 disabled:text-slate-300`}
                     placeholder="—"
                   />
                   <span className="text-sm text-slate-400 flex-shrink-0">{t.form.freqPer}</span>
@@ -456,36 +464,9 @@ ${lines.map((line) => `• ${line}`).join('\n')}`
             <div className="pt-5 border-t border-slate-200">
               <p className={labelClass}>{t.form.chooseContact}</p>
 
-              {/* Same rows as the direct contact block, so sending the form
+              {/* Same block as the direct contact one, so sending the form
                   looks like what it is: choosing a channel */}
-              <div className="rounded-xl border border-slate-200 divide-y divide-slate-100 overflow-hidden">
-                {sendChannels.map((channel) => {
-                  const Icon = channel.icon
-                  return (
-                    <button
-                      key={channel.id}
-                      type="button"
-                      onClick={() => handleSubmit(channel.id)}
-                      disabled={!formData.availability}
-                      className="group w-full flex items-center gap-3.5 px-4 py-3.5 text-left transition-colors duration-200 hover:bg-slate-50 disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:bg-transparent"
-                    >
-                      <span className="w-9 h-9 rounded-lg bg-emerald-50 border border-emerald-100 flex items-center justify-center flex-shrink-0 text-primary transition-colors duration-200 group-hover:bg-emerald-100 group-disabled:group-hover:bg-emerald-50">
-                        <Icon className="w-4 h-4" />
-                      </span>
-                      <span className="flex-1 text-sm font-semibold text-slate-900">
-                        {channel.label}
-                      </span>
-                      <span className="hidden sm:block text-xs text-slate-500">
-                        {channel.description}
-                      </span>
-                      <ArrowUpRight
-                        aria-hidden="true"
-                        className="w-4 h-4 flex-shrink-0 text-slate-300 transition-all duration-300 group-hover:text-primary group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
-                      />
-                    </button>
-                  )
-                })}
-              </div>
+              <ContactChannels channels={sendChannels} />
 
               <button
                 type="button"

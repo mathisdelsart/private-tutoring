@@ -32,8 +32,8 @@ const fr = {
     },
     statStudents: 'Élèves accompagnés',
     statExperience: 'Années d’expérience',
+    quote: { part1: 'L’excellence n’est pas une destination, c’est un ', highlight: 'voyage continu' },
     ctaTitle: 'Réserver un cours',
-    ctaSecondary: 'Voir les matières',
     ctaSubtitle: 'Premier contact sans engagement',
     labelModalites: 'Modalités',
     labelDisponibilite: 'Disponibilité',
@@ -371,7 +371,7 @@ const fr = {
   },
 
   faq: {
-    eyebrow: 'Questions pratiques',
+    eyebrow: 'En pratique',
     title: 'Questions fréquentes',
     subtitle: 'Tout ce qu’il faut savoir avant de se lancer',
     items: [
@@ -566,8 +566,8 @@ const en: typeof fr = {
     },
     statStudents: 'Students supported',
     statExperience: 'Years of experience',
+    quote: { part1: 'Excellence is not a destination, it’s a ', highlight: 'continuous journey' },
     ctaTitle: 'Book a lesson',
-    ctaSecondary: 'See the subjects',
     ctaSubtitle: 'Start your transformation',
     labelModalites: 'Format',
     labelDisponibilite: 'Availability',
@@ -905,7 +905,7 @@ const en: typeof fr = {
   },
 
   faq: {
-    eyebrow: 'Practical questions',
+    eyebrow: 'In practice',
     title: 'Frequently asked questions',
     subtitle: 'Everything worth knowing before we start',
     items: [
@@ -1101,8 +1101,8 @@ const nl: typeof fr = {
     },
     statStudents: 'Begeleide leerlingen',
     statExperience: 'Jaar ervaring',
+    quote: { part1: 'Uitmuntendheid is geen bestemming, het is een ', highlight: 'voortdurende reis' },
     ctaTitle: 'Een les boeken',
-    ctaSecondary: 'Bekijk de vakken',
     ctaSubtitle: 'Vrijblijvend eerste contact',
     labelModalites: 'Lesvormen',
     labelDisponibilite: 'Beschikbaarheid',
@@ -1442,7 +1442,7 @@ const nl: typeof fr = {
   },
 
   faq: {
-    eyebrow: 'Praktische vragen',
+    eyebrow: 'In de praktijk',
     title: 'Veelgestelde vragen',
     subtitle: 'Alles wat u wil weten voor we starten',
     items: [

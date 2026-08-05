@@ -48,8 +48,18 @@ export default function Temoignage() {
         </span>
       </div>
 
-      <blockquote className="text-[15px] text-slate-700 leading-relaxed mb-6 line-clamp-6">
-        {testimonial.text}
+      <blockquote className="mb-6">
+        <p className="text-[15px] text-slate-700 leading-relaxed line-clamp-6">
+          {testimonial.text}
+        </p>
+        {/* The closing mark follows the quote instead of sitting at a fixed
+            spot, so it lands right after the last line whatever its length */}
+        <Quote
+          aria-hidden="true"
+          className="block w-5 h-5 ml-auto mt-2 rotate-180 text-primary/25"
+          fill="currentColor"
+          strokeWidth={0}
+        />
       </blockquote>
 
       <figcaption className="flex items-center gap-3 mt-auto pt-4 border-t border-slate-100">
