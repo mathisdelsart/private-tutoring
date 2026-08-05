@@ -46,17 +46,17 @@ const fr = {
   method: {
     eyebrow: 'Ma méthode',
     title: 'Pourquoi me choisir ?',
-    subtitle: 'Une approche personnalisée pour chaque élève',
+    subtitle: 'Quatre choses concrètes, plutôt que des promesses',
     items: [
       {
-        title: 'Pédagogie personnalisée',
+        title: 'Je cherche la vraie cause',
         description:
-          'Chaque élève est unique. J’adapte mes séances et ma méthodologie à son profil, à ses objectifs et à son rythme d’apprentissage.',
+          'Un élève qui rate ses intégrales bloque rarement sur l’intégration : la faille est presque toujours deux chapitres plus tôt, sur les dérivées ou l’algèbre. Je remonte jusque-là plutôt que de retravailler le symptôme.',
       },
       {
-        title: 'Exercices & corrections',
+        title: 'Jamais « c’est comme ça »',
         description:
-          'Je propose des exercices adaptés au niveau et aux besoins de chacun. Je prends le temps de corriger et d’expliquer chaque point, pour aider l’élève à mieux comprendre et à progresser.',
+          'Chaque formule vient de quelque part, et je montre d’où. Une identité trigonométrique se retrouve avec le cercle : l’élève peut la reconstruire le jour de l’examen au lieu d’espérer s’en souvenir.',
       },
       {
         title: 'Disponible en dehors des cours',
@@ -383,8 +383,8 @@ const fr = {
       {
         q: 'Combien de temps dure une séance ?',
         a: [
-          'Une séance dure deux heures. C’est à mon sens la durée optimale : le temps de revoir la théorie, de faire des exercices et de les corriger sans se presser.',
-          'Pour un élève qui a du mal à tenir sa concentration, on passe à une heure et demie. En revanche, je déconseille les séances d’une heure : le temps de se mettre dedans, il ne reste presque plus rien pour travailler vraiment.',
+          'Une séance dure deux heures. C’est à mon sens la durée optimale : on a la place de reprendre la théorie, d’enchaîner plusieurs exercices et de corriger chaque point en détail.',
+          'Pour un élève qui a du mal à tenir sa concentration, on passe à une heure et demie. Je déconseille en revanche les séances d’une heure : elles suffisent rarement à couvrir une notion et à l’ancrer par des exercices, et on s’arrête souvent en plein milieu d’un chapitre.',
         ],
       },
       {
@@ -405,8 +405,7 @@ const fr = {
       {
         q: 'Est-ce que les parents ont un retour après le cours ?',
         a: [
-          'Oui. Je donne d’abord le retour à l’élève pendant la séance, puis aux parents juste après le cours si c’est utile.',
-          'Pour un retour plus détaillé, je l’envoie par SMS ou WhatsApp après la séance : ce qui a été vu, ce qui coince encore, et le cas échéant ce qu’il y a à préparer pour la fois suivante.',
+          'Oui. Je donne d’abord le retour à l’élève pendant la séance, puis aux parents juste après le cours si c’est utile. Pour un retour plus détaillé, je l’envoie par SMS ou WhatsApp après la séance : ce qui a été vu, ce qui coince encore, et le cas échéant ce qu’il y a à préparer pour la fois suivante.',
         ],
       },
       {
@@ -577,17 +576,17 @@ const en: typeof fr = {
   method: {
     eyebrow: 'My method',
     title: 'Why choose me?',
-    subtitle: 'A personalized approach to your success',
+    subtitle: 'Four concrete things, rather than promises',
     items: [
       {
-        title: 'Personalized teaching',
+        title: 'I look for the real cause',
         description:
-          'Every student is unique. I adapt my sessions and methodology to your profile, your goals and your learning pace.',
+          'A student failing integrals is rarely stuck on integration: the gap is almost always two chapters earlier, on derivatives or algebra. I go back there rather than drilling the symptom.',
       },
       {
-        title: 'Exercises & corrections',
+        title: 'Never "that is just how it is"',
         description:
-          'I give you exercises suited to your level and needs. I take the time to correct and explain every point to help you understand better and progress.',
+          'Every formula comes from somewhere, and I show where. A trigonometric identity can be recovered from the unit circle: the student can rebuild it on exam day instead of hoping to remember it.',
       },
       {
         title: 'Available outside lessons',
@@ -914,8 +913,8 @@ const en: typeof fr = {
       {
         q: 'How long does a lesson last?',
         a: [
-          'A lesson lasts two hours. To my mind that is the optimal length: enough time to go back over the theory, work through exercises and correct them without rushing.',
-          'For a student who finds it hard to stay focused, we drop to an hour and a half. I do advise against one-hour lessons: by the time you are properly into it, there is almost nothing left to actually work with.',
+          'A lesson lasts two hours. To my mind that is the optimal length: there is room to go back over the theory, work through several exercises and correct every point in detail.',
+          'For a student who finds it hard to stay focused, we drop to an hour and a half. I do advise against one-hour lessons: they rarely cover a topic and cement it with exercises, and you often stop in the middle of a chapter.',
         ],
       },
       {
@@ -936,8 +935,7 @@ const en: typeof fr = {
       {
         q: 'Do parents get feedback after the lesson?',
         a: [
-          'Yes. I give the feedback to the student first, during the session, then to the parents right after the lesson when that is useful.',
-          'For something more detailed, I send it by SMS or WhatsApp after the session: what we covered, what is still shaky, and where relevant what to prepare for next time.',
+          'Yes. I give the feedback to the student first, during the session, then to the parents right after the lesson when that is useful. For something more detailed, I send it by SMS or WhatsApp after the session: what we covered, what is still shaky, and where relevant what to prepare for next time.',
         ],
       },
       {
@@ -1109,17 +1107,17 @@ const nl: typeof fr = {
   method: {
     eyebrow: 'Mijn aanpak',
     title: 'Waarom voor mij kiezen?',
-    subtitle: 'Een persoonlijke aanpak voor elke leerling',
+    subtitle: 'Vier concrete zaken, in plaats van beloftes',
     items: [
       {
-        title: 'Persoonlijke aanpak',
+        title: 'Ik zoek de echte oorzaak',
         description:
-          'Elke leerling is uniek. Ik pas mijn lessen en mijn methode aan het profiel, de doelen en het leertempo van elke leerling aan.',
+          'Een leerling die zijn integralen mist, loopt zelden vast op de integratie: de breuk zit bijna altijd twee hoofdstukken eerder, bij de afgeleiden of de algebra. Ik ga daarnaartoe terug in plaats van het symptoom te drillen.',
       },
       {
-        title: 'Oefeningen & verbeteringen',
+        title: 'Nooit "het is nu eenmaal zo"',
         description:
-          'Ik geef oefeningen op maat van het niveau en de noden van elke leerling. Ik neem de tijd om alles na te kijken en elk punt uit te leggen, zodat de leerling beter begrijpt en vooruitgaat.',
+          'Elke formule komt ergens vandaan, en ik laat zien waar. Een goniometrische identiteit vind je terug met de cirkel: de leerling kan ze op de examendag heropbouwen in plaats van te hopen dat hij ze zich herinnert.',
       },
       {
         title: 'Ook bereikbaar buiten de lessen',
@@ -1448,8 +1446,8 @@ const nl: typeof fr = {
       {
         q: 'Hoe lang duurt een les?',
         a: [
-          'Een les duurt twee uur. Dat is volgens mij de ideale duur: genoeg tijd om de theorie te overlopen, oefeningen te maken en ze rustig te verbeteren.',
-          'Voor een leerling die moeite heeft om geconcentreerd te blijven, gaan we naar anderhalf uur. Lessen van één uur raad ik af: tegen dat je goed bezig bent, blijft er nauwelijks tijd over om echt te werken.',
+          'Een les duurt twee uur. Dat is volgens mij de ideale duur: er is ruimte om de theorie te overlopen, meerdere oefeningen te maken en elk punt in detail te verbeteren.',
+          'Voor een leerling die moeite heeft om geconcentreerd te blijven, gaan we naar anderhalf uur. Lessen van één uur raad ik af: ze volstaan zelden om een onderwerp te behandelen en met oefeningen vast te zetten, en je stopt vaak midden in een hoofdstuk.',
         ],
       },
       {
@@ -1470,8 +1468,7 @@ const nl: typeof fr = {
       {
         q: 'Krijgen ouders feedback na de les?',
         a: [
-          'Ja. Ik geef de feedback eerst aan de leerling tijdens de sessie, en daarna aan de ouders vlak na de les wanneer dat nuttig is.',
-          'Voor iets uitgebreiders stuur ik het na de sessie via sms of WhatsApp: wat we gezien hebben, waar het nog moeilijk gaat, en indien nodig wat er tegen de volgende keer voorbereid moet worden.',
+          'Ja. Ik geef de feedback eerst aan de leerling tijdens de sessie, en daarna aan de ouders vlak na de les wanneer dat nuttig is. Voor iets uitgebreiders stuur ik het na de sessie via sms of WhatsApp: wat we gezien hebben, waar het nog moeilijk gaat, en indien nodig wat er tegen de volgende keer voorbereid moet worden.',
         ],
       },
       {

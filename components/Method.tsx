@@ -1,9 +1,9 @@
 'use client'
 
-import { UserCog, ClipboardCheck, MessageCircle, FileText } from 'lucide-react'
+import { Target, Lightbulb, MessageCircle, FileText } from 'lucide-react'
 import { useLanguage } from '@/lib/i18n'
 
-const icons = [UserCog, ClipboardCheck, MessageCircle, FileText]
+const icons = [Target, Lightbulb, MessageCircle, FileText]
 
 export default function Method() {
   const { t } = useLanguage()
