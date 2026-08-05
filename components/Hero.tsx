@@ -146,11 +146,13 @@ export default function Hero({ nom, moyenne, moyenneSur, diplomeFichier }: HeroP
               </a>
           </div>
 
-          {/* From lg up the card fills the row, so both columns start and end on
-              the same lines; the photo takes the slack and stays centred */}
+          {/* The card is 10 to 40px shorter than the text column depending on
+              the width. From lg up it fills the row and the block under the
+              photo takes those few pixels, so the columns end together without
+              the photo being recropped. */}
           <div className={`lg:h-full ${mounted ? 'animate-[fadeInUp_1s_ease-out_0.2s_backwards]' : 'opacity-0'}`}>
             <div className="card p-0 overflow-hidden lg:h-full lg:flex lg:flex-col group/card hover:shadow-[0_20px_50px_rgba(5,150,105,0.14)] hover:border-emerald-200 transition-all duration-500">
-              <div className="relative w-full aspect-[4/3.8] lg:aspect-auto lg:flex-1 lg:min-h-[15rem] overflow-hidden bg-gradient-to-b from-gray-900 to-gray-800">
+              <div className="relative w-full aspect-[4/3.8] flex-shrink-0 overflow-hidden bg-gradient-to-b from-gray-900 to-gray-800">
                 <Image
                   src={assetPath('/face_image.jpg')}
                   alt={nom}
@@ -173,7 +175,7 @@ export default function Hero({ nom, moyenne, moyenneSur, diplomeFichier }: HeroP
                 </div>
               </div>
 
-              <div className="p-5 sm:p-6">
+              <div className="p-5 sm:p-6 lg:flex-1">
                 {/* inline-block so the rule can grow to exactly the name's width */}
                 <div className="inline-block max-w-full">
                   <h3 className="text-xl sm:text-2xl font-extrabold text-slate-900 tracking-tight">
