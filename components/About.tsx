@@ -2,7 +2,6 @@
 
 import { useEffect, useRef, useState } from 'react'
 import { ChevronDown, GraduationCap, Award, Brain, ArrowUpRight } from 'lucide-react'
-import { assetPath } from '@/lib/assetPath'
 import { useLanguage } from '@/lib/i18n'
 import { useIsomorphicLayoutEffect } from '@/lib/layoutEffect'
 import { withHighlights } from '@/lib/highlight'
@@ -10,11 +9,7 @@ import SectionHeader from './SectionHeader'
 
 const credentialIcons = [GraduationCap, Award, Brain]
 
-interface AboutProps {
-  diplomeFichier: string
-}
-
-export default function About({ diplomeFichier }: AboutProps) {
+export default function About() {
   const { t } = useLanguage()
   const [activeIndex, setActiveIndex] = useState(0)
   // The accordion is the server-rendered layout: it works at any width and
@@ -75,11 +70,7 @@ export default function About({ diplomeFichier }: AboutProps) {
           <div className="grid grid-cols-1 sm:grid-cols-3 divide-y sm:divide-y-0 sm:divide-x divide-slate-200">
             {t.about.credentials.map((credential, index) => {
               const Icon = credentialIcons[index % credentialIcons.length]
-              // 'file' points at the local certificate, whose name lives in prof.json
-              const linkHref =
-                credential.linkKind === 'file'
-                  ? diplomeFichier && assetPath(diplomeFichier)
-                  : credential.linkUrl
+              const linkHref = credential.linkUrl
               return (
                 <div
                   key={credential.label}

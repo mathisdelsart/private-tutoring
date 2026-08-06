@@ -61,7 +61,6 @@ export default function Home() {
           nom={prof.nom}
           moyenne={prof.diplomeMoyenne}
           moyenneSur={prof.diplomeSur}
-          diplomeFichier={prof.diplomeFichier}
         />
 
         <Services />
@@ -70,7 +69,7 @@ export default function Home() {
 
         <Temoignage />
 
-        <About diplomeFichier={prof.diplomeFichier} />
+        <About />
 
         <Faq />
 
