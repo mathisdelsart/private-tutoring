@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react'
 import Image from 'next/image'
-import { Award, Clock, Download, GraduationCap, MapPin } from 'lucide-react'
+import { Award, Clock, GraduationCap, MapPin } from 'lucide-react'
 import { assetPath } from '@/lib/assetPath'
 import { useLanguage } from '@/lib/i18n'
 import { MAPS_URL } from '@/lib/maps'
@@ -12,10 +12,9 @@ interface HeroProps {
   nom: string
   moyenne: string
   moyenneSur: string
-  diplomeFichier: string
 }
 
-export default function Hero({ nom, moyenne, moyenneSur, diplomeFichier }: HeroProps) {
+export default function Hero({ nom, moyenne, moyenneSur }: HeroProps) {
   const { t } = useLanguage()
   const [mounted, setMounted] = useState(false)
 
@@ -105,17 +104,6 @@ export default function Hero({ nom, moyenne, moyenneSur, diplomeFichier }: HeroP
                   <span className="text-xs font-semibold text-emerald-800">
                     {t.hero.diploma.distinction}
                   </span>
-                  {diplomeFichier && (
-                    <a
-                      href={assetPath(diplomeFichier)}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="group/dl ml-auto inline-flex items-center gap-1 text-[11px] font-semibold text-primary hover:text-secondary transition-colors"
-                    >
-                      <Download className="w-3 h-3 group-hover/dl:translate-y-0.5 transition-transform" />
-                      {t.hero.diploma.download}
-                    </a>
-                  )}
                 </div>
                 <p className="mt-1 text-[11px] text-slate-500 leading-snug">
                   {t.hero.diploma.school}

@@ -16,7 +16,6 @@
   "ville": "Gouy-Lez-Piéton",
   "diplomeMoyenne": "17,95",
   "diplomeSur": "20",
-  "diplomeFichier": "/diplome-mathis-delsart.pdf",
   "accroche": "Ingénieur civil en Informatique & IA spécialisé dans l'enseignement personnalisé, du secondaire au supérieur et en préparation aux examens d'entrée",
   "email": "mathis.delsart@gmail.com",
   "whatsapp": "32468386354",
@@ -36,6 +35,6 @@
     "Courcelles",
     "Gouy-Lez-Piéton"
   ],
-  "ogImage": "https://mathisdelsart.github.io/private-tutoring/app-image.png?v=5",
+  "ogImage": "https://mathisdelsart.github.io/private-tutoring/app-image.png?v=6",
   "ogImageAlt": "Mathis Delsart – Professeur particulier"
 }

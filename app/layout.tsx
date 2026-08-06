@@ -16,8 +16,10 @@ export const metadata = {
     images: [
       {
         url: profData.ogImage,
-        width: 1200,
-        height: 630,
+        // Must match public/app-image.png: the platforms lay the preview out
+        // from these numbers before the image itself arrives
+        width: 2016,
+        height: 1176,
         alt: profData.ogImageAlt,
       },
     ],
